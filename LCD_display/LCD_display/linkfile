@@ -1,0 +1,6 @@
+-F0x30 -g -blit:0x170.0x3fff 
+ -bdata:0.0x2ff -rwh:SSCParmBlk:0x00F7.0x00FF -BInterruptRAM:0 -Bvirtual_registers  
+ -Bled_display_RAM 
+ -o"output/LCD_display" 
+obj/boardcommunication.o obj/ht1621b.o obj/lcd.o obj/main.o obj/particlesensor.o obj/si7020.o obj/software_iic.o 	
+ ./lib/libPSoc.a -LC:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/lib/LMM/eightpages C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/lib/CY8C22045/cms.a C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/lib/LMM/UASW/NoMAC/arith.a  

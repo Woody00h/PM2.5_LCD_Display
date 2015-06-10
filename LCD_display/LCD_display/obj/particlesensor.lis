@@ -1,0 +1,466 @@
+ 0000                   cpu LMM
+                        .module particlesensor.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./particlesensor.c
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\particlesensor.c
+ 0000                   .dbfunc e SensorUART _SensorUART fV
+ 0000           ;         rxdata -> X+1
+ 0000           ;              i -> X+0
+ 0000           _SensorUART::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3802              add SP,2
+ 0004                   .dbline 12
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #define PMS3003
+ 0004           ; #include "ParticleSensor.h"
+ 0004           ; /*
+ 0004           ;  *NOTE:This code is for the Particle sensor PMS3003.
+ 0004           ;  *     Do not apply it on other particle sensor.
+ 0004           ;  */
+ 0004           ; 
+ 0004           ; void SensorUART(void )
+ 0004           ; {
+ 0004                   .dbline 15
+ 0004           ;       unsigned char rxdata;
+ 0004           ;       unsigned char i;
+ 0004           ;       rxdata = UART_Sensor_bReadRxData();
+ 0004 10                push X
+ 0005 7C0000            xcall _UART_Sensor_bReadRxData
+ 0008 20                pop X
+ 0009 62D000            mov REG[0xd0],>__r0
+ 000C 5401              mov [X+1],A
+ 000E           L4:
+ 000E                   .dbline 19
+ 000E           ;       
+ 000E           ;       
+ 000E           ;       //send to PC terminal
+ 000E           ;       while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
+ 000E           L5:
+ 000E                   .dbline 19
+ 000E 10                push X
+ 000F 7C0000            xcall _UART_Board_bReadTxStatus
+ 0012 20                pop X
+ 0013 62D000            mov REG[0xd0],>__r0
+ 0016 5300              mov [__r0],A
+ 0018 470010            tst [__r0],16
+ 001B AFF2              jz L4
+ 001D                   .dbline 20
+ 001D           ;       UART_Board_SendData(rxdata);
+ 001D 10                push X
+ 001E 5201              mov A,[X+1]
+ 0020 7C0000            xcall _UART_Board_SendData
+ 0023 20                pop X
+ 0024                   .dbline 23
+ 0024           ;       
+ 0024           ;       
+ 0024           ;       if(HeadFlag == 0)
+ 0024 62D000            mov REG[0xd0],>_HeadFlag
+ 0027 3C0000            cmp [_HeadFlag],0
+ 002A B05C              jnz L7
+ 002C                   .dbline 26
+ 002C           ;     {
+ 002C           ;         //head receive
+ 002C           ;               if(DataPtr < 2)
+ 002C                   .dbline 26
+ 002C 62D000            mov REG[0xd0],>_DataPtr
+ 002F 3C0002            cmp [_DataPtr],2
+ 0032 D023              jnc L9
+ 0034           X0:
+ 0034                   .dbline 28
+ 0034           ;               {
+ 0034           ;                       MyPMSUnion.PMRxBuf[DataPtr] = rxdata;
+ 0034                   .dbline 28
+ 0034 62D000            mov REG[0xd0],>_DataPtr
+ 0037 5100              mov A,[_DataPtr]
+ 0039 62D000            mov REG[0xd0],>__r0
+ 003C 5300              mov [__r1],A
+ 003E 550000            mov [__r0],0
+ 0041 060000            add [__r1],<_MyPMSUnion
+ 0044 0E0000            adc [__r0],>_MyPMSUnion
+ 0047 5100              mov A,[__r0]
+ 0049 60D5              mov REG[0xd5],A
+ 004B 5201              mov A,[X+1]
+ 004D 3F00              mvi [__r1],A
+ 004F                   .dbline 29
+ 004F           ;                       DataPtr ++;
+ 004F 62D000            mov REG[0xd0],>_DataPtr
+ 0052 7600              inc [_DataPtr]
+ 0054                   .dbline 30
+ 0054           ;               }
+ 0054 8015              xjmp L10
+ 0056           L9:
+ 0056                   .dbline 32
+ 0056           ;               else
+ 0056           ;               {
+ 0056                   .dbline 33
+ 0056           ;                       MyPMSUnion.MyPMFrame.Head <<= 8;
+ 0056 62D000            mov REG[0xd0],>_MyPMSUnion
+ 0059 5101              mov A,[_MyPMSUnion+1]
+ 005B 5300              mov [_MyPMSUnion],A
+ 005D 550100            mov [_MyPMSUnion+1],0
+ 0060                   .dbline 34
+ 0060           ;                       MyPMSUnion.PMRxBuf[1] = rxdata;
+ 0060 5201              mov A,[X+1]
+ 0062 5301              mov [_MyPMSUnion+1],A
+ 0064                   .dbline 35
+ 0064           ;                       DataPtr = 2;
+ 0064 62D000            mov REG[0xd0],>_DataPtr
+ 0067 550002            mov [_DataPtr],2
+ 006A                   .dbline 36
+ 006A           ;               }
+ 006A           L10:
+ 006A                   .dbline 39
+ 006A           ;               
+ 006A           ;         //head check
+ 006A           ;               if(DataPtr == 2 && MyPMSUnion.MyPMFrame.Head == FRAME_HEAD)
+ 006A 62D000            mov REG[0xd0],>_DataPtr
+ 006D 3C0002            cmp [_DataPtr],2
+ 0070 B0DE              jnz L8
+ 0072 62D000            mov REG[0xd0],>_MyPMSUnion
+ 0075 3C0042            cmp [_MyPMSUnion],66
+ 0078 B0D6              jnz L8
+ 007A 3C014D            cmp [_MyPMSUnion+1],77
+ 007D B0D1              jnz L8
+ 007F           X1:
+ 007F                   .dbline 41
+ 007F           ;               {
+ 007F           ;                       HeadFlag = 1;   
+ 007F                   .dbline 41
+ 007F 62D000            mov REG[0xd0],>_HeadFlag
+ 0082 550001            mov [_HeadFlag],1
+ 0085                   .dbline 42
+ 0085           ;               }
+ 0085                   .dbline 43
+ 0085           ;     }
+ 0085 80C9              xjmp L8
+ 0087           L7:
+ 0087                   .dbline 45
+ 0087           ;     else
+ 0087           ;     {
+ 0087                   .dbline 46
+ 0087           ;       MyPMSUnion.PMRxBuf[DataPtr] = rxdata;
+ 0087 62D000            mov REG[0xd0],>_DataPtr
+ 008A 5100              mov A,[_DataPtr]
+ 008C 62D000            mov REG[0xd0],>__r0
+ 008F 5300              mov [__r1],A
+ 0091 550000            mov [__r0],0
+ 0094 060000            add [__r1],<_MyPMSUnion
+ 0097 0E0000            adc [__r0],>_MyPMSUnion
+ 009A 5100              mov A,[__r0]
+ 009C 60D5              mov REG[0xd5],A
+ 009E 5201              mov A,[X+1]
+ 00A0 3F00              mvi [__r1],A
+ 00A2                   .dbline 47
+ 00A2           ;         if(DataPtr >= (BUF_LENGTH-1))
+ 00A2 62D000            mov REG[0xd0],>_DataPtr
+ 00A5 3C0027            cmp [_DataPtr],39
+ 00A8 C009              jc L14
+ 00AA           X2:
+ 00AA                   .dbline 49
+ 00AA           ;         {
+ 00AA           ;             DataPtr = (BUF_LENGTH-1);
+ 00AA                   .dbline 49
+ 00AA 62D000            mov REG[0xd0],>_DataPtr
+ 00AD 550027            mov [_DataPtr],39
+ 00B0                   .dbline 50
+ 00B0           ;         }
+ 00B0 8006              xjmp L15
+ 00B2           L14:
+ 00B2                   .dbline 52
+ 00B2           ;               else
+ 00B2           ;               {
+ 00B2                   .dbline 53
+ 00B2           ;                       DataPtr++;
+ 00B2 62D000            mov REG[0xd0],>_DataPtr
+ 00B5 7600              inc [_DataPtr]
+ 00B7                   .dbline 54
+ 00B7           ;               }
+ 00B7           L15:
+ 00B7                   .dbline 56
+ 00B7           ; 
+ 00B7           ;       if(DataPtr == (MyPMSUnion.MyPMFrame.Length + 4) && DataPtr >= 6)
+ 00B7 62D000            mov REG[0xd0],>_MyPMSUnion
+ 00BA 5103              mov A,[_MyPMSUnion+2+1]
+ 00BC 0104              add A,4
+ 00BE 62D000            mov REG[0xd0],>__r0
+ 00C1 5300              mov [__r1],A
+ 00C3 62D000            mov REG[0xd0],>_MyPMSUnion
+ 00C6 5102              mov A,[_MyPMSUnion+2]
+ 00C8 0900              adc A,0
+ 00CA 62D000            mov REG[0xd0],>__r0
+ 00CD 5300              mov [__r0],A
+ 00CF 62D000            mov REG[0xd0],>_DataPtr
+ 00D2 5100              mov A,[_DataPtr]
+ 00D4 62D000            mov REG[0xd0],>__r0
+ 00D7 5300              mov [__r3],A
+ 00D9 5000              mov A,0
+ 00DB 3A00              cmp A,[__r0]
+ 00DD B071              jnz L16
+ 00DF 5100              mov A,[__r3]
+ 00E1 3A00              cmp A,[__r1]
+ 00E3 B06B              jnz L16
+ 00E5           X3:
+ 00E5 62D000            mov REG[0xd0],>_DataPtr
+ 00E8 3C0006            cmp [_DataPtr],6
+ 00EB C063              jc L16
+ 00ED           X4:
+ 00ED                   .dbline 58
+ 00ED           ;               {
+ 00ED           ;                       PMSFrameFlag = 1;
+ 00ED                   .dbline 58
+ 00ED 62D000            mov REG[0xd0],>_PMSFrameFlag
+ 00F0 550001            mov [_PMSFrameFlag],1
+ 00F3                   .dbline 59
+ 00F3           ;                       HeadFlag = 0;   
+ 00F3 62D000            mov REG[0xd0],>_HeadFlag
+ 00F6 550000            mov [_HeadFlag],0
+ 00F9                   .dbline 60
+ 00F9           ;             DataPtr = 0;
+ 00F9 62D000            mov REG[0xd0],>_DataPtr
+ 00FC 550000            mov [_DataPtr],0
+ 00FF                   .dbline 62
+ 00FF           ;                       
+ 00FF           ;                       for (i = 0; i < (MyPMSUnion.MyPMFrame.Length+4); i++)
+ 00FF 560000            mov [X+0],0
+ 0102 802A              xjmp L22
+ 0104           L24:
+ 0104                   .dbline 64
+ 0104           ;                       {
+ 0104           ;                               while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
+ 0104           L25:
+ 0104                   .dbline 64
+ 0104 10                push X
+ 0105 7C0000            xcall _UART_Board_bReadTxStatus
+ 0108 20                pop X
+ 0109 62D000            mov REG[0xd0],>__r0
+ 010C 5300              mov [__r0],A
+ 010E 470010            tst [__r0],16
+ 0111 AFF2              jz L24
+ 0113                   .dbline 65
+ 0113           ;                               UART_Board_SendData(MyPMSUnion.PMRxBuf[i]);
+ 0113 5200              mov A,[X+0]
+ 0115 5300              mov [__r1],A
+ 0117 550000            mov [__r0],0
+ 011A 060000            add [__r1],<_MyPMSUnion
+ 011D 0E0000            adc [__r0],>_MyPMSUnion
+ 0120 5100              mov A,[__r0]
+ 0122 60D4              mov REG[0xd4],A
+ 0124 3E00              mvi A,[__r1]
+ 0126 10                push X
+ 0127 7C0000            xcall _UART_Board_SendData
+ 012A 20                pop X
+ 012B                   .dbline 66
+ 012B           ;                       }
+ 012B           L20:
+ 012B                   .dbline 62
+ 012B 7700              inc [X+0]
+ 012D           L22:
+ 012D                   .dbline 62
+ 012D 62D000            mov REG[0xd0],>_MyPMSUnion
+ 0130 5103              mov A,[_MyPMSUnion+2+1]
+ 0132 0104              add A,4
+ 0134 62D000            mov REG[0xd0],>__r0
+ 0137 5300              mov [__r1],A
+ 0139 62D000            mov REG[0xd0],>_MyPMSUnion
+ 013C 5102              mov A,[_MyPMSUnion+2]
+ 013E 0900              adc A,0
+ 0140 62D000            mov REG[0xd0],>__r0
+ 0143 5300              mov [__r0],A
+ 0145 5200              mov A,[X+0]
+ 0147 1200              sub A,[__r1]
+ 0149 5000              mov A,0
+ 014B 1A00              sbb A,[__r0]
+ 014D CFB6              jc L25
+ 014F           X5:
+ 014F                   .dbline 67
+ 014F           ;               }
+ 014F           L16:
+ 014F                   .dbline 68
+ 014F           ;     }
+ 014F           L8:
+ 014F                   .dbline -2
+ 014F           L3:
+ 014F 38FE              add SP,-2
+ 0151 20                pop X
+ 0152                   .dbline 0 ; func end
+ 0152 7F                ret
+ 0153                   .dbsym l rxdata 1 c
+ 0153                   .dbsym l i 0 c
+ 0153                   .dbend
+ 0153                   .dbfunc e FrameCheck _FrameCheck fc
+ 0153           ;       checksum -> X+1
+ 0153           ;              i -> X+0
+ 0153           _FrameCheck::
+ 0153                   .dbline -1
+ 0153 10                push X
+ 0154 4F                mov X,SP
+ 0155 3803              add SP,3
+ 0157                   .dbline 77
+ 0157           ; }
+ 0157           ; 
+ 0157           ; /*
+ 0157           ; *check sum of the frame.
+ 0157           ; *return 1-pass
+ 0157           ; *return 0-fail
+ 0157           ; */
+ 0157           ; unsigned char FrameCheck(void)
+ 0157           ; {
+ 0157                   .dbline 78
+ 0157           ;       unsigned int checksum = 0;
+ 0157 560200            mov [X+2],0
+ 015A 560100            mov [X+1],0
+ 015D                   .dbline 79
+ 015D           ;       unsigned char i = 0;
+ 015D 560000            mov [X+0],0
+ 0160                   .dbline 81
+ 0160           ;       
+ 0160           ;       for (i = 0; i < (MyPMSUnion.MyPMFrame.Length+2); i++)
+ 0160 560000            mov [X+0],0
+ 0163 8020              xjmp L31
+ 0165           L28:
+ 0165                   .dbline 82
+ 0165           ;       {
+ 0165                   .dbline 83
+ 0165           ;               checksum += MyPMSUnion.PMRxBuf[i];
+ 0165 62D000            mov REG[0xd0],>__r0
+ 0168 5200              mov A,[X+0]
+ 016A 5300              mov [__r1],A
+ 016C 550000            mov [__r0],0
+ 016F 060000            add [__r1],<_MyPMSUnion
+ 0172 0E0000            adc [__r0],>_MyPMSUnion
+ 0175 5100              mov A,[__r0]
+ 0177 60D4              mov REG[0xd4],A
+ 0179 3E00              mvi A,[__r1]
+ 017B 0502              add [X+2],A
+ 017D 5000              mov A,0
+ 017F 0F0100            adc [X+1],0
+ 0182                   .dbline 84
+ 0182           ;       }
+ 0182           L29:
+ 0182                   .dbline 81
+ 0182 7700              inc [X+0]
+ 0184           L31:
+ 0184                   .dbline 81
+ 0184 62D000            mov REG[0xd0],>_MyPMSUnion
+ 0187 5103              mov A,[_MyPMSUnion+2+1]
+ 0189 0102              add A,2
+ 018B 62D000            mov REG[0xd0],>__r0
+ 018E 5300              mov [__r1],A
+ 0190 62D000            mov REG[0xd0],>_MyPMSUnion
+ 0193 5102              mov A,[_MyPMSUnion+2]
+ 0195 0900              adc A,0
+ 0197 62D000            mov REG[0xd0],>__r0
+ 019A 5300              mov [__r0],A
+ 019C 5200              mov A,[X+0]
+ 019E 1200              sub A,[__r1]
+ 01A0 5000              mov A,0
+ 01A2 1A00              sbb A,[__r0]
+ 01A4 CFC0              jc L28
+ 01A6           X6:
+ 01A6                   .dbline 86
+ 01A6           ;       
+ 01A6           ;       MyPMSUnion.MyPMFrame.Length = 0;
+ 01A6 62D000            mov REG[0xd0],>_MyPMSUnion
+ 01A9 550300            mov [_MyPMSUnion+2+1],0
+ 01AC 550200            mov [_MyPMSUnion+2],0
+ 01AF                   .dbline 87
+ 01AF           ;       MyPMSUnion.MyPMFrame.Head = 0;
+ 01AF 550100            mov [_MyPMSUnion+1],0
+ 01B2 550000            mov [_MyPMSUnion],0
+ 01B5                   .dbline 89
+ 01B5           ;       
+ 01B5           ;       if (checksum == MyPMSUnion.MyPMFrame.checksum)
+ 01B5 5201              mov A,[X+1]
+ 01B7 3A16              cmp A,[_MyPMSUnion+22]
+ 01B9 B00E              jnz L34
+ 01BB 5202              mov A,[X+2]
+ 01BD 3A17              cmp A,[_MyPMSUnion+22+1]
+ 01BF B008              jnz L34
+ 01C1           X7:
+ 01C1                   .dbline 91
+ 01C1           ;       {
+ 01C1           ;               return 1;
+ 01C1                   .dbline 91
+ 01C1 62D000            mov REG[0xd0],>__r0
+ 01C4 5001              mov A,1
+ 01C6 8006              xjmp L27
+ 01C8           L34:
+ 01C8                   .dbline 94
+ 01C8           ;       }
+ 01C8           ;       else 
+ 01C8           ;       {
+ 01C8                   .dbline 106
+ 01C8           ; //            UART_Board_CPutString("fail, checksum=");
+ 01C8           ; //            UART_Board_PutSHexByte(checksum);
+ 01C8           ; //            UART_Board_PutCRLF();
+ 01C8           ; //            for (i = 0; i < 24; i++)
+ 01C8           ; //            {
+ 01C8           ; //                    UART_Board_PutSHexByte(MyPMSUnion.PMRxBuf[i]);
+ 01C8           ; //                    UART_Board_PutChar(' ');
+ 01C8           ; //                    while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
+ 01C8           ; //                    UART_Board_SendData(MyPMSUnion.PMRxBuf[i]);
+ 01C8           ; //            }
+ 01C8           ; //            UART_Board_PutCRLF();
+ 01C8           ;               return 0;
+ 01C8 62D000            mov REG[0xd0],>__r0
+ 01CB 5000              mov A,0
+ 01CD                   .dbline -2
+ 01CD           L27:
+ 01CD 38FD              add SP,-3
+ 01CF 20                pop X
+ 01D0                   .dbline 0 ; func end
+ 01D0 7F                ret
+ 01D1                   .dbsym l checksum 1 i
+ 01D1                   .dbsym l i 0 c
+ 01D1                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\particlesensor.c
+ 0000           _MyPMSUnion::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000000000      .word 0,0,0,0,0
+ 0014 00000000000000000000      .word 0,0,0,0,0
+ 001E 00000000000000000000      .byte 0,0,0,0,0,0,0,0,0,0
+ 0028                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ParticleSensor.h
+ 0028                   .dbstruct 0 24 .1
+ 0028                   .dbfield 0 Head i
+ 0028                   .dbfield 2 Length i
+ 0028                   .dbfield 4 PM1_0_US i
+ 0028                   .dbfield 6 PM2_5_US i
+ 0028                   .dbfield 8 PM10_US i
+ 0028                   .dbfield 10 PM1_0_CN i
+ 0028                   .dbfield 12 PM2_5_CN i
+ 0028                   .dbfield 14 PM10_CN i
+ 0028                   .dbfield 16 Reserve1 i
+ 0028                   .dbfield 18 Reserve2 i
+ 0028                   .dbfield 20 Reserve3 i
+ 0028                   .dbfield 22 checksum i
+ 0028                   .dbend
+ 0028                   .dbunion 0 40 .2
+ 0028                   .dbfield 0 PMRxBuf A[40:40]c
+ 0028                   .dbfield 0 MyPMFrame S[.1]
+ 0028                   .dbend
+ 0028                   .dbsym e MyPMSUnion _MyPMSUnion S[.2]
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ParticleSensor.h
+ 0000           _PMSFrameFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PMSFrameFlag _PMSFrameFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ParticleSensor.h
+ 0000           _DataPtr::
+ 0000 00                .byte 0
+ 0001                   .dbsym e DataPtr _DataPtr c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ParticleSensor.h
+ 0000           _HeadPointer::
+ 0000 00                .byte 0
+ 0001                   .dbsym e HeadPointer _HeadPointer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ParticleSensor.h
+ 0000           _HeadFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e HeadFlag _HeadFlag c

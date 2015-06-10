@@ -1,0 +1,77 @@
+# DO NOT DELETE
+./obj/boardcommunication.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM8_BL.h ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H\
+   ./lib/UART_S~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h
+./obj/boot.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8ssc.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\lib\GLOBAL~1.INC\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./obj/ht1621b.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8_BL.h\
+   ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\HT1621B.h
+./obj/lcd.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/stdlib.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\HT1621B.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\PARTIC~1.H\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\include.h
+./obj/main.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8_BL.h\
+   ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\HT1621B.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\PARTIC~1.H\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\Si7020.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\include.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\SOFTWA~1.H
+./obj/particlesensor.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM8_BL.h ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H\
+   ./lib/UART_S~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\PARTIC~1.H
+./obj/si7020.o :  C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\Si7020.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\SOFTWA~1.H
+./obj/software_iic.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8_BL.h\
+   ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\HT1621B.h
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc
+./lib/obj/pwm8_bl.o :  ./lib/PWM8_BL.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/pwm8_blint.o :  ./lib/PWM8_BL.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/sar10.o :  ./lib/SAR10.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/sar10int.o :  ./lib/SAR10.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/timer16.o :  ./lib/Timer16.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/timer16int.o :  ./lib/Timer16.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/uart_board.o :  ./lib/UART_B~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/uart_boardint.o :  ./lib/UART_B~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/uart_boardplus.o : 
+./lib/obj/uart_sensor.o :  ./lib/UART_S~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/uart_sensorint.o :  ./lib/UART_S~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.inc\
+   C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\memory.inc
+./lib/obj/uart_sensorplus.o : 

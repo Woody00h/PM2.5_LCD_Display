@@ -1,0 +1,519 @@
+ 0000                   cpu LMM
+                        .module ht1621b.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./ht1621b.c
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\ht1621b.c
+ 0000                   .dbfunc e delay_us _delay_us fV
+ 0000           ;             us -> X-5
+ 0000           _delay_us::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002                   .dbline 8
+ 0002           ; #include <m8c.h>        // part specific constants and macros
+ 0002           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0002           ; #include "HT1621B.h"
+ 0002           ; 
+ 0002           ; 
+ 0002           ; 
+ 0002           ; void delay_us(uint us)
+ 0002           ; {
+ 0002                   .dbline 9
+ 0002           ;       for (;us>0;us--)
+ 0002 800C              xjmp L5
+ 0004           L2:
+ 0004                   .dbline 10
+ 0004           ;       {
+ 0004                   .dbline 11
+ 0004           ;               asm ("NOP");
+ 0004 40                        NOP
+ 0005           
+ 0005                   .dbline 12
+ 0005           ;               asm ("NOP");
+ 0005 40                        NOP
+ 0006           
+ 0006                   .dbline 13
+ 0006           ;               asm ("NOP");
+ 0006 40                        NOP
+ 0007           
+ 0007                   .dbline 14
+ 0007           ;               asm ("NOP");
+ 0007 40                        NOP
+ 0008           
+ 0008                   .dbline 15
+ 0008           ;               asm ("NOP");
+ 0008 40                        NOP
+ 0009           
+ 0009                   .dbline 16
+ 0009           ;               asm ("NOP");
+ 0009 40                        NOP
+ 000A           
+ 000A                   .dbline 17
+ 000A           ;       }
+ 000A           L3:
+ 000A                   .dbline 9
+ 000A 7BFC              dec [X-4]
+ 000C 1FFB00            sbb [X-5],0
+ 000F           L5:
+ 000F                   .dbline 9
+ 000F 3DFB00            cmp [X-5],0
+ 0012 BFF1              jnz L2
+ 0014 3DFC00            cmp [X-4],0
+ 0017 BFEC              jnz L2
+ 0019           X0:
+ 0019                   .dbline -2
+ 0019           L1:
+ 0019 20                pop X
+ 001A                   .dbline 0 ; func end
+ 001A 7F                ret
+ 001B                   .dbsym l us -5 i
+ 001B                   .dbend
+ 001B                   .dbfunc e delay_ms _delay_ms fV
+ 001B           ;             ms -> X-4
+ 001B           _delay_ms::
+ 001B                   .dbline -1
+ 001B 10                push X
+ 001C 4F                mov X,SP
+ 001D                   .dbline 21
+ 001D           ; }
+ 001D           ; 
+ 001D           ; void delay_ms(uchar ms)
+ 001D           ; {
+ 001D                   .dbline 22
+ 001D           ;       for(;ms>0;ms--)
+ 001D 800D              xjmp L10
+ 001F           L7:
+ 001F                   .dbline 23
+ 001F           ;       {
+ 001F                   .dbline 24
+ 001F           ;               delay_us(1000);
+ 001F 5003              mov A,3
+ 0021 08                push A
+ 0022 50E8              mov A,-24
+ 0024 08                push A
+ 0025 9FD9              xcall _delay_us
+ 0027 38FE              add SP,-2
+ 0029                   .dbline 25
+ 0029           ;       }
+ 0029           L8:
+ 0029                   .dbline 22
+ 0029 7BFC              dec [X-4]
+ 002B           L10:
+ 002B                   .dbline 22
+ 002B 5000              mov A,0
+ 002D 3BFC              cmp A,[X-4]
+ 002F CFEF              jc L7
+ 0031           X1:
+ 0031                   .dbline -2
+ 0031           L6:
+ 0031 20                pop X
+ 0032                   .dbline 0 ; func end
+ 0032 7F                ret
+ 0033                   .dbsym l ms -4 c
+ 0033                   .dbend
+ 0033                   .dbfunc e SendBit_1621 _SendBit_1621 fV
+ 0033           ;              i -> X+0
+ 0033           ;            cnt -> X-5
+ 0033           ;           data -> X-4
+ 0033           _SendBit_1621::
+ 0033                   .dbline -1
+ 0033 10                push X
+ 0034 4F                mov X,SP
+ 0035 3801              add SP,1
+ 0037                   .dbline 28
+ 0037           ; }
+ 0037           ; void SendBit_1621(uchar data,uchar cnt) //data 的高cnt 位写入HT1621，高位在前
+ 0037           ; {
+ 0037                   .dbline 30
+ 0037           ;       uchar i;
+ 0037           ;       for(i =0; i <cnt; i ++)
+ 0037 560000            mov [X+0],0
+ 003A 802A              xjmp L15
+ 003C           L12:
+ 003C                   .dbline 31
+ 003C           ;       {
+ 003C                   .dbline 32
+ 003C           ;               if((data&0x80)==0) 
+ 003C 48FC80            tst [X-4],-128
+ 003F B006              jnz L16
+ 0041                   .dbline 34
+ 0041           ;               { 
+ 0041           ;                       DATA_0;
+ 0041                   .dbline 34
+ 0041 4100FD            and REG[0],-3
+ 0044                   .dbline 35
+ 0044           ;               }
+ 0044 8004              xjmp L17
+ 0046           L16:
+ 0046                   .dbline 37
+ 0046           ;               else 
+ 0046           ;               {
+ 0046                   .dbline 38
+ 0046           ;                       DATA_1;
+ 0046 430002            or REG[0],2
+ 0049                   .dbline 39
+ 0049           ;               }
+ 0049           L17:
+ 0049                   .dbline 40
+ 0049           ;               delay_us(4);
+ 0049 5000              mov A,0
+ 004B 08                push A
+ 004C 5004              mov A,4
+ 004E 08                push A
+ 004F 9FAF              xcall _delay_us
+ 0051                   .dbline 41
+ 0051           ;               WR_0;
+ 0051 4100F7            and REG[0],-9
+ 0054                   .dbline 42
+ 0054           ;               delay_us(4);
+ 0054 5000              mov A,0
+ 0056 08                push A
+ 0057 5004              mov A,4
+ 0059 08                push A
+ 005A 9FA4              xcall _delay_us
+ 005C 38FC              add SP,-4
+ 005E                   .dbline 43
+ 005E           ;               WR_1;
+ 005E 430008            or REG[0],8
+ 0061                   .dbline 44
+ 0061           ;               data<<=1;
+ 0061 66FC              asl [X-4]
+ 0063                   .dbline 45
+ 0063           ;       }
+ 0063           L13:
+ 0063                   .dbline 30
+ 0063 7700              inc [X+0]
+ 0065           L15:
+ 0065                   .dbline 30
+ 0065 5200              mov A,[X+0]
+ 0067 3BFB              cmp A,[X-5]
+ 0069 CFD2              jc L12
+ 006B           X2:
+ 006B                   .dbline -2
+ 006B           L11:
+ 006B 38FF              add SP,-1
+ 006D 20                pop X
+ 006E                   .dbline 0 ; func end
+ 006E 7F                ret
+ 006F                   .dbsym l i 0 c
+ 006F                   .dbsym l cnt -5 c
+ 006F                   .dbsym l data -4 c
+ 006F                   .dbend
+ 006F                   .dbfunc e SendDataBit_1621 _SendDataBit_1621 fV
+ 006F           ;              i -> X+0
+ 006F           ;            cnt -> X-5
+ 006F           ;           data -> X-4
+ 006F           _SendDataBit_1621::
+ 006F                   .dbline -1
+ 006F 10                push X
+ 0070 4F                mov X,SP
+ 0071 3801              add SP,1
+ 0073                   .dbline 48
+ 0073           ; }
+ 0073           ; void SendDataBit_1621(uchar data,uchar cnt) //data 的低cnt 位写入HT1621，低位在前
+ 0073           ; {
+ 0073                   .dbline 50
+ 0073           ;       uchar i;
+ 0073           ;       for(i =0; i <cnt; i ++)
+ 0073 560000            mov [X+0],0
+ 0076 802C              xjmp L22
+ 0078           L19:
+ 0078                   .dbline 51
+ 0078           ;       {
+ 0078                   .dbline 52
+ 0078           ;               if((data&0x01)==0) 
+ 0078 48FC01            tst [X-4],1
+ 007B B006              jnz L23
+ 007D                   .dbline 54
+ 007D           ;               { 
+ 007D           ;                       DATA_0;
+ 007D                   .dbline 54
+ 007D 4100FD            and REG[0],-3
+ 0080                   .dbline 55
+ 0080           ;               }
+ 0080 8004              xjmp L24
+ 0082           L23:
+ 0082                   .dbline 57
+ 0082           ;               else 
+ 0082           ;               {
+ 0082                   .dbline 58
+ 0082           ;                       DATA_1;
+ 0082 430002            or REG[0],2
+ 0085                   .dbline 59
+ 0085           ;               }
+ 0085           L24:
+ 0085                   .dbline 60
+ 0085           ;               delay_us(4);
+ 0085 5000              mov A,0
+ 0087 08                push A
+ 0088 5004              mov A,4
+ 008A 08                push A
+ 008B 9F73              xcall _delay_us
+ 008D                   .dbline 61
+ 008D           ;               WR_0;
+ 008D 4100F7            and REG[0],-9
+ 0090                   .dbline 62
+ 0090           ;               delay_us(4);
+ 0090 5000              mov A,0
+ 0092 08                push A
+ 0093 5004              mov A,4
+ 0095 08                push A
+ 0096 9F68              xcall _delay_us
+ 0098 38FC              add SP,-4
+ 009A                   .dbline 63
+ 009A           ;               WR_1;
+ 009A 430008            or REG[0],8
+ 009D                   .dbline 64
+ 009D           ;               data>>=1;
+ 009D 70FB              and F,-5
+ 009F 6FFC              rrc [X-4]
+ 00A1                   .dbline 65
+ 00A1           ;       }
+ 00A1           L20:
+ 00A1                   .dbline 50
+ 00A1 7700              inc [X+0]
+ 00A3           L22:
+ 00A3                   .dbline 50
+ 00A3 5200              mov A,[X+0]
+ 00A5 3BFB              cmp A,[X-5]
+ 00A7 CFD0              jc L19
+ 00A9           X3:
+ 00A9                   .dbline -2
+ 00A9           L18:
+ 00A9 38FF              add SP,-1
+ 00AB 20                pop X
+ 00AC                   .dbline 0 ; func end
+ 00AC 7F                ret
+ 00AD                   .dbsym l i 0 c
+ 00AD                   .dbsym l cnt -5 c
+ 00AD                   .dbsym l data -4 c
+ 00AD                   .dbend
+ 00AD                   .dbfunc e SendCmd _SendCmd fV
+ 00AD           ;        command -> X-4
+ 00AD           _SendCmd::
+ 00AD                   .dbline -1
+ 00AD 10                push X
+ 00AE 4F                mov X,SP
+ 00AF                   .dbline 68
+ 00AF           ; }
+ 00AF           ; void SendCmd(uchar command)
+ 00AF           ; {
+ 00AF                   .dbline 69
+ 00AF           ;       CS_0;
+ 00AF 41007F            and REG[0],127
+ 00B2                   .dbline 70
+ 00B2           ;       SendBit_1621(0x80,3); //写入标志码"100"
+ 00B2 5003              mov A,3
+ 00B4 08                push A
+ 00B5 5080              mov A,-128
+ 00B7 08                push A
+ 00B8 9F79              xcall _SendBit_1621
+ 00BA 38FE              add SP,-2
+ 00BC                   .dbline 71
+ 00BC           ;       SendBit_1621(command,9); //写入9 位数据,其中前8 位为command 命令,最后1 位任意
+ 00BC 5009              mov A,9
+ 00BE 08                push A
+ 00BF 52FC              mov A,[X-4]
+ 00C1 08                push A
+ 00C2 9F6F              xcall _SendBit_1621
+ 00C4                   .dbline 72
+ 00C4           ;       CS_1;
+ 00C4 430080            or REG[0],-128
+ 00C7                   .dbline 73
+ 00C7           ;       delay_us(4);
+ 00C7 5000              mov A,0
+ 00C9 08                push A
+ 00CA 5004              mov A,4
+ 00CC 08                push A
+ 00CD 9F31              xcall _delay_us
+ 00CF 38FC              add SP,-4
+ 00D1                   .dbline -2
+ 00D1           L25:
+ 00D1 20                pop X
+ 00D2                   .dbline 0 ; func end
+ 00D2 7F                ret
+ 00D3                   .dbsym l command -4 c
+ 00D3                   .dbend
+ 00D3                   .dbfunc e Write_1621 _Write_1621 fV
+ 00D3           ;           data -> X-5
+ 00D3           ;           addr -> X-4
+ 00D3           _Write_1621::
+ 00D3                   .dbline -1
+ 00D3 10                push X
+ 00D4 4F                mov X,SP
+ 00D5                   .dbline 76
+ 00D5           ; }
+ 00D5           ; void Write_1621(uchar addr,uchar data)
+ 00D5           ; {
+ 00D5                   .dbline 77
+ 00D5           ;       CS_0;
+ 00D5 41007F            and REG[0],127
+ 00D8                   .dbline 78
+ 00D8           ;       SendBit_1621(0xa0,3); //写入标志码"101"
+ 00D8 5003              mov A,3
+ 00DA 08                push A
+ 00DB 50A0              mov A,-96
+ 00DD 08                push A
+ 00DE 9F53              xcall _SendBit_1621
+ 00E0                   .dbline 79
+ 00E0           ;       SendBit_1621(addr<<2,6); //写入6 位addr
+ 00E0 5006              mov A,6
+ 00E2 08                push A
+ 00E3 52FC              mov A,[X-4]
+ 00E5 62D000            mov REG[0xd0],>__r0
+ 00E8 5300              mov [__r0],A
+ 00EA 6500              asl [__r0]
+ 00EC 6500              asl [__r0]
+ 00EE 5100              mov A,[__r0]
+ 00F0 08                push A
+ 00F1 9F40              xcall _SendBit_1621
+ 00F3 38FC              add SP,-4
+ 00F5                   .dbline 80
+ 00F5           ;       SendDataBit_1621(data,4); //写入data 的低4 位
+ 00F5 5004              mov A,4
+ 00F7 08                push A
+ 00F8 52FB              mov A,[X-5]
+ 00FA 08                push A
+ 00FB 9F72              xcall _SendDataBit_1621
+ 00FD                   .dbline 81
+ 00FD           ;       CS_1;
+ 00FD 430080            or REG[0],-128
+ 0100                   .dbline 82
+ 0100           ;       delay_us(4);
+ 0100 5000              mov A,0
+ 0102 08                push A
+ 0103 5004              mov A,4
+ 0105 08                push A
+ 0106 9EF8              xcall _delay_us
+ 0108 38FC              add SP,-4
+ 010A                   .dbline -2
+ 010A           L26:
+ 010A 20                pop X
+ 010B                   .dbline 0 ; func end
+ 010B 7F                ret
+ 010C                   .dbsym l data -5 c
+ 010C                   .dbsym l addr -4 c
+ 010C                   .dbend
+ 010C                   .dbfunc e WriteAll_1621 _WriteAll_1621 fV
+ 010C           ;              i -> X+0
+ 010C           ;            cnt -> X-7
+ 010C           ;              p -> X-6
+ 010C           ;           addr -> X-4
+ 010C           _WriteAll_1621::
+ 010C                   .dbline -1
+ 010C 10                push X
+ 010D 4F                mov X,SP
+ 010E 3801              add SP,1
+ 0110                   .dbline 85
+ 0110           ; }
+ 0110           ; void WriteAll_1621(uchar addr,uchar *p,uchar cnt)
+ 0110           ; {
+ 0110                   .dbline 87
+ 0110           ;       uchar i;
+ 0110           ;       CS_0;
+ 0110 41007F            and REG[0],127
+ 0113                   .dbline 88
+ 0113           ;       SendBit_1621(0xa0,3); //写入标志码"101"
+ 0113 5003              mov A,3
+ 0115 08                push A
+ 0116 50A0              mov A,-96
+ 0118 08                push A
+ 0119 9F18              xcall _SendBit_1621
+ 011B                   .dbline 89
+ 011B           ;       SendBit_1621(addr<<2,6); //写入6 位addr
+ 011B 5006              mov A,6
+ 011D 08                push A
+ 011E 52FC              mov A,[X-4]
+ 0120 62D000            mov REG[0xd0],>__r0
+ 0123 5300              mov [__r0],A
+ 0125 6500              asl [__r0]
+ 0127 6500              asl [__r0]
+ 0129 5100              mov A,[__r0]
+ 012B 08                push A
+ 012C 9F05              xcall _SendBit_1621
+ 012E 38FC              add SP,-4
+ 0130                   .dbline 90
+ 0130           ;       for(i =0; i <cnt; i ++,p++) //连续写入数据
+ 0130 560000            mov [X+0],0
+ 0133 801D              xjmp L31
+ 0135           L28:
+ 0135                   .dbline 91
+ 0135           ;       {
+ 0135                   .dbline 92
+ 0135           ;               SendDataBit_1621(*p,8);
+ 0135 5008              mov A,8
+ 0137 08                push A
+ 0138 62D000            mov REG[0xd0],>__r0
+ 013B 52FB              mov A,[X-5]
+ 013D 5300              mov [__r1],A
+ 013F 52FA              mov A,[X-6]
+ 0141 60D4              mov REG[0xd4],A
+ 0143 3E00              mvi A,[__r1]
+ 0145 08                push A
+ 0146 9F27              xcall _SendDataBit_1621
+ 0148 38FE              add SP,-2
+ 014A                   .dbline 93
+ 014A           ;       }
+ 014A           L29:
+ 014A                   .dbline 90
+ 014A 7700              inc [X+0]
+ 014C 77FB              inc [X-5]
+ 014E 0FFA00            adc [X-6],0
+ 0151           L31:
+ 0151                   .dbline 90
+ 0151 5200              mov A,[X+0]
+ 0153 3BF9              cmp A,[X-7]
+ 0155 CFDF              jc L28
+ 0157           X4:
+ 0157                   .dbline 94
+ 0157           ;       CS_1;
+ 0157 430080            or REG[0],-128
+ 015A                   .dbline 95
+ 015A           ;       delay_us(4);
+ 015A 5000              mov A,0
+ 015C 08                push A
+ 015D 5004              mov A,4
+ 015F 08                push A
+ 0160 9E9E              xcall _delay_us
+ 0162 38FE              add SP,-2
+ 0164                   .dbline -2
+ 0164           L27:
+ 0164 38FF              add SP,-1
+ 0166 20                pop X
+ 0167                   .dbline 0 ; func end
+ 0167 7F                ret
+ 0168                   .dbsym l i 0 c
+ 0168                   .dbsym l cnt -7 c
+ 0168                   .dbsym l p -6 pc
+ 0168                   .dbsym l addr -4 c
+ 0168                   .dbend
+ 0168                   .dbfunc e HT1621B_Init _HT1621B_Init fV
+ 0168           _HT1621B_Init::
+ 0168                   .dbline -1
+ 0168                   .dbline 99
+ 0168           ; }
+ 0168           ; 
+ 0168           ; void HT1621B_Init(void)
+ 0168           ; {
+ 0168                   .dbline 100
+ 0168           ;       SendCmd(BIAS); //设置偏压和占空比
+ 0168 5029              mov A,41
+ 016A 08                push A
+ 016B 9F40              xcall _SendCmd
+ 016D 38FF              add SP,-1
+ 016F                   .dbline 101
+ 016F           ;       SendCmd(SYSEN); //打开系统振荡器
+ 016F 5001              mov A,1
+ 0171 08                push A
+ 0172 9F39              xcall _SendCmd
+ 0174                   .dbline 102
+ 0174           ;       SendCmd(LCDON); //打开LCD 偏压发生器
+ 0174 5003              mov A,3
+ 0176 08                push A
+ 0177 9F34              xcall _SendCmd
+ 0179 38FE              add SP,-2
+ 017B                   .dbline -2
+ 017B           L32:
+ 017B                   .dbline 0 ; func end
+ 017B 7F                ret
+ 017C                   .dbend

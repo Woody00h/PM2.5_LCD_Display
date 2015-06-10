@@ -1,0 +1,514 @@
+ 0000                   cpu LMM
+                        .module si7020.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./si7020.c
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\si7020.c
+ 0000                   .dbfunc e Si7020SendCommand _Si7020SendCommand fc
+ 0000           ;            cmd -> X-4
+ 0000           _Si7020SendCommand::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002                   .dbline 9
+ 0002           ; #include "Si7020.h"
+ 0002           ; #include "software_IIC.h"
+ 0002           ; 
+ 0002           ; extern unsigned char IICTimeOutTimer;
+ 0002           ; //
+ 0002           ; //Measure Relative Humidity, Hold Master Mode
+ 0002           ; //
+ 0002           ; unsigned char Si7020SendCommand(char cmd)
+ 0002           ; {
+ 0002                   .dbline 10
+ 0002           ;       return(ISendByte(SI7020_ADDR,cmd));
+ 0002 52FC              mov A,[X-4]
+ 0004 08                push A
+ 0005 5080              mov A,-128
+ 0007 08                push A
+ 0008 7C0000            xcall _ISendByte
+ 000B 38FE              add SP,-2
+ 000D 62D000            mov REG[0xd0],>__r0
+ 0010                   .dbline -2
+ 0010           L1:
+ 0010 20                pop X
+ 0011                   .dbline 0 ; func end
+ 0011 7F                ret
+ 0012                   .dbsym l cmd -4 c
+ 0012                   .dbend
+ 0012                   .dbfunc e Si7020Read_RH_NHM _Si7020Read_RH_NHM fV
+ 0012           ;            ret -> X+0
+ 0012           ;         buffer -> X-5
+ 0012           _Si7020Read_RH_NHM::
+ 0012                   .dbline -1
+ 0012 10                push X
+ 0013 4F                mov X,SP
+ 0014 3801              add SP,1
+ 0016                   .dbline 17
+ 0016           ; }
+ 0016           ; 
+ 0016           ; //
+ 0016           ; //read the result of the RH measurement.
+ 0016           ; //
+ 0016           ; void Si7020Read_RH_NHM(unsigned char * buffer)
+ 0016           ; {
+ 0016                   .dbline 19
+ 0016           ;       char ret;
+ 0016           ;       IICTimeOutTimer = 2;
+ 0016 62D000            mov REG[0xd0],>_IICTimeOutTimer
+ 0019 550002            mov [_IICTimeOutTimer],2
+ 001C 8023              xjmp L4
+ 001E           L3:
+ 001E                   .dbline 21
+ 001E           ;       while (1)
+ 001E           ;       {
+ 001E                   .dbline 22
+ 001E           ;               ret = IRcvBytes(SI7020_ADDR,buffer,3);
+ 001E 5003              mov A,3
+ 0020 08                push A
+ 0021 52FB              mov A,[X-5]
+ 0023 08                push A
+ 0024 52FC              mov A,[X-4]
+ 0026 08                push A
+ 0027 5080              mov A,-128
+ 0029 08                push A
+ 002A 7C0000            xcall _IRcvBytes
+ 002D 38FC              add SP,-4
+ 002F 5400              mov [X+0],A
+ 0031                   .dbline 23
+ 0031           ;               if (ret || !IICTimeOutTimer)
+ 0031 3D0000            cmp [X+0],0
+ 0034 B009              jnz L8
+ 0036 62D000            mov REG[0xd0],>_IICTimeOutTimer
+ 0039 3C0000            cmp [_IICTimeOutTimer],0
+ 003C B003              jnz L6
+ 003E           L8:
+ 003E                   .dbline 24
+ 003E           ;                       break;
+ 003E 8003              xjmp L5
+ 0040           L6:
+ 0040                   .dbline 25
+ 0040           ;       }
+ 0040           L4:
+ 0040                   .dbline 20
+ 0040 8FDD              xjmp L3
+ 0042           L5:
+ 0042                   .dbline -2
+ 0042           L2:
+ 0042 38FF              add SP,-1
+ 0044 20                pop X
+ 0045                   .dbline 0 ; func end
+ 0045 7F                ret
+ 0046                   .dbsym l ret 0 c
+ 0046                   .dbsym l buffer -5 pc
+ 0046                   .dbend
+ 0046                   .dbfunc e Si7020Read_Temp_after_RHM _Si7020Read_Temp_after_RHM fc
+ 0046           ;            ret -> X+0
+ 0046           ;         buffer -> X-5
+ 0046           _Si7020Read_Temp_after_RHM::
+ 0046                   .dbline -1
+ 0046 10                push X
+ 0047 4F                mov X,SP
+ 0048 3801              add SP,1
+ 004A                   .dbline 32
+ 004A           ; }
+ 004A           ; 
+ 004A           ; //
+ 004A           ; //read the temperature result of the pre RH measurement
+ 004A           ; //
+ 004A           ; unsigned char Si7020Read_Temp_after_RHM(unsigned char * buffer)
+ 004A           ; {
+ 004A                   .dbline 34
+ 004A           ;       char ret;
+ 004A           ;       ret = Si7020SendCommand(RD_TEMP_PRE_RHM);
+ 004A 50E0              mov A,-32
+ 004C 08                push A
+ 004D 9FB1              xcall _Si7020SendCommand
+ 004F 38FF              add SP,-1
+ 0051 62D000            mov REG[0xd0],>__r0
+ 0054 5400              mov [X+0],A
+ 0056                   .dbline 36
+ 0056           ;       
+ 0056           ;       if (!ret)
+ 0056 3D0000            cmp [X+0],0
+ 0059 B005              jnz L10
+ 005B                   .dbline 38
+ 005B           ;       {
+ 005B           ;               return 0;
+ 005B                   .dbline 38
+ 005B 5000              mov A,0
+ 005D 8025              xjmp L9
+ 005F           L10:
+ 005F                   .dbline 41
+ 005F           ;       }
+ 005F           ;       
+ 005F           ;       ret = IRcvBytes(SI7020_ADDR,buffer,3);
+ 005F 5003              mov A,3
+ 0061 08                push A
+ 0062 52FB              mov A,[X-5]
+ 0064 08                push A
+ 0065 52FC              mov A,[X-4]
+ 0067 08                push A
+ 0068 5080              mov A,-128
+ 006A 08                push A
+ 006B 7C0000            xcall _IRcvBytes
+ 006E 38FC              add SP,-4
+ 0070 62D000            mov REG[0xd0],>__r0
+ 0073 5400              mov [X+0],A
+ 0075                   .dbline 43
+ 0075           ;       
+ 0075           ;       if (!ret)
+ 0075 3D0000            cmp [X+0],0
+ 0078 B005              jnz L12
+ 007A                   .dbline 45
+ 007A           ;       {
+ 007A           ;               return 0;
+ 007A                   .dbline 45
+ 007A 5000              mov A,0
+ 007C 8006              xjmp L9
+ 007E           L12:
+ 007E                   .dbline 48
+ 007E           ;       }
+ 007E           ;       
+ 007E           ;       return 1;
+ 007E 62D000            mov REG[0xd0],>__r0
+ 0081 5001              mov A,1
+ 0083                   .dbline -2
+ 0083           L9:
+ 0083 38FF              add SP,-1
+ 0085 20                pop X
+ 0086                   .dbline 0 ; func end
+ 0086 7F                ret
+ 0087                   .dbsym l ret 0 c
+ 0087                   .dbsym l buffer -5 pc
+ 0087                   .dbend
+ 0087                   .dbfunc e Si7020CalcTemp _Si7020CalcTemp fC
+ 0087           ;         result -> X+4
+ 0087           ;           temp -> X+0
+ 0087           ;           data -> X-5
+ 0087           _Si7020CalcTemp::
+ 0087                   .dbline -1
+ 0087 10                push X
+ 0088 4F                mov X,SP
+ 0089 3805              add SP,5
+ 008B                   .dbline 56
+ 008B           ; }
+ 008B           ; 
+ 008B           ; //
+ 008B           ; //transfrom the raw data to the temperature value
+ 008B           ; //175.72*Temp_Code/65536-46.85
+ 008B           ; //
+ 008B           ; signed char Si7020CalcTemp(unsigned int data)
+ 008B           ; {
+ 008B                   .dbline 59
+ 008B           ;       signed long temp;
+ 008B           ;       signed char result;
+ 008B           ;       temp = data;
+ 008B 52FC              mov A,[X-4]
+ 008D 5403              mov [X+3],A
+ 008F 52FB              mov A,[X-5]
+ 0091 5402              mov [X+2],A
+ 0093 560100            mov [X+1],0
+ 0096 560000            mov [X+0],0
+ 0099                   .dbline 60
+ 0099           ;       temp = temp*175;
+ 0099 5200              mov A,[X+0]
+ 009B 08                push A
+ 009C 5201              mov A,[X+1]
+ 009E 08                push A
+ 009F 5202              mov A,[X+2]
+ 00A1 08                push A
+ 00A2 5203              mov A,[X+3]
+ 00A4 08                push A
+ 00A5 5000              mov A,0
+ 00A7 08                push A
+ 00A8 08                push A
+ 00A9 08                push A
+ 00AA 50AF              mov A,-81
+ 00AC 08                push A
+ 00AD 62D000            mov REG[0xd0],>__r0
+ 00B0 7C0000            xcall __mul_32X32_32
+ 00B3 38FC              add SP,-4
+ 00B5 18                pop A
+ 00B6 5403              mov [X+3],A
+ 00B8 18                pop A
+ 00B9 5402              mov [X+2],A
+ 00BB 18                pop A
+ 00BC 5401              mov [X+1],A
+ 00BE 18                pop A
+ 00BF 5400              mov [X+0],A
+ 00C1                   .dbline 61
+ 00C1           ;       temp += (data>>2)*3;
+ 00C1 52FC              mov A,[X-4]
+ 00C3 5300              mov [__r1],A
+ 00C5 52FB              mov A,[X-5]
+ 00C7 5300              mov [__r0],A
+ 00C9 70FB              and F,-5
+ 00CB 6E00              rrc [__r0]
+ 00CD 6E00              rrc [__r1]
+ 00CF 70FB              and F,-5
+ 00D1 6E00              rrc [__r0]
+ 00D3 6E00              rrc [__r1]
+ 00D5 5100              mov A,[__r0]
+ 00D7 08                push A
+ 00D8 5100              mov A,[__r1]
+ 00DA 08                push A
+ 00DB 5000              mov A,0
+ 00DD 08                push A
+ 00DE 5003              mov A,3
+ 00E0 08                push A
+ 00E1 7C0000            xcall __mul16
+ 00E4 38FC              add SP,-4
+ 00E6 5100              mov A,[__rX]
+ 00E8 5300              mov [__r1],A
+ 00EA 5100              mov A,[__rY]
+ 00EC 5300              mov [__r0],A
+ 00EE 5100              mov A,[__r1]
+ 00F0 5300              mov [__r3],A
+ 00F2 5100              mov A,[__r0]
+ 00F4 5300              mov [__r2],A
+ 00F6 5100              mov A,[__r3]
+ 00F8 0503              add [X+3],A
+ 00FA 5100              mov A,[__r2]
+ 00FC 0D02              adc [X+2],A
+ 00FE 5000              mov A,0
+ 0100 0F0100            adc [X+1],0
+ 0103 0F0000            adc [X+0],0
+ 0106                   .dbline 62
+ 0106           ;       temp >>= 16;
+ 0106 5200              mov A,[X+0]
+ 0108 5300              mov [__r0],A
+ 010A 5201              mov A,[X+1]
+ 010C 5300              mov [__r1],A
+ 010E 5202              mov A,[X+2]
+ 0110 5300              mov [__r2],A
+ 0112 5203              mov A,[X+3]
+ 0114 5300              mov [__r3],A
+ 0116 5010              mov A,16
+ 0118           X0:
+ 0118 62D000            mov REG[0xd0],>__r0
+ 011B 6800              asr [__r0]
+ 011D 6E00              rrc [__r1]
+ 011F 6E00              rrc [__r2]
+ 0121 6E00              rrc [__r3]
+ 0123 78                dec A
+ 0124 BFF3              jnz X0
+ 0126 5100              mov A,[__r0]
+ 0128 5400              mov [X+0],A
+ 012A 5100              mov A,[__r1]
+ 012C 5401              mov [X+1],A
+ 012E 5100              mov A,[__r2]
+ 0130 5402              mov [X+2],A
+ 0132 5100              mov A,[__r3]
+ 0134 5403              mov [X+3],A
+ 0136                   .dbline 63
+ 0136           ;       temp -= 47;
+ 0136 17032F            sub [X+3],47
+ 0139 1F0200            sbb [X+2],0
+ 013C 1F0100            sbb [X+1],0
+ 013F 1F0000            sbb [X+0],0
+ 0142                   .dbline 64
+ 0142           ;       if (temp < -9)
+ 0142 5203              mov A,[X+3]
+ 0144 11F7              sub A,-9
+ 0146 5202              mov A,[X+2]
+ 0148 19FF              sbb A,-1
+ 014A 5201              mov A,[X+1]
+ 014C 19FF              sbb A,-1
+ 014E 5200              mov A,[X+0]
+ 0150 3180              xor A,-128
+ 0152 197F              sbb A,(255 ^ 0x80)
+ 0154 D00D              jnc L15
+ 0156           X1:
+ 0156                   .dbline 65
+ 0156           ;               temp = -9;
+ 0156 5600FF            mov [X+0],-1
+ 0159 5601FF            mov [X+1],-1
+ 015C 5602FF            mov [X+2],-1
+ 015F 5603F7            mov [X+3],-9
+ 0162           L15:
+ 0162                   .dbline 67
+ 0162           ;       
+ 0162           ;       result = temp;
+ 0162 62D000            mov REG[0xd0],>__r0
+ 0165 5203              mov A,[X+3]
+ 0167 5404              mov [X+4],A
+ 0169                   .dbline 68
+ 0169           ;       return result;
+ 0169 5204              mov A,[X+4]
+ 016B                   .dbline -2
+ 016B           L14:
+ 016B 38FB              add SP,-5
+ 016D 20                pop X
+ 016E                   .dbline 0 ; func end
+ 016E 7F                ret
+ 016F                   .dbsym l result 4 C
+ 016F                   .dbsym l temp 0 L
+ 016F                   .dbsym l data -5 i
+ 016F                   .dbend
+ 016F                   .dbfunc e Si7020CalcRH _Si7020CalcRH fc
+ 016F           ;         result -> X+4
+ 016F           ;           temp -> X+0
+ 016F           ;           data -> X-5
+ 016F           _Si7020CalcRH::
+ 016F                   .dbline -1
+ 016F 10                push X
+ 0170 4F                mov X,SP
+ 0171 3805              add SP,5
+ 0173                   .dbline 76
+ 0173           ; }
+ 0173           ; 
+ 0173           ; //
+ 0173           ; //transfrom the raw data to the RH value
+ 0173           ; //125*Temp_Code/65536-6
+ 0173           ; //
+ 0173           ; unsigned char Si7020CalcRH(unsigned int data)
+ 0173           ; {
+ 0173                   .dbline 79
+ 0173           ;       unsigned long temp;
+ 0173           ;       unsigned char result;
+ 0173           ;       temp = data;
+ 0173 52FC              mov A,[X-4]
+ 0175 5403              mov [X+3],A
+ 0177 52FB              mov A,[X-5]
+ 0179 5402              mov [X+2],A
+ 017B 560100            mov [X+1],0
+ 017E 560000            mov [X+0],0
+ 0181                   .dbline 80
+ 0181           ;       temp = 125*temp;
+ 0181 5200              mov A,[X+0]
+ 0183 08                push A
+ 0184 5201              mov A,[X+1]
+ 0186 08                push A
+ 0187 5202              mov A,[X+2]
+ 0189 08                push A
+ 018A 5203              mov A,[X+3]
+ 018C 08                push A
+ 018D 5000              mov A,0
+ 018F 08                push A
+ 0190 08                push A
+ 0191 08                push A
+ 0192 507D              mov A,125
+ 0194 08                push A
+ 0195 62D000            mov REG[0xd0],>__r0
+ 0198 7C0000            xcall __mul_32X32_32
+ 019B 38FC              add SP,-4
+ 019D 18                pop A
+ 019E 5403              mov [X+3],A
+ 01A0 18                pop A
+ 01A1 5402              mov [X+2],A
+ 01A3 18                pop A
+ 01A4 5401              mov [X+1],A
+ 01A6 18                pop A
+ 01A7 5400              mov [X+0],A
+ 01A9                   .dbline 81
+ 01A9           ;       temp >>= 16;
+ 01A9 5200              mov A,[X+0]
+ 01AB 5300              mov [__r0],A
+ 01AD 5201              mov A,[X+1]
+ 01AF 5300              mov [__r1],A
+ 01B1 5202              mov A,[X+2]
+ 01B3 5300              mov [__r2],A
+ 01B5 5203              mov A,[X+3]
+ 01B7 5300              mov [__r3],A
+ 01B9 5010              mov A,16
+ 01BB           X2:
+ 01BB 70FB              and F,-5
+ 01BD 62D000            mov REG[0xd0],>__r0
+ 01C0 6E00              rrc [__r0]
+ 01C2 6E00              rrc [__r1]
+ 01C4 6E00              rrc [__r2]
+ 01C6 6E00              rrc [__r3]
+ 01C8 78                dec A
+ 01C9 BFF1              jnz X2
+ 01CB 5100              mov A,[__r0]
+ 01CD 5400              mov [X+0],A
+ 01CF 5100              mov A,[__r1]
+ 01D1 5401              mov [X+1],A
+ 01D3 5100              mov A,[__r2]
+ 01D5 5402              mov [X+2],A
+ 01D7 5100              mov A,[__r3]
+ 01D9 5403              mov [X+3],A
+ 01DB                   .dbline 82
+ 01DB           ;       if (temp >= 6)
+ 01DB 5203              mov A,[X+3]
+ 01DD 1106              sub A,6
+ 01DF 5202              mov A,[X+2]
+ 01E1 1900              sbb A,0
+ 01E3 5201              mov A,[X+1]
+ 01E5 1900              sbb A,0
+ 01E7 5200              mov A,[X+0]
+ 01E9 1900              sbb A,0
+ 01EB C02F              jc L18
+ 01ED           X3:
+ 01ED                   .dbline 84
+ 01ED           ;       {
+ 01ED           ;               if (temp >= 106)
+ 01ED                   .dbline 84
+ 01ED 5203              mov A,[X+3]
+ 01EF 116A              sub A,106
+ 01F1 5202              mov A,[X+2]
+ 01F3 1900              sbb A,0
+ 01F5 5201              mov A,[X+1]
+ 01F7 1900              sbb A,0
+ 01F9 5200              mov A,[X+0]
+ 01FB 1900              sbb A,0
+ 01FD C00F              jc L20
+ 01FF           X4:
+ 01FF                   .dbline 86
+ 01FF           ;               {
+ 01FF           ;                       temp = 100;
+ 01FF                   .dbline 86
+ 01FF 560000            mov [X+0],0
+ 0202 560100            mov [X+1],0
+ 0205 560200            mov [X+2],0
+ 0208 560364            mov [X+3],100
+ 020B                   .dbline 87
+ 020B           ;               }
+ 020B 801B              xjmp L19
+ 020D           L20:
+ 020D                   .dbline 89
+ 020D           ;               else
+ 020D           ;               {
+ 020D                   .dbline 90
+ 020D           ;                       temp -= 6;
+ 020D 170306            sub [X+3],6
+ 0210 1F0200            sbb [X+2],0
+ 0213 1F0100            sbb [X+1],0
+ 0216 1F0000            sbb [X+0],0
+ 0219                   .dbline 91
+ 0219           ;               }
+ 0219                   .dbline 92
+ 0219           ;       }
+ 0219 800D              xjmp L19
+ 021B           L18:
+ 021B                   .dbline 94
+ 021B           ;       else 
+ 021B           ;       {
+ 021B                   .dbline 95
+ 021B           ;               temp = 0;
+ 021B 560000            mov [X+0],0
+ 021E 560100            mov [X+1],0
+ 0221 560200            mov [X+2],0
+ 0224 560300            mov [X+3],0
+ 0227                   .dbline 96
+ 0227           ;       }
+ 0227           L19:
+ 0227                   .dbline 98
+ 0227           ;       
+ 0227           ;       result = temp;
+ 0227 62D000            mov REG[0xd0],>__r0
+ 022A 5203              mov A,[X+3]
+ 022C 5404              mov [X+4],A
+ 022E                   .dbline 99
+ 022E           ;       return result;
+ 022E 5204              mov A,[X+4]
+ 0230                   .dbline -2
+ 0230           L17:
+ 0230 38FB              add SP,-5
+ 0232 20                pop X
+ 0233                   .dbline 0 ; func end
+ 0233 7F                ret
+ 0234                   .dbsym l result 4 c
+ 0234                   .dbsym l temp 0 l
+ 0234                   .dbsym l data -5 i
+ 0234                   .dbend

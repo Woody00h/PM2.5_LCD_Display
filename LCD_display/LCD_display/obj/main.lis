@@ -1,0 +1,670 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _FanUpdateTimer::
+ 0000 08                .byte 8
+ 0001                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0001                   .dbsym e FanUpdateTimer _FanUpdateTimer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _one_sec_timer::
+ 0000 08                .byte 8
+ 0001                   .dbsym e one_sec_timer _one_sec_timer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _rh_sample_timer::
+ 0000 08                .byte 8
+ 0001                   .dbsym e rh_sample_timer _rh_sample_timer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _PlasmaTimer::
+ 0000 08                .byte 8
+ 0001                   .dbsym e PlasmaTimer _PlasmaTimer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _LcdUpdateTimer::
+ 0000 04                .byte 4
+ 0001                   .dbsym e LcdUpdateTimer _LcdUpdateTimer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _LifeFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e LifeFlag _LifeFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _RH_T_Flag::
+ 0000 01                .byte 1
+ 0001                   .dbsym e RH_T_Flag _RH_T_Flag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _mode::
+ 0000 00                .byte 0
+ 0001                   .dbsym e mode _mode c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _LockStatus::
+ 0000 01                .byte 1
+ 0001                   .dbsym e LockStatus _LockStatus c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _Plasma::
+ 0000 01                .byte 1
+ 0001                   .dbsym e Plasma _Plasma c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _Odor::
+ 0000 02                .byte 2
+ 0001                   .dbsym e Odor _Odor c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _SpeedLvl::
+ 0000 01                .byte 1
+ 0001                   .dbsym e SpeedLvl _SpeedLvl c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _PM_Flag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PM_Flag _PM_Flag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _HeapLife::
+ 0000 4E                .byte 78
+ 0001                   .dbsym e HeapLife _HeapLife c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _CarbonLife::
+ 0000 38                .byte 56
+ 0001                   .dbsym e CarbonLife _CarbonLife c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _FanUpdateTimeReload::
+ 0000 08                .byte 8
+ 0001                   .dbsym e FanUpdateTimeReload _FanUpdateTimeReload c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _Timer::
+ 0000 03                .byte 3
+ 0001                   .dbsym e Timer _Timer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _RHSampleStep::
+ 0000 00                .byte 0
+ 0001                   .dbsym e RHSampleStep _RHSampleStep c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000                   .dbfunc e Timer16ISR _Timer16ISR fV
+ 0000           _Timer16ISR::
+ 0000                   .dbline -1
+ 0000                   .dbline 45
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include "HT1621B.h"
+ 0000           ; #include "ParticleSensor.h"
+ 0000           ; #include "software_IIC.h"
+ 0000           ; #include "Si7020.h"
+ 0000           ; #include "include.h"
+ 0000           ; 
+ 0000           ; #define ONE_SECOND_TIMER_RELOAD 8
+ 0000           ; 
+ 0000           ; unsigned char RecBuf[5];
+ 0000           ; unsigned int LightADCValue;                                                                           
+ 0000           ; 
+ 0000           ; unsigned char FanUpdateTimer  = ONE_SECOND_TIMER_RELOAD;
+ 0000           ; unsigned char one_sec_timer           = ONE_SECOND_TIMER_RELOAD;
+ 0000           ; unsigned char rh_sample_timer = ONE_SECOND_TIMER_RELOAD;
+ 0000           ; unsigned char PlasmaTimer             = PLASMA_TIMER_RELOAD;
+ 0000           ; unsigned char LcdUpdateTimer  = 4;
+ 0000           ; unsigned char IICTimeOutTimer;
+ 0000           ; 
+ 0000           ; unsigned char LifeFlag         = HEAP_LIFE;
+ 0000           ; unsigned char RH_T_Flag  = TEMPERATURE;
+ 0000           ; unsigned char mode = AUTO_MODE;
+ 0000           ; unsigned char LockStatus = 1;
+ 0000           ; unsigned char Plasma = 1;
+ 0000           ; unsigned char PlasmaFlag;
+ 0000           ; unsigned char Odor = 2;
+ 0000           ; unsigned char FanFlag;
+ 0000           ; unsigned char SpeedLvl = 1;
+ 0000           ; unsigned char PM_Flag = PM2_5;
+ 0000           ; unsigned char HeapLife = 78;
+ 0000           ; unsigned char CarbonLife = 56;
+ 0000           ; unsigned char FanUpdateTimeReload = ONE_SECOND_TIMER_RELOAD;
+ 0000           ; unsigned char Humidity;
+ 0000           ; signed   char Temperature;
+ 0000           ; unsigned char Timer = 3;
+ 0000           ; unsigned char RHSampleStep = 0;
+ 0000           ; extern void LCDOuputAll(void);
+ 0000           ; 
+ 0000           ; void Timer16ISR(void)
+ 0000           ; {
+ 0000                   .dbline 46
+ 0000           ;       if (one_sec_timer)              one_sec_timer--;
+ 0000 62D000            mov REG[0xd0],>_one_sec_timer
+ 0003 3C0000            cmp [_one_sec_timer],0
+ 0006 A003              jz L4
+ 0008                   .dbline 46
+ 0008 7A00              dec [_one_sec_timer]
+ 000A           L4:
+ 000A                   .dbline 47
+ 000A           ;       if (rh_sample_timer)    rh_sample_timer--;
+ 000A 62D000            mov REG[0xd0],>_rh_sample_timer
+ 000D 3C0000            cmp [_rh_sample_timer],0
+ 0010 A003              jz L6
+ 0012                   .dbline 47
+ 0012 7A00              dec [_rh_sample_timer]
+ 0014           L6:
+ 0014                   .dbline 48
+ 0014           ;       if (FanUpdateTimer)             FanUpdateTimer--;
+ 0014 62D000            mov REG[0xd0],>_FanUpdateTimer
+ 0017 3C0000            cmp [_FanUpdateTimer],0
+ 001A A003              jz L8
+ 001C                   .dbline 48
+ 001C 7A00              dec [_FanUpdateTimer]
+ 001E           L8:
+ 001E                   .dbline 49
+ 001E           ;       if (PlasmaTimer)                PlasmaTimer--;
+ 001E 62D000            mov REG[0xd0],>_PlasmaTimer
+ 0021 3C0000            cmp [_PlasmaTimer],0
+ 0024 A003              jz L10
+ 0026                   .dbline 49
+ 0026 7A00              dec [_PlasmaTimer]
+ 0028           L10:
+ 0028                   .dbline 50
+ 0028           ;       if (LcdUpdateTimer)             LcdUpdateTimer--;
+ 0028 62D000            mov REG[0xd0],>_LcdUpdateTimer
+ 002B 3C0000            cmp [_LcdUpdateTimer],0
+ 002E A003              jz L12
+ 0030                   .dbline 50
+ 0030 7A00              dec [_LcdUpdateTimer]
+ 0032           L12:
+ 0032                   .dbline 51
+ 0032           ;       if (IICTimeOutTimer)    IICTimeOutTimer--;
+ 0032 62D000            mov REG[0xd0],>_IICTimeOutTimer
+ 0035 3C0000            cmp [_IICTimeOutTimer],0
+ 0038 A003              jz L14
+ 003A                   .dbline 51
+ 003A 7A00              dec [_IICTimeOutTimer]
+ 003C           L14:
+ 003C                   .dbline -2
+ 003C           L3:
+ 003C                   .dbline 0 ; func end
+ 003C 7F                ret
+ 003D                   .dbend
+ 003D                   .dbfunc e main _main fV
+ 003D           ;              p -> X+2
+ 003D           ;              k -> X+1
+ 003D           ;            ret -> X+0
+ 003D           _main::
+ 003D                   .dbline -1
+ 003D 10                push X
+ 003E 4F                mov X,SP
+ 003F 3804              add SP,4
+ 0041                   .dbline 55
+ 0041           ; }
+ 0041           ; 
+ 0041           ; void main(void)
+ 0041           ; {
+ 0041                   .dbline 59
+ 0041           ;       unsigned char k;
+ 0041           ;       unsigned char ret;
+ 0041           ;       unsigned int *p;
+ 0041           ;       M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 0041 7101                      or  F, 01h
+ 0043           
+ 0043                   .dbline 62
+ 0043           ;       // Insert your main routine code here.
+ 0043           ;       
+ 0043           ;       Init_IIC();
+ 0043 7C0000            xcall _Init_IIC
+ 0046                   .dbline 64
+ 0046           ;       
+ 0046           ;       delay_us(200);  //wait for the LCD driver power on
+ 0046 5000              mov A,0
+ 0048 08                push A
+ 0049 50C8              mov A,-56
+ 004B 08                push A
+ 004C 7C0000            xcall _delay_us
+ 004F 38FE              add SP,-2
+ 0051                   .dbline 65
+ 0051           ;       HT1621B_Init();
+ 0051 7C0000            xcall _HT1621B_Init
+ 0054                   .dbline 68
+ 0054           ;       
+ 0054           ;       //back light 
+ 0054           ;       PWM8_BL_WritePeriod(255);    // Set period to eight clocks
+ 0054 10                push X
+ 0055 50FF              mov A,-1
+ 0057 7C0000            xcall _PWM8_BL_WritePeriod
+ 005A                   .dbline 69
+ 005A           ;       PWM8_BL_WritePulseWidth(5);   // Set pulse width to generate a 50% duty 
+ 005A 5005              mov A,5
+ 005C 7C0000            xcall _PWM8_BL_WritePulseWidth
+ 005F                   .dbline 70
+ 005F           ;       PWM8_BL_Start();
+ 005F 7C0000            xcall _PWM8_BL_Start
+ 0062                   .dbline 74
+ 0062           ;       
+ 0062           ;       //WriteAll_1621(0,a,16); //在起始地址为0 处连续写入16个字节数据
+ 0062           ;       
+ 0062           ;       UART_Board_Start(UART_PARITY_NONE);
+ 0062 5000              mov A,0
+ 0064 7C0000            xcall _UART_Board_Start
+ 0067                   .dbline 75
+ 0067           ;       UART_Board_EnableInt();
+ 0067 7C0000            xcall _UART_Board_EnableInt
+ 006A                   .dbline 77
+ 006A           ;       
+ 006A           ;       UART_Sensor_Start(UART_PARITY_NONE);
+ 006A 5000              mov A,0
+ 006C 7C0000            xcall _UART_Sensor_Start
+ 006F                   .dbline 78
+ 006F           ;       UART_Sensor_EnableInt();
+ 006F 7C0000            xcall _UART_Sensor_EnableInt
+ 0072                   .dbline 80
+ 0072           ;       
+ 0072           ;       Timer16_WritePeriod(9600);
+ 0072 5725              mov X,37
+ 0074 5080              mov A,-128
+ 0076 7C0000            xcall _Timer16_WritePeriod
+ 0079                   .dbline 81
+ 0079           ;       Timer16_WriteCompareValue(9000);
+ 0079 5723              mov X,35
+ 007B 5028              mov A,40
+ 007D 7C0000            xcall _Timer16_WriteCompareValue
+ 0080                   .dbline 82
+ 0080           ;       Timer16_EnableInt();
+ 0080 7C0000            xcall _Timer16_EnableInt
+ 0083                   .dbline 83
+ 0083           ;       Timer16_Start();
+ 0083 7C0000            xcall _Timer16_Start
+ 0086 20                pop X
+ 0087                   .dbline 87
+ 0087           ; 
+ 0087           ; //    UART_Board_CPutString("Woody is a genius!");
+ 0087           ;       
+ 0087           ;       PMSFrameFlag = 0;
+ 0087 62D000            mov REG[0xd0],>_PMSFrameFlag
+ 008A 550000            mov [_PMSFrameFlag],0
+ 008D                   .dbline 88
+ 008D           ;       HeadFlag = 0;   
+ 008D 62D000            mov REG[0xd0],>_HeadFlag
+ 0090 550000            mov [_HeadFlag],0
+ 0093                   .dbline 89
+ 0093           ;       DataPtr = 0;
+ 0093 62D000            mov REG[0xd0],>_DataPtr
+ 0096 550000            mov [_DataPtr],0
+ 0099                   .dbline 91
+ 0099           ;       
+ 0099           ;       SAR10_SetClk(SAR10_SYSCLK_16); // Set clock source - system clock/64
+ 0099 10                push X
+ 009A 500A              mov A,10
+ 009C 7C0000            xcall _SAR10_SetClk
+ 009F                   .dbline 92
+ 009F           ;       SAR10_SetRunMode(SAR10_ONESHOT); // Set running method - one-shot
+ 009F 5000              mov A,0
+ 00A1 7C0000            xcall _SAR10_SetRunMode
+ 00A4                   .dbline 93
+ 00A4           ;       SAR10_SetADCChannel(SAR10_CHS_AMUX0); // Set Port_0_5 as input
+ 00A4 5060              mov A,96
+ 00A6 7C0000            xcall _SAR10_SetADCChannel
+ 00A9                   .dbline 94
+ 00A9           ;       SAR10_DisableInt(); // Enable SAR10 interrupt
+ 00A9 7C0000            xcall _SAR10_DisableInt
+ 00AC                   .dbline 95
+ 00AC           ;       SAR10_Start(); // Start conversion
+ 00AC 7C0000            xcall _SAR10_Start
+ 00AF 20                pop X
+ 00B0 80E6              xjmp L18
+ 00B2           L17:
+ 00B2                   .dbline 99
+ 00B2           ; 
+ 00B2           ; 
+ 00B2           ;       while(1)
+ 00B2           ;       {
+ 00B2                   .dbline 100
+ 00B2           ;               if (PMSFrameFlag)
+ 00B2 62D000            mov REG[0xd0],>_PMSFrameFlag
+ 00B5 3C0000            cmp [_PMSFrameFlag],0
+ 00B8 A029              jz L20
+ 00BA                   .dbline 102
+ 00BA           ;               {
+ 00BA           ;                       PMSFrameFlag = 0;
+ 00BA                   .dbline 102
+ 00BA 550000            mov [_PMSFrameFlag],0
+ 00BD                   .dbline 103
+ 00BD           ;                       if (FrameCheck())
+ 00BD 7C0000            xcall _FrameCheck
+ 00C0 62D000            mov REG[0xd0],>__r0
+ 00C3 3900              cmp A,0
+ 00C5 A01C              jz L22
+ 00C7                   .dbline 105
+ 00C7           ;                       {
+ 00C7           ;                               UART_Board_CPutString("PM2.5:");
+ 00C7                   .dbline 105
+ 00C7 10                push X
+ 00C8 5000              mov A,>L24
+ 00CA 08                push A
+ 00CB 5000              mov A,<L24
+ 00CD 5C                mov X,A
+ 00CE 18                pop A
+ 00CF 7C0000            xcall _UART_Board_CPutString
+ 00D2                   .dbline 106
+ 00D2           ;                               UART_Board_PutSHexInt(MyPMSUnion.MyPMFrame.PM2_5_US);
+ 00D2 62D000            mov REG[0xd0],>_MyPMSUnion
+ 00D5 5106              mov A,[_MyPMSUnion+6]
+ 00D7 08                push A
+ 00D8 5107              mov A,[_MyPMSUnion+6+1]
+ 00DA 20                pop X
+ 00DB 7C0000            xcall _UART_Board_PutSHexInt
+ 00DE                   .dbline 107
+ 00DE           ;                               UART_Board_PutCRLF();
+ 00DE 7C0000            xcall _UART_Board_PutCRLF
+ 00E1 20                pop X
+ 00E2                   .dbline 109
+ 00E2           ;                               
+ 00E2           ;                       }
+ 00E2           L22:
+ 00E2                   .dbline 111
+ 00E2           ;                       else
+ 00E2           ;                       {
+ 00E2                   .dbline 113
+ 00E2           ;                               
+ 00E2           ;                       }
+ 00E2           L23:
+ 00E2                   .dbline 114
+ 00E2           ;               }
+ 00E2           L20:
+ 00E2                   .dbline 116
+ 00E2           ;               
+ 00E2           ;               if (!one_sec_timer)
+ 00E2 62D000            mov REG[0xd0],>_one_sec_timer
+ 00E5 3C0000            cmp [_one_sec_timer],0
+ 00E8 B038              jnz L26
+ 00EA                   .dbline 118
+ 00EA           ;               {
+ 00EA           ;                       one_sec_timer = ONE_SECOND_TIMER_RELOAD;
+ 00EA                   .dbline 118
+ 00EA 550008            mov [_one_sec_timer],8
+ 00ED                   .dbline 131
+ 00ED           ;                       
+ 00ED           ;                       /*
+ 00ED           ;                       k++;
+ 00ED           ;                       if (k>9)
+ 00ED           ;                               k = 0;
+ 00ED           ;                       
+ 00ED           ;                       a[0] = Digit[k];
+ 00ED           ;                       a[1] = Digit[k];
+ 00ED           ;                       a[2] = Digit[k];
+ 00ED           ;                       WriteAll_1621(0,a,3);
+ 00ED           ;                       */
+ 00ED           ;                       
+ 00ED           ;                       MUX_CR2 |= 0X02; //connect P2.1 Analog bus
+ 00ED 7110              or F,0x10  ; iopage = 1
+ 00EF 43DA02            or REG[0xda],2
+ 00F2                   .dbline 132
+ 00F2           ;                       SAR10_Trigger(); //Trigger new sample
+ 00F2 10                push X
+ 00F3 70CF              and F,0xCF      ; iopage = 0
+ 00F5 7C0000            xcall _SAR10_Trigger
+ 00F8 20                pop X
+ 00F9           L28:
+ 00F9                   .dbline 133
+ 00F9           ;                       while(SAR10_fIsDataAvailable()==0);//Wait while data is not ready
+ 00F9           L29:
+ 00F9                   .dbline 133
+ 00F9 10                push X
+ 00FA 7C0000            xcall _SAR10_fIsDataAvailable
+ 00FD 20                pop X
+ 00FE 62D000            mov REG[0xd0],>__r0
+ 0101 3900              cmp A,0
+ 0103 AFF5              jz L28
+ 0105                   .dbline 134
+ 0105           ;                       LightADCValue = SAR10_iGetData(); // Read result
+ 0105 10                push X
+ 0106 7C0000            xcall _SAR10_iGetData
+ 0109 62D000            mov REG[0xd0],>__r0
+ 010C 5A00              mov [__r0],X
+ 010E 20                pop X
+ 010F 08                push A
+ 0110 5100              mov A,[__r0]
+ 0112 62D000            mov REG[0xd0],>_LightADCValue
+ 0115 5300              mov [_LightADCValue],A
+ 0117 18                pop A
+ 0118 5301              mov [_LightADCValue+1],A
+ 011A                   .dbline 135
+ 011A           ;                       MUX_CR2 &= ~0X02; //disconnect P2.1 Analog bus
+ 011A 7110              or F,0x10  ; iopage = 1
+ 011C 41DAFD            and REG[0xda],-3
+ 011F                   .dbline 138
+ 011F           ; //                    UART_Board_PutSHexInt(LightADCValue);
+ 011F           ; //                    UART_Board_PutCRLF();
+ 011F           ;               }
+ 011F 70CF              and F,0xCF      ; iopage = 0
+ 0121           L26:
+ 0121                   .dbline 141
+ 0121           ;               
+ 0121           ;               
+ 0121           ;               if(!rh_sample_timer)
+ 0121 62D000            mov REG[0xd0],>_rh_sample_timer
+ 0124 3C0000            cmp [_rh_sample_timer],0
+ 0127 B061              jnz L31
+ 0129                   .dbline 143
+ 0129           ;               {
+ 0129           ;                       rh_sample_timer = ONE_SECOND_TIMER_RELOAD;
+ 0129                   .dbline 143
+ 0129 550008            mov [_rh_sample_timer],8
+ 012C                   .dbline 144
+ 012C           ;                       if (!RHSampleStep)
+ 012C 62D000            mov REG[0xd0],>_RHSampleStep
+ 012F 3C0000            cmp [_RHSampleStep],0
+ 0132 B018              jnz L33
+ 0134                   .dbline 146
+ 0134           ;                       {
+ 0134           ;                               ret = Si7020SendCommand(MRH_NHMM); // send the command(Measure RH, No Hold Master Mode)
+ 0134                   .dbline 146
+ 0134 50F5              mov A,-11
+ 0136 08                push A
+ 0137 7C0000            xcall _Si7020SendCommand
+ 013A 38FF              add SP,-1
+ 013C 5400              mov [X+0],A
+ 013E                   .dbline 147
+ 013E           ;                               if(ret)
+ 013E 3D0000            cmp [X+0],0
+ 0141 A047              jz L34
+ 0143                   .dbline 151
+ 0143           ;                               {
+ 0143           ; //                                    UART_Board_CPutString("Send commad success");
+ 0143           ; //                                    UART_Board_PutCRLF();
+ 0143           ;                                       RHSampleStep = 1;
+ 0143                   .dbline 151
+ 0143 62D000            mov REG[0xd0],>_RHSampleStep
+ 0146 550001            mov [_RHSampleStep],1
+ 0149                   .dbline 152
+ 0149           ;                               }
+ 0149                   .dbline 154
+ 0149           ;                               else
+ 0149           ;                               {                       
+ 0149                   .dbline 157
+ 0149           ; //                                    UART_Board_CPutString("Send commad fail");
+ 0149           ; //                                    UART_Board_PutCRLF();                                   
+ 0149           ;                               }
+ 0149                   .dbline 158
+ 0149           ;                       }
+ 0149 803F              xjmp L34
+ 014B           L33:
+ 014B                   .dbline 160
+ 014B           ;                       else 
+ 014B           ;                       {                               
+ 014B                   .dbline 161
+ 014B           ;                                       Si7020Read_RH_NHM(RecBuf);
+ 014B 5000              mov A,>_RecBuf
+ 014D 08                push A
+ 014E 5000              mov A,<_RecBuf
+ 0150 08                push A
+ 0151 7C0000            xcall _Si7020Read_RH_NHM
+ 0154                   .dbline 165
+ 0154           ;               //                      UART_Board_CPutString("RH: ");
+ 0154           ;               //                      UART_Board_PutSHexInt(*(unsigned int *)RecBuf);
+ 0154           ;               //                      UART_Board_PutCRLF();
+ 0154           ;                                       Humidity = Si7020CalcRH(*(unsigned int *)RecBuf);
+ 0154 62D000            mov REG[0xd0],>_RecBuf
+ 0157 5100              mov A,[_RecBuf]
+ 0159 08                push A
+ 015A 5101              mov A,[_RecBuf+1]
+ 015C 08                push A
+ 015D 7C0000            xcall _Si7020CalcRH
+ 0160 38FC              add SP,-4
+ 0162 62D000            mov REG[0xd0],>_Humidity
+ 0165 5300              mov [_Humidity],A
+ 0167                   .dbline 169
+ 0167           ;               //                      UART_Board_PutSHexByte(Humidity);
+ 0167           ;               //                      UART_Board_PutCRLF();
+ 0167           ;                                       
+ 0167           ;                                       Si7020Read_Temp_after_RHM(RecBuf);
+ 0167 5000              mov A,>_RecBuf
+ 0169 08                push A
+ 016A 5000              mov A,<_RecBuf
+ 016C 08                push A
+ 016D 7C0000            xcall _Si7020Read_Temp_after_RHM
+ 0170                   .dbline 173
+ 0170           ; //                                    UART_Board_CPutString("Temperature: ");
+ 0170           ;               //                      UART_Board_PutSHexInt(*(unsigned int *)RecBuf);
+ 0170           ;               //                      UART_Board_PutCRLF();
+ 0170           ;                                       Temperature = Si7020CalcTemp(*(unsigned int *)RecBuf);
+ 0170 62D000            mov REG[0xd0],>_RecBuf
+ 0173 5100              mov A,[_RecBuf]
+ 0175 08                push A
+ 0176 5101              mov A,[_RecBuf+1]
+ 0178 08                push A
+ 0179 7C0000            xcall _Si7020CalcTemp
+ 017C 38FC              add SP,-4
+ 017E 62D000            mov REG[0xd0],>_Temperature
+ 0181 5300              mov [_Temperature],A
+ 0183                   .dbline 176
+ 0183           ; //                                    UART_Board_PutSHexByte(Temperature);
+ 0183           ; //                                    UART_Board_PutCRLF();
+ 0183           ;                                       RHSampleStep = 0;
+ 0183 62D000            mov REG[0xd0],>_RHSampleStep
+ 0186 550000            mov [_RHSampleStep],0
+ 0189                   .dbline 177
+ 0189           ;                       }
+ 0189           L34:
+ 0189                   .dbline 178
+ 0189           ;               }
+ 0189           L31:
+ 0189           L37:
+ 0189                   .dbline 181
+ 0189           ;               
+ 0189           ; next:         
+ 0189           ;               if (!LcdUpdateTimer)
+ 0189 62D000            mov REG[0xd0],>_LcdUpdateTimer
+ 018C 3C0000            cmp [_LcdUpdateTimer],0
+ 018F B007              jnz L38
+ 0191                   .dbline 183
+ 0191           ;               {
+ 0191           ;                       LcdUpdateTimer = 4;
+ 0191                   .dbline 183
+ 0191 550004            mov [_LcdUpdateTimer],4
+ 0194                   .dbline 184
+ 0194           ;                       LCDOuputAll();
+ 0194 7C0000            xcall _LCDOuputAll
+ 0197                   .dbline 185
+ 0197           ;               }
+ 0197           L38:
+ 0197                   .dbline 186
+ 0197           ;       }
+ 0197           L18:
+ 0197                   .dbline 98
+ 0197 8F1A              xjmp L17
+ 0199           X0:
+ 0199                   .dbline -2
+ 0199           L16:
+ 0199 38FC              add SP,-4
+ 019B 20                pop X
+ 019C                   .dbline 0 ; func end
+ 019C 8FFF              jmp .
+ 019E                   .dbsym l p 2 pi
+ 019E                   .dbsym l k 1 c
+ 019E                   .dbsym l ret 0 c
+ 019E                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _Temperature::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Temperature _Temperature C
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _Humidity::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Humidity _Humidity c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _FanFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e FanFlag _FanFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _PlasmaFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PlasmaFlag _PlasmaFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _IICTimeOutTimer::
+ 0000 00                .byte 0
+ 0001                   .dbsym e IICTimeOutTimer _IICTimeOutTimer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _LightADCValue::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e LightADCValue _LightADCValue i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\chendong\MYDOCU~1\code\LCD_DI~1\LCD_DI~1\LCD_DI~1\main.c
+ 0000           _RecBuf::
+ 0000 0000000000        .byte 0,0,0,0,0
+ 0005                   .dbsym e RecBuf _RecBuf A[5:5]c
+                        .area lit(rom, con, rel, lit)
+ 0000           L24:
+ 0000 504D322E353A00    .byte 'P,'M,50,46,53,58,0
