@@ -16,16 +16,16 @@
 ;
 ;  ******** Define Memory Model and Stack parameters ********
 ;
-SYSTEM_STACK_PAGE: equ 3   
-SYSTEM_STACK_BASE_ADDR: equ 0h   
-SYSTEM_LARGE_MEMORY_MODEL: equ 1   
-SYSTEM_SMALL_MEMORY_MODEL: equ 0   
 IMAGECRAFT: equ 1   
 HITECH: equ 2   
-TOOLCHAIN: equ IMAGECRAFT   
-SYSTEM_TOOLS: equ 1   
-SYSTEM_IDXPG_TRACKS_STK_PP: equ 1   
-SYSTEM_IDXPG_TRACKS_IDX_PP: equ 0   
+TOOLCHAIN: equ HITECH   
+SYSTEM_LARGE_MEMORY_MODEL: equ 1   
+SYSTEM_SMALL_MEMORY_MODEL: equ 0   
+SYSTEM_STACK_PAGE: equ 3   
+SYSTEM_STACK_PAGE_OFFSET: equ 0   
+SYSTEM_TOOLS: equ 2   
+SYSTEM_IDXPG_TRACKS_STK_PP: equ 0   
+SYSTEM_IDXPG_TRACKS_IDX_PP: equ 1   
 SYSTEM_MULTIPAGE_STACK: equ 0 
 
 
@@ -410,132 +410,3 @@ ENDIF
    endm
 
 ; end of file Memory.inc
-;  ******* Extra macros for Memory.inc *******
-;
-;  Most of the following macros are conditionally compiled so they
-;  only produce code if the large memory model is selected.
-
-;-----------------------------------------------
-; PRESERVE_CPU_CONTEXT Macro
-;-----------------------------------------------
-;
-; DESC: Preserves CPU context for C function calls from ISRs.
-; Also sets the paging mode to the native paging mode.
-; All virtual registers and A are preserved. In LMM mode
-; all page pointers are preserved. X is not preserved,
-; but is preserved within any ImageCraft function call
-; automatically by the compiler.
-;
-; INPUT: N/A
-;
-; COST: 190 instruction cycles (in LMM+ImageCraft only)
-;        20 bytes stack usage  (in LMM+ImageCraft only)
-;        59 bytes of flash     (in LMM+ImageCraft only)
-;       155 instruction cycles (in SMM+ImageCraft only)
-;        16 bytes stack usage  (in SMM+ImageCraft only)  
-;        46 bytes of flash     (in SMM+ImageCraft only)
-
-macro PRESERVE_CPU_CONTEXT
-IF ( TOOLCHAIN & IMAGECRAFT )
-  PUSH A
-  IF ( SYSTEM_LARGE_MEMORY_MODEL )
-    ISR_PRESERVE_PAGE_POINTERS
-    RAM_RESTORE_NATIVE_PAGING
-    MOV reg[CUR_PP], >__r0 ;Set CUR_PP to same page as virtual registers
-  ENDIF
-  MOV A, [__r0]
-  PUSH A
-  MOV A, [__r1]
-  PUSH A
-  MOV A, [__r2]
-  PUSH A
-  MOV A, [__r3]
-  PUSH A
-  MOV A, [__r4]
-  PUSH A
-  MOV A, [__r5]
-  PUSH A
-  MOV A, [__r6]
-  PUSH A
-  MOV A, [__r7]
-  PUSH A
-  MOV A, [__r8]
-  PUSH A
-  MOV A, [__r9]
-  PUSH A
-  MOV A, [__r10]
-  PUSH A
-  MOV A, [__r11]
-  PUSH A
-  MOV A, [__rX]
-  PUSH A
-  MOV A, [__rY]
-  PUSH A
-  MOV A, [__rZ]
-  PUSH A
-  IF ( SYSTEM_LARGE_MEMORY_MODEL )
-    MOV REG[CUR_PP], 0
-  ENDIF
-ENDIF
-endm
-
-;-----------------------------------------------
-; RESTORE_CPU_CONTEXT Macro
-;-----------------------------------------------
-;
-; DESC: Restores CPU context for C function calls from ISRs.
-; Intended to be used in a pair with the PRESERVE_CPU_CONTEXT
-; macro.
-;
-; INPUT: N/A
-;
-; COST: 185 instruction cycles (in LMM+ImageCraft only)
-;        58 bytes of flash     (in LMM+ImageCraft only)
-;       155 instruction cycles (in SMM+ImageCraft only)
-;        46 bytes of flash     (in SMM+ImageCraft only)
-
-macro RESTORE_CPU_CONTEXT
-IF ( TOOLCHAIN & IMAGECRAFT )
-  IF ( SYSTEM_LARGE_MEMORY_MODEL )
-    RAM_RESTORE_NATIVE_PAGING
-    MOV reg[CUR_PP], >__r0 ;Set CUR_PP to same page as virtual registers
-  ENDIF
-  POP A
-  MOV [__rZ], A
-  POP A
-  MOV [__rY], A
-  POP A
-  MOV [__rX], A
-  POP A
-  MOV [__r11], A
-  POP A
-  MOV [__r10], A
-  POP A
-  MOV [__r9], A
-  POP A
-  MOV [__r8], A
-  POP A
-  MOV [__r7], A
-  POP A
-  MOV [__r6], A
-  POP A
-  MOV [__r5], A
-  POP A
-  MOV [__r4], A
-  POP A
-  MOV [__r3], A
-  POP A
-  MOV [__r2], A
-  POP A
-  MOV [__r1], A
-  POP A
-  MOV [__r0], A
-  IF ( SYSTEM_LARGE_MEMORY_MODEL )
-    ISR_RESTORE_PAGE_POINTERS
-    AND F, FLAG_PGMODE_0
-  ENDIF
-  POP A
-ENDIF
-endm
-
-; end of extra macros to file Memory.inc

@@ -40,4 +40,7 @@ PMS3003_EXTERN unsigned char DataPtr;
 PMS3003_EXTERN unsigned char PMSFrameFlag;
 PMS3003_EXTERN PMSFrameUnion MyPMSUnion;
 PMS3003_EXTERN unsigned char FrameCheck(void);
+PMS3003_EXTERN unsigned int data_pm2_5;
+PMS3003_EXTERN unsigned int data_pm1_0;
+PMS3003_EXTERN unsigned char RecTimeoutTimer;
 #endif	//_PARTICLE_SENSOR_	

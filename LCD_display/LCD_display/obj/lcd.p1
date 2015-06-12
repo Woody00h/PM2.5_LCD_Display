@@ -1,0 +1,1641 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[; ;HT1621B.h: 19: void SendBit_1621(unsigned char data,unsigned char cnt);
+
+[; ;HT1621B.h: 20: void SendDataBit_1621(unsigned char data,unsigned char cnt);
+
+[; ;HT1621B.h: 21: void SendCmd(unsigned char command);
+
+[; ;HT1621B.h: 22: void Write_1621(unsigned char addr,unsigned char data);
+
+[; ;HT1621B.h: 23: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+
+[; ;HT1621B.h: 24: void HT1621B_Init(void);
+
+[; ;HT1621B.h: 25: void delay_us(unsigned int us);
+
+[; ;HT1621B.h: 26: void delay_ms(unsigned char ms);
+
+"4 ./ParticleSensor.h
+[v _u16 `ui 1 t ]
+[; ;ParticleSensor.h: 4: typedef unsigned int u16;
+
+"23
+[s S1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S1 . Head Length PM1_0_US PM2_5_US PM10_US PM1_0_CN PM2_5_CN PM10_CN Reserve1 Reserve2 Reserve3 checksum ]
+[v _PMFrameField `S1 1 t ]
+[; ;ParticleSensor.h: 9: typedef struct
+
+[; ;ParticleSensor.h: 10: {
+
+[; ;ParticleSensor.h: 11: u16 Head;
+
+[; ;ParticleSensor.h: 12: u16 Length;
+
+[; ;ParticleSensor.h: 13: u16 PM1_0_US;
+
+[; ;ParticleSensor.h: 14: u16 PM2_5_US;
+
+[; ;ParticleSensor.h: 15: u16 PM10_US;
+
+[; ;ParticleSensor.h: 16: u16 PM1_0_CN;
+
+[; ;ParticleSensor.h: 17: u16 PM2_5_CN;
+
+[; ;ParticleSensor.h: 18: u16 PM10_CN;
+
+[; ;ParticleSensor.h: 19: u16 Reserve1;
+
+[; ;ParticleSensor.h: 20: u16 Reserve2;
+
+[; ;ParticleSensor.h: 21: u16 Reserve3;
+
+[; ;ParticleSensor.h: 22: u16 checksum;
+
+[; ;ParticleSensor.h: 23: }PMFrameField;
+
+"29
+[u S2 `uc -> 40 `i `S1 1 ]
+[n S2 . PMRxBuf MyPMFrame ]
+[v _PMSFrameUnion `S2 1 t ]
+[; ;ParticleSensor.h: 25: typedef union
+
+[; ;ParticleSensor.h: 26: {
+
+[; ;ParticleSensor.h: 27: unsigned char PMRxBuf[40];
+
+[; ;ParticleSensor.h: 28: PMFrameField MyPMFrame;
+
+[; ;ParticleSensor.h: 29: }PMSFrameUnion;
+
+[; ;ParticleSensor.h: 37: extern unsigned char HeadFlag;
+
+[; ;ParticleSensor.h: 38: extern unsigned char HeadPointer;
+
+[; ;ParticleSensor.h: 39: extern unsigned char DataPtr;
+
+[; ;ParticleSensor.h: 40: extern unsigned char PMSFrameFlag;
+
+[; ;ParticleSensor.h: 41: extern PMSFrameUnion MyPMSUnion;
+
+[; ;ParticleSensor.h: 42: extern unsigned char FrameCheck(void);
+
+[; ;ParticleSensor.h: 43: extern unsigned int data_pm2_5;
+
+[; ;ParticleSensor.h: 44: extern unsigned int data_pm1_0;
+
+[; ;ParticleSensor.h: 45: extern unsigned char RecTimeoutTimer;
+
+[; ;Si7020.h: 30: extern unsigned char Si7020SendCommand(unsigned char cmd);
+
+[; ;Si7020.h: 31: extern void Si7020Read_RH_NHM(unsigned char * buffer);
+
+[; ;Si7020.h: 32: extern unsigned char Si7020Read_Temp_after_RHM(unsigned char * buffer);
+
+[; ;Si7020.h: 33: extern signed char Si7020CalcTemp(unsigned int data);
+
+[; ;Si7020.h: 34: extern unsigned char Si7020CalcRH(unsigned int data);
+
+[; ;Si7020.h: 35: extern unsigned char CRC8Check();
+
+[; ;Si7020.h: 36: extern void LeftRotate();
+
+[; ;Si7020.h: 37: extern void Si7020Init();
+
+[; ;Si7020.h: 39: extern unsigned char Humidity;
+
+[; ;Si7020.h: 40: extern signed char Temperature;
+
+[; ;Si7020.h: 41: extern unsigned char RecBuf[5];
+
+[; ;Si7020.h: 42: extern unsigned int Si7020Data;
+
+"10 ./LCD.h
+[v _DigitSeg `Cuc -> 0 `x e ]
+[i _DigitSeg
+:U ..
+-> -> 245 `i `uc
+-> -> 96 `i `uc
+-> -> 182 `i `uc
+-> -> 242 `i `uc
+-> -> 99 `i `uc
+-> -> 211 `i `uc
+-> -> 215 `i `uc
+-> -> 112 `i `uc
+-> -> 247 `i `uc
+-> -> 243 `i `uc
+..
+][; ;LCD.h: 10: const unsigned char DigitSeg[] ={0xf5,0x60,0xb6,0xf2,0x63,0xd3,0xd7,0x70,0xf7,0xf3};
+
+"11
+[v _DigitSegSwap `Cuc -> 0 `x e ]
+[i _DigitSegSwap
+:U ..
+-> -> 95 `i `uc
+-> -> 6 `i `uc
+-> -> 107 `i `uc
+-> -> 47 `i `uc
+-> -> 54 `i `uc
+-> -> 61 `i `uc
+-> -> 125 `i `uc
+-> -> 7 `i `uc
+-> -> 127 `i `uc
+-> -> 63 `i `uc
+..
+][; ;LCD.h: 11: const unsigned char DigitSegSwap[]={0x5f,0x06,0x6b,0x2f,0x36,0x3d,0x7d,0x07,0x7f,0x3f};
+
+"18
+[v _DisplayBuf `uc -> 12 `i e ]
+[; ;LCD.h: 18: unsigned char DisplayBuf[12];
+
+"19
+[v _DisplayNum `uc -> 3 `i e ]
+[; ;LCD.h: 19: unsigned char DisplayNum[3];
+
+"20
+[v _LifeFlag `uc 1 e ]
+[; ;LCD.h: 20: unsigned char LifeFlag;
+
+"21
+[v _RH_T_Flag `uc 1 e ]
+[; ;LCD.h: 21: unsigned char RH_T_Flag;
+
+"22
+[v _mode `uc 1 e ]
+[; ;LCD.h: 22: unsigned char mode;
+
+"23
+[v _LockStatus `uc 1 e ]
+[; ;LCD.h: 23: unsigned char LockStatus;
+
+"24
+[v _Plasma `uc 1 e ]
+[; ;LCD.h: 24: unsigned char Plasma;
+
+"25
+[v _PlasmaFlag `uc 1 e ]
+[; ;LCD.h: 25: unsigned char PlasmaFlag;
+
+"26
+[v _Odor `uc 1 e ]
+[; ;LCD.h: 26: unsigned char Odor;
+
+"27
+[v _FanFlag `uc 1 e ]
+[; ;LCD.h: 27: unsigned char FanFlag;
+
+"28
+[v _SpeedLvl `uc 1 e ]
+[; ;LCD.h: 28: unsigned char SpeedLvl;
+
+"29
+[v _PM_Flag `uc 1 e ]
+[; ;LCD.h: 29: unsigned char PM_Flag;
+
+"30
+[v _HeapLife `uc 1 e ]
+[; ;LCD.h: 30: unsigned char HeapLife;
+
+"31
+[v _CarbonLife `uc 1 e ]
+[; ;LCD.h: 31: unsigned char CarbonLife;
+
+"32
+[v _FanUpdateTimer `uc 1 e ]
+[; ;LCD.h: 32: unsigned char FanUpdateTimer;
+
+"33
+[v _PlasmaTimer `uc 1 e ]
+[; ;LCD.h: 33: unsigned char PlasmaTimer;
+
+"34
+[v _FanUpdateTimeReload `uc 1 e ]
+[; ;LCD.h: 34: unsigned char FanUpdateTimeReload;
+
+"35
+[v _Timer `uc 1 e ]
+[; ;LCD.h: 35: unsigned char Timer;
+
+[; ;LCD.h: 37: void LCD_Init();
+
+[; ;LCD.h: 38: void DisplayPMxx(unsigned int pm);
+
+[; ;LCD.h: 39: void ShowLife(unsigned char life);
+
+[; ;LCD.h: 40: void ShowHumiTemp(signed char value);
+
+[; ;LCD.h: 41: void LCDOuputAll(void);
+
+"4 C:\Program Files (x86)\HI-TECH Software\HCPSOC\PRO\9.61\include\stdlib.h
+[v _ptrdiff_t `i 1 t ]
+[; ;stdlib.h: 4: typedef int ptrdiff_t;
+
+"5
+[v _size_t `ui 1 t ]
+[; ;stdlib.h: 5: typedef unsigned size_t;
+
+"6
+[v _wchar_t `us 1 t ]
+[; ;stdlib.h: 6: typedef unsigned short wchar_t;
+
+[; ;stdlib.h: 16: extern int errno;
+
+"47
+[s S3 `i 1 `i 1 ]
+[n S3 . quot rem ]
+[v _div_t `S3 1 t ]
+[; ;stdlib.h: 44: typedef struct {
+
+[; ;stdlib.h: 45: int quot;
+
+[; ;stdlib.h: 46: int rem;
+
+[; ;stdlib.h: 47: } div_t;
+
+"51
+[s S4 `ui 1 `ui 1 ]
+[n S4 . quot rem ]
+[v _udiv_t `S4 1 t ]
+[; ;stdlib.h: 48: typedef struct {
+
+[; ;stdlib.h: 49: unsigned quot;
+
+[; ;stdlib.h: 50: unsigned rem;
+
+[; ;stdlib.h: 51: } udiv_t;
+
+"55
+[s S5 `l 1 `l 1 ]
+[n S5 . quot rem ]
+[v _ldiv_t `S5 1 t ]
+[; ;stdlib.h: 52: typedef struct {
+
+[; ;stdlib.h: 53: long quot;
+
+[; ;stdlib.h: 54: long rem;
+
+[; ;stdlib.h: 55: } ldiv_t;
+
+"59
+[s S6 `ul 1 `ul 1 ]
+[n S6 . quot rem ]
+[v _uldiv_t `S6 1 t ]
+[; ;stdlib.h: 56: typedef struct {
+
+[; ;stdlib.h: 57: unsigned long quot;
+
+[; ;stdlib.h: 58: unsigned long rem;
+
+[; ;stdlib.h: 59: } uldiv_t;
+
+[; ;stdlib.h: 65: extern double atof(const char *);
+
+[; ;stdlib.h: 66: extern double strtod(const char *, const char **);
+
+[; ;stdlib.h: 67: extern int atoi(const char *);
+
+[; ;stdlib.h: 68: extern unsigned xtoi(const char *);
+
+[; ;stdlib.h: 69: extern long atol(const char *);
+
+[; ;stdlib.h: 70: extern long strtol(const char *, char **, int);
+
+[; ;stdlib.h: 72: extern int rand(void);
+
+[; ;stdlib.h: 73: extern void srand(unsigned int);
+
+[; ;stdlib.h: 74: extern void * calloc(size_t, size_t);
+
+[; ;stdlib.h: 75: extern div_t div(int numer, int denom);
+
+[; ;stdlib.h: 76: extern udiv_t udiv(unsigned numer, unsigned denom);
+
+[; ;stdlib.h: 77: extern ldiv_t ldiv(long numer, long denom);
+
+[; ;stdlib.h: 78: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+
+[; ;stdlib.h: 79: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+
+[; ;stdlib.h: 80: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+
+[; ;stdlib.h: 81: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+
+[; ;stdlib.h: 82: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+[; ;stdlib.h: 106: extern void * malloc(size_t);
+
+[; ;stdlib.h: 107: extern void free(void *);
+
+[; ;stdlib.h: 108: extern void * realloc(void *, size_t);
+
+[; ;stdlib.h: 122: extern void abort(void);
+
+[; ;stdlib.h: 123: extern void exit(int);
+
+"124
+[v F175 `(v 1 tf ]
+[; ;stdlib.h: 124: extern int atexit(void (*)(void));
+
+[; ;stdlib.h: 125: extern char * getenv(const char *);
+
+[; ;stdlib.h: 126: extern char ** environ;
+
+[; ;stdlib.h: 127: extern int system(char *);
+
+"128
+[v F187 `(i 1 tf2`*Cv`*Cv ]
+[; ;stdlib.h: 128: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+
+"129
+[v F196 `(i 1 tf2`*Cv`*Cv ]
+[; ;stdlib.h: 129: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+
+[; ;stdlib.h: 130: extern int abs(int);
+
+[; ;stdlib.h: 131: extern long labs(long);
+
+[; ;stdlib.h: 145: extern char * itoa(char * buf, int val, int base);
+
+[; ;stdlib.h: 146: extern char * utoa(char * buf, unsigned val, int base);
+
+[; ;stdlib.h: 147: extern char * ltoa(char * buf, long val, int base);
+
+[; ;stdlib.h: 148: extern char * ultoa(char * buf, unsigned long val, int base);
+
+[; ;stdlib.h: 150: extern char * ftoa(float f, int * status);
+
+[; ;lcd.c: 9: extern unsigned char Timer;
+
+"12 ./lcd.c
+[v _DisplayPMxx `(v 1 ef1`ui ]
+{
+[; ;lcd.c: 11: void DisplayPMxx(unsigned int pm)
+
+[; ;lcd.c: 12: {
+
+[e :U _DisplayPMxx ]
+[v _pm `ui 1 r1 ]
+[f ]
+"13
+[v _k `uc 1 a ]
+[; ;lcd.c: 13: char k = 0;
+
+[e = _k -> -> 0 `i `uc ]
+"14
+[v _index `ui 1 a ]
+"15
+[v _temp `ui 1 a ]
+[; ;lcd.c: 14: unsigned int index;
+
+[; ;lcd.c: 15: unsigned int temp;
+
+[; ;lcd.c: 17: temp = pm;
+
+"17
+[e = _temp _pm ]
+[; ;lcd.c: 18: if(temp > 999)
+
+"18
+[e $ ! > _temp -> -> 999 `i `ui 8  ]
+[; ;lcd.c: 19: {
+
+"19
+{
+[; ;lcd.c: 20: temp = 999;
+
+"20
+[e = _temp -> -> 999 `i `ui ]
+"21
+}
+[e :U 8 ]
+[; ;lcd.c: 21: }
+
+[; ;lcd.c: 23: index = temp/100;
+
+"23
+[e = _index / _temp -> -> 100 `i `ui ]
+[; ;lcd.c: 24: DisplayNum[0] = index;
+
+"24
+[e = *U + &U _DisplayNum * -> -> -> 0 `i `ui `ux -> -> # *U &U _DisplayNum `ui `ux -> _index `uc ]
+[; ;lcd.c: 26: temp = temp%100;
+
+"26
+[e = _temp % _temp -> -> 100 `i `ui ]
+[; ;lcd.c: 27: index = temp/10;
+
+"27
+[e = _index / _temp -> -> 10 `i `ui ]
+[; ;lcd.c: 28: DisplayNum[1] = index;
+
+"28
+[e = *U + &U _DisplayNum * -> -> -> 1 `i `ui `ux -> -> # *U &U _DisplayNum `ui `ux -> _index `uc ]
+[; ;lcd.c: 30: index = temp%10;
+
+"30
+[e = _index % _temp -> -> 10 `i `ui ]
+[; ;lcd.c: 31: DisplayNum[2] = index;
+
+"31
+[e = *U + &U _DisplayNum * -> -> -> 2 `i `ui `ux -> -> # *U &U _DisplayNum `ui `ux -> _index `uc ]
+[; ;lcd.c: 33: k = 0;
+
+"33
+[e = _k -> -> 0 `i `uc ]
+[; ;lcd.c: 34: while (k<2)
+
+"34
+[e $U 9  ]
+[e :U 10 ]
+[; ;lcd.c: 35: {
+
+"35
+{
+[; ;lcd.c: 36: if (DisplayNum[k])
+
+"36
+[e $ ! != -> *U + &U _DisplayNum * -> _k `ux -> -> # *U &U _DisplayNum `ui `ux `i -> -> -> 0 `i `uc `i 12  ]
+[; ;lcd.c: 37: {
+
+"37
+{
+[; ;lcd.c: 38: DisplayBuf[k] = DigitSeg[DisplayNum[k]];
+
+"38
+[e = *U + &U _DisplayBuf * -> _k `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSeg * -> *U + &U _DisplayNum * -> _k `ux -> -> # *U &U _DisplayNum `ui `ux `ux -> -> # *U &U _DigitSeg `ui `ux ]
+[; ;lcd.c: 39: k++;
+
+"39
+[e ++ _k -> -> 1 `i `uc ]
+[; ;lcd.c: 40: break;
+
+"40
+[e $U 11  ]
+"41
+}
+[; ;lcd.c: 41: }
+
+[e $U 13  ]
+"42
+[e :U 12 ]
+[; ;lcd.c: 42: else
+
+[; ;lcd.c: 43: {
+
+"43
+{
+[; ;lcd.c: 44: DisplayBuf[k] = 0;
+
+"44
+[e = *U + &U _DisplayBuf * -> _k `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 0 `i `uc ]
+"45
+}
+[e :U 13 ]
+[; ;lcd.c: 45: }
+
+[; ;lcd.c: 46: k++;
+
+"46
+[e ++ _k -> -> 1 `i `uc ]
+"47
+}
+[e :U 9 ]
+"34
+[e $ < -> _k `i -> 2 `i 10  ]
+[e :U 11 ]
+[; ;lcd.c: 47: }
+
+[; ;lcd.c: 49: for (;k<3;k++)
+
+"49
+{
+[e $ < -> _k `i -> 3 `i 14  ]
+[e $U 15  ]
+"50
+[e :U 14 ]
+[; ;lcd.c: 50: {
+
+{
+[; ;lcd.c: 51: DisplayBuf[k] = DigitSeg[DisplayNum[k]];
+
+"51
+[e = *U + &U _DisplayBuf * -> _k `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSeg * -> *U + &U _DisplayNum * -> _k `ux -> -> # *U &U _DisplayNum `ui `ux `ux -> -> # *U &U _DigitSeg `ui `ux ]
+"52
+}
+"49
+[e ++ _k -> -> 1 `i `uc ]
+[e $ < -> _k `i -> 3 `i 14  ]
+[e :U 15 ]
+"52
+}
+"53
+[; ;lcd.c: 52: }
+
+[; ;lcd.c: 53: }
+
+[e :UE 7 ]
+}
+"56
+[v _ShowLife `(v 1 ef1`uc ]
+{
+[; ;lcd.c: 55: void ShowLife(unsigned char life)
+
+[; ;lcd.c: 56: {
+
+[e :U _ShowLife ]
+[v _life `uc 1 r1 ]
+[f ]
+"57
+[v _temp `uc 1 a ]
+[; ;lcd.c: 57: unsigned char temp = life;
+
+[e = _temp _life ]
+"58
+[v _index `uc 1 a ]
+[; ;lcd.c: 58: unsigned char index;
+
+[; ;lcd.c: 59: if (temp > 99)
+
+"59
+[e $ ! > -> _temp `i -> 99 `i 18  ]
+[; ;lcd.c: 60: {
+
+"60
+{
+[; ;lcd.c: 61: temp = 99;
+
+"61
+[e = _temp -> -> 99 `i `uc ]
+"62
+}
+[e :U 18 ]
+[; ;lcd.c: 62: }
+
+[; ;lcd.c: 64: index = temp/10;
+
+"64
+[e = _index -> / -> _temp `i -> 10 `i `uc ]
+[; ;lcd.c: 65: if(index)
+
+"65
+[e $ ! != -> _index `i -> -> -> 0 `i `uc `i 19  ]
+[; ;lcd.c: 66: {
+
+"66
+{
+[; ;lcd.c: 67: DisplayBuf[3] = DigitSeg[index];
+
+"67
+[e = *U + &U _DisplayBuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSeg * -> _index `ux -> -> # *U &U _DigitSeg `ui `ux ]
+"68
+}
+[; ;lcd.c: 68: }
+
+[e $U 20  ]
+"69
+[e :U 19 ]
+[; ;lcd.c: 69: else
+
+[; ;lcd.c: 70: {
+
+"70
+{
+[; ;lcd.c: 71: DisplayBuf[3] = 0;
+
+"71
+[e = *U + &U _DisplayBuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 0 `i `uc ]
+"72
+}
+[e :U 20 ]
+[; ;lcd.c: 72: }
+
+[; ;lcd.c: 74: index = temp%10;
+
+"74
+[e = _index -> % -> _temp `i -> 10 `i `uc ]
+[; ;lcd.c: 75: DisplayBuf[4] = DigitSeg[index];
+
+"75
+[e = *U + &U _DisplayBuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSeg * -> _index `ux -> -> # *U &U _DigitSeg `ui `ux ]
+"76
+[; ;lcd.c: 76: }
+
+[e :UE 17 ]
+}
+"78
+[v _ShowHumiTemp `(v 1 ef1`c ]
+{
+[; ;lcd.c: 77: void ShowHumiTemp(signed char value)
+
+[; ;lcd.c: 78: {
+
+[e :U _ShowHumiTemp ]
+[v _value `c 1 r1 ]
+[f ]
+"79
+[v _temp `c 1 a ]
+[; ;lcd.c: 79: signed char temp = value;
+
+[e = _temp _value ]
+"80
+[v _index `uc 1 a ]
+[; ;lcd.c: 80: unsigned char index;
+
+[; ;lcd.c: 81: if (temp > 99)
+
+"81
+[e $ ! > -> _temp `i -> 99 `i 22  ]
+[; ;lcd.c: 82: {
+
+"82
+{
+[; ;lcd.c: 83: temp = 99;
+
+"83
+[e = _temp -> -> 99 `i `c ]
+"84
+}
+[e :U 22 ]
+[; ;lcd.c: 84: }
+
+[; ;lcd.c: 86: if (temp < 0)
+
+"86
+[e $ ! < -> _temp `i -> 0 `i 23  ]
+[; ;lcd.c: 87: {
+
+"87
+{
+[; ;lcd.c: 88: DisplayBuf[9] = 0x20;
+
+"88
+[e = *U + &U _DisplayBuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 32 `i `uc ]
+[; ;lcd.c: 89: temp = abs(temp);
+
+"130 C:\Program Files (x86)\HI-TECH Software\HCPSOC\PRO\9.61\include\stdlib.h
+[v _abs `(i 0 ef1`i ]
+"89 ./lcd.c
+[e = _temp -> ( _abs (1
+ -> _temp `i `c ]
+[; ;lcd.c: 90: if (temp > 9)
+
+"90
+[e $ ! > -> _temp `i -> 9 `i 24  ]
+[; ;lcd.c: 91: {
+
+"91
+{
+[; ;lcd.c: 92: temp = 9;
+
+"92
+[e = _temp -> -> 9 `i `c ]
+"93
+}
+[e :U 24 ]
+[; ;lcd.c: 93: }
+
+[; ;lcd.c: 94: DisplayBuf[8] = DigitSegSwap[temp];
+
+"94
+[e = *U + &U _DisplayBuf * -> -> -> 8 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSegSwap * -> -> _temp `uc `ux -> -> # *U &U _DigitSegSwap `ui `ux ]
+"95
+}
+[; ;lcd.c: 95: }
+
+[e $U 25  ]
+"96
+[e :U 23 ]
+[; ;lcd.c: 96: else
+
+[; ;lcd.c: 97: {
+
+"97
+{
+[; ;lcd.c: 98: index = temp/10;
+
+"98
+[e = _index -> / -> _temp `i -> 10 `i `uc ]
+[; ;lcd.c: 99: if(index)
+
+"99
+[e $ ! != -> _index `i -> -> -> 0 `i `uc `i 26  ]
+[; ;lcd.c: 100: {
+
+"100
+{
+[; ;lcd.c: 101: DisplayBuf[9] = DigitSegSwap[index];
+
+"101
+[e = *U + &U _DisplayBuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSegSwap * -> _index `ux -> -> # *U &U _DigitSegSwap `ui `ux ]
+"102
+}
+[; ;lcd.c: 102: }
+
+[e $U 27  ]
+"103
+[e :U 26 ]
+[; ;lcd.c: 103: else
+
+[; ;lcd.c: 104: {
+
+"104
+{
+[; ;lcd.c: 105: DisplayBuf[9] = 0;
+
+"105
+[e = *U + &U _DisplayBuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 0 `i `uc ]
+"106
+}
+[e :U 27 ]
+[; ;lcd.c: 106: }
+
+[; ;lcd.c: 108: index = temp%10;
+
+"108
+[e = _index -> % -> _temp `i -> 10 `i `uc ]
+[; ;lcd.c: 109: DisplayBuf[8] = DigitSegSwap[index];
+
+"109
+[e = *U + &U _DisplayBuf * -> -> -> 8 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSegSwap * -> _index `ux -> -> # *U &U _DigitSegSwap `ui `ux ]
+"110
+}
+[e :U 25 ]
+"111
+[; ;lcd.c: 110: }
+
+[; ;lcd.c: 111: }
+
+[e :UE 21 ]
+}
+"114
+[v _LCDOuputAll `(v 1 ef ]
+{
+[; ;lcd.c: 113: void LCDOuputAll(void)
+
+[; ;lcd.c: 114: {
+
+[e :U _LCDOuputAll ]
+[f ]
+"115
+[v _k `uc 1 a ]
+[; ;lcd.c: 115: char k = 0;
+
+[e = _k -> -> 0 `i `uc ]
+[; ;lcd.c: 117: for (k=0;k<12;k++)
+
+"117
+{
+[e = _k -> -> 0 `i `uc ]
+[e $ < -> _k `i -> 12 `i 29  ]
+[e $U 30  ]
+"118
+[e :U 29 ]
+[; ;lcd.c: 118: {
+
+{
+[; ;lcd.c: 119: DisplayBuf[k] = 0;
+
+"119
+[e = *U + &U _DisplayBuf * -> _k `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 0 `i `uc ]
+"120
+}
+"117
+[e ++ _k -> -> 1 `i `uc ]
+[e $ < -> _k `i -> 12 `i 29  ]
+[e :U 30 ]
+"120
+}
+[; ;lcd.c: 120: }
+
+[; ;lcd.c: 125: if (PM_Flag == 0)
+
+"125
+[e $ ! == -> _PM_Flag `i -> 0 `i 32  ]
+[; ;lcd.c: 126: {
+
+"126
+{
+[; ;lcd.c: 127: DisplayPMxx(data_pm2_5);
+
+"43 ./ParticleSensor.h
+[v _data_pm2_5 `ui 0 e ]
+"127 ./lcd.c
+[e ( _DisplayPMxx (1
+ _data_pm2_5 ]
+[; ;lcd.c: 128: DisplayBuf[0] |= 0x8;
+
+"128
+[e =| *U + &U _DisplayBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+"129
+}
+[; ;lcd.c: 129: }
+
+[e $U 33  ]
+"130
+[e :U 32 ]
+[; ;lcd.c: 130: else
+
+[; ;lcd.c: 131: {
+
+"131
+{
+[; ;lcd.c: 132: DisplayPMxx(data_pm1_0);
+
+"44 ./ParticleSensor.h
+[v _data_pm1_0 `ui 0 e ]
+"132 ./lcd.c
+[e ( _DisplayPMxx (1
+ _data_pm1_0 ]
+[; ;lcd.c: 133: DisplayBuf[1] |= 0x8;
+
+"133
+[e =| *U + &U _DisplayBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+"134
+}
+[e :U 33 ]
+[; ;lcd.c: 134: }
+
+[; ;lcd.c: 135: DisplayBuf[2] |= 0x8;
+
+"135
+[e =| *U + &U _DisplayBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+[; ;lcd.c: 140: if (LifeFlag == 0)
+
+"140
+[e $ ! == -> _LifeFlag `i -> 0 `i 34  ]
+[; ;lcd.c: 141: {
+
+"141
+{
+[; ;lcd.c: 142: ShowLife(HeapLife);
+
+"142
+[e ( _ShowLife (1
+ _HeapLife ]
+[; ;lcd.c: 143: DisplayBuf[3] |= 0x8;
+
+"143
+[e =| *U + &U _DisplayBuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+"145
+}
+[; ;lcd.c: 145: }
+
+[e $U 35  ]
+"146
+[e :U 34 ]
+[; ;lcd.c: 146: else
+
+[; ;lcd.c: 147: {
+
+"147
+{
+[; ;lcd.c: 148: ShowLife(CarbonLife);
+
+"148
+[e ( _ShowLife (1
+ _CarbonLife ]
+[; ;lcd.c: 149: DisplayBuf[4] |= 0x8;
+
+"149
+[e =| *U + &U _DisplayBuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+"151
+}
+[e :U 35 ]
+[; ;lcd.c: 151: }
+
+[; ;lcd.c: 156: if (SpeedLvl > 8)
+
+"156
+[e $ ! > -> _SpeedLvl `i -> 8 `i 36  ]
+[; ;lcd.c: 157: {
+
+"157
+{
+[; ;lcd.c: 158: SpeedLvl = 8;
+
+"158
+[e = _SpeedLvl -> -> 8 `i `uc ]
+"159
+}
+[e :U 36 ]
+[; ;lcd.c: 159: }
+
+[; ;lcd.c: 160: DisplayBuf[5] = DigitSeg[SpeedLvl];
+
+"160
+[e = *U + &U _DisplayBuf * -> -> -> 5 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux *U + &U _DigitSeg * -> _SpeedLvl `ux -> -> # *U &U _DigitSeg `ui `ux ]
+[; ;lcd.c: 162: if(!FanUpdateTimer)
+
+"162
+[e $ ! ! != -> _FanUpdateTimer `i -> -> -> 0 `i `uc `i 37  ]
+[; ;lcd.c: 163: {
+
+"163
+{
+[; ;lcd.c: 164: FanUpdateTimer = FanUpdateTimeReload;
+
+"164
+[e = _FanUpdateTimer _FanUpdateTimeReload ]
+[; ;lcd.c: 165: FanFlag ^= 1;
+
+"165
+[e =^ _FanFlag -> -> 1 `i `uc ]
+"166
+}
+[e :U 37 ]
+[; ;lcd.c: 166: }
+
+[; ;lcd.c: 167: if (FanFlag)
+
+"167
+[e $ ! != -> _FanFlag `i -> -> -> 0 `i `uc `i 38  ]
+[; ;lcd.c: 168: {
+
+"168
+{
+[; ;lcd.c: 169: DisplayBuf[6] |= 0x1;
+
+"169
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 1 `i `uc ]
+"171
+}
+[; ;lcd.c: 171: }
+
+[e $U 39  ]
+"172
+[e :U 38 ]
+[; ;lcd.c: 172: else
+
+[; ;lcd.c: 173: {
+
+"173
+{
+[; ;lcd.c: 174: DisplayBuf[6] |= 0x2;
+
+"174
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 2 `i `uc ]
+"176
+}
+[e :U 39 ]
+[; ;lcd.c: 176: }
+
+[; ;lcd.c: 181: if (RH_T_Flag == 0)
+
+"181
+[e $ ! == -> _RH_T_Flag `i -> 0 `i 40  ]
+[; ;lcd.c: 182: {
+
+"182
+{
+[; ;lcd.c: 183: ShowHumiTemp(Humidity);
+
+"39 ./Si7020.h
+[v _Humidity `uc 0 e ]
+"183 ./lcd.c
+[e ( _ShowHumiTemp (1
+ -> _Humidity `c ]
+"187
+}
+[; ;lcd.c: 187: }
+
+[e $U 41  ]
+"188
+[e :U 40 ]
+[; ;lcd.c: 188: else
+
+[; ;lcd.c: 189: {
+
+"189
+{
+[; ;lcd.c: 190: if (RH_T_Flag == 1)
+
+"190
+[e $ ! == -> _RH_T_Flag `i -> 1 `i 42  ]
+[; ;lcd.c: 191: {
+
+"191
+{
+[; ;lcd.c: 192: ShowHumiTemp(Temperature);
+
+"40 ./Si7020.h
+[v _Temperature `c 0 e ]
+"192 ./lcd.c
+[e ( _ShowHumiTemp (1
+ _Temperature ]
+[; ;lcd.c: 195: DisplayBuf[7] |= 0x20;
+
+"195
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 32 `i `uc ]
+"196
+}
+[; ;lcd.c: 196: }
+
+[e $U 43  ]
+"197
+[e :U 42 ]
+[; ;lcd.c: 197: else
+
+[; ;lcd.c: 198: {
+
+"198
+{
+[; ;lcd.c: 199: ShowHumiTemp(Timer);
+
+"199
+[e ( _ShowHumiTemp (1
+ -> _Timer `c ]
+[; ;lcd.c: 200: DisplayBuf[9] |= 0x80;
+
+"200
+[e =| *U + &U _DisplayBuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 128 `i `uc ]
+[; ;lcd.c: 201: DisplayBuf[7] |= 0x10;
+
+"201
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 16 `i `uc ]
+"203
+}
+[e :U 43 ]
+"204
+}
+[e :U 41 ]
+[; ;lcd.c: 203: }
+
+[; ;lcd.c: 204: }
+
+[; ;lcd.c: 209: if (mode == 0)
+
+"209
+[e $ ! == -> _mode `i -> 0 `i 44  ]
+[; ;lcd.c: 210: {
+
+"210
+{
+[; ;lcd.c: 211: DisplayBuf[7] |= 0x2;
+
+"211
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 2 `i `uc ]
+"213
+}
+[; ;lcd.c: 213: }
+
+[e $U 45  ]
+"214
+[e :U 44 ]
+[; ;lcd.c: 214: else
+
+[; ;lcd.c: 215: {
+
+"215
+{
+[; ;lcd.c: 216: DisplayBuf[7] |= 0x4;
+
+"216
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 4 `i `uc ]
+"218
+}
+[e :U 45 ]
+[; ;lcd.c: 218: }
+
+[; ;lcd.c: 223: if (LockStatus)
+
+"223
+[e $ ! != -> _LockStatus `i -> -> -> 0 `i `uc `i 46  ]
+[; ;lcd.c: 224: {
+
+"224
+{
+[; ;lcd.c: 225: DisplayBuf[7] |= 0x1;
+
+"225
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 1 `i `uc ]
+"226
+}
+[e :U 46 ]
+[; ;lcd.c: 226: }
+
+[; ;lcd.c: 235: if (Plasma)
+
+"235
+[e $ ! != -> _Plasma `i -> -> -> 0 `i `uc `i 47  ]
+[; ;lcd.c: 236: {
+
+"236
+{
+[; ;lcd.c: 237: DisplayBuf[6] |= 0x10;
+
+"237
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 16 `i `uc ]
+[; ;lcd.c: 238: if (!PlasmaTimer)
+
+"238
+[e $ ! ! != -> _PlasmaTimer `i -> -> -> 0 `i `uc `i 48  ]
+[; ;lcd.c: 239: {
+
+"239
+{
+[; ;lcd.c: 240: PlasmaTimer = 8;
+
+"240
+[e = _PlasmaTimer -> -> 8 `i `uc ]
+[; ;lcd.c: 241: if (PlasmaFlag == 0)
+
+"241
+[e $ ! == -> _PlasmaFlag `i -> 0 `i 49  ]
+[; ;lcd.c: 242: {
+
+"242
+{
+[; ;lcd.c: 243: PlasmaFlag = 1;
+
+"243
+[e = _PlasmaFlag -> -> 1 `i `uc ]
+"244
+}
+[; ;lcd.c: 244: }
+
+[e $U 50  ]
+"245
+[e :U 49 ]
+[; ;lcd.c: 245: else
+
+[; ;lcd.c: 246: {
+
+"246
+{
+[; ;lcd.c: 247: if (PlasmaFlag == 1)
+
+"247
+[e $ ! == -> _PlasmaFlag `i -> 1 `i 51  ]
+[; ;lcd.c: 248: {
+
+"248
+{
+[; ;lcd.c: 249: PlasmaFlag = 2;
+
+"249
+[e = _PlasmaFlag -> -> 2 `i `uc ]
+"250
+}
+[; ;lcd.c: 250: }
+
+[e $U 52  ]
+"251
+[e :U 51 ]
+[; ;lcd.c: 251: else
+
+[; ;lcd.c: 252: {
+
+"252
+{
+[; ;lcd.c: 253: PlasmaFlag = 0;
+
+"253
+[e = _PlasmaFlag -> -> 0 `i `uc ]
+"254
+}
+[e :U 52 ]
+"255
+}
+[e :U 50 ]
+"256
+}
+[e :U 48 ]
+"257
+}
+[e :U 47 ]
+[; ;lcd.c: 254: }
+
+[; ;lcd.c: 255: }
+
+[; ;lcd.c: 256: }
+
+[; ;lcd.c: 257: }
+
+[; ;lcd.c: 258: if (PlasmaFlag == 1)
+
+"258
+[e $ ! == -> _PlasmaFlag `i -> 1 `i 53  ]
+[; ;lcd.c: 259: {
+
+"259
+{
+[; ;lcd.c: 260: DisplayBuf[6] |= 0x40;
+
+"260
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 64 `i `uc ]
+"261
+}
+[; ;lcd.c: 261: }
+
+[e $U 54  ]
+"262
+[e :U 53 ]
+[; ;lcd.c: 262: else if (PlasmaFlag == 2)
+
+[e $ ! == -> _PlasmaFlag `i -> 2 `i 55  ]
+[; ;lcd.c: 263: {
+
+"263
+{
+[; ;lcd.c: 264: DisplayBuf[6] |= 0x20 + 0x40;
+
+"264
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 64 `i `uc ]
+"265
+}
+[e :U 55 ]
+"271
+[e :U 54 ]
+[; ;lcd.c: 265: }
+
+[; ;lcd.c: 271: if (MyPMSUnion.MyPMFrame.PM2_5_US > 150)
+
+"41 ./ParticleSensor.h
+[v _MyPMSUnion `S2 0 e ]
+"271 ./lcd.c
+[e $ ! > . . _MyPMSUnion 1 3 -> -> 150 `i `ui 56  ]
+[; ;lcd.c: 272: {
+
+"272
+{
+[; ;lcd.c: 273: DisplayBuf[11] |= 0x20 + 0x10;
+
+"273
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 16 `i `uc ]
+[; ;lcd.c: 274: DisplayBuf[10] |= 0x1 + 0x2 + 0x4 + 0x8;
+
+"274
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + + + -> 1 `i -> 2 `i -> 4 `i -> 8 `i `uc ]
+"275
+}
+[; ;lcd.c: 275: }
+
+[e $U 57  ]
+"276
+[e :U 56 ]
+[; ;lcd.c: 276: else
+
+[; ;lcd.c: 277: {
+
+"277
+{
+[; ;lcd.c: 278: if (MyPMSUnion.MyPMFrame.PM2_5_US > 100)
+
+"278
+[e $ ! > . . _MyPMSUnion 1 3 -> -> 100 `i `ui 58  ]
+[; ;lcd.c: 279: {
+
+"279
+{
+[; ;lcd.c: 280: DisplayBuf[11] |= 0x20 + 0x10;
+
+"280
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 16 `i `uc ]
+[; ;lcd.c: 281: DisplayBuf[10] |= 0x1 + 0x2 + 0x4;
+
+"281
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + + -> 1 `i -> 2 `i -> 4 `i `uc ]
+"282
+}
+[; ;lcd.c: 282: }
+
+[e $U 59  ]
+"283
+[e :U 58 ]
+[; ;lcd.c: 283: else
+
+[; ;lcd.c: 284: {
+
+"284
+{
+[; ;lcd.c: 285: if (MyPMSUnion.MyPMFrame.PM2_5_US > 75)
+
+"285
+[e $ ! > . . _MyPMSUnion 1 3 -> -> 75 `i `ui 60  ]
+[; ;lcd.c: 286: {
+
+"286
+{
+[; ;lcd.c: 287: DisplayBuf[11] |= 0x20 + 0x10;
+
+"287
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 16 `i `uc ]
+[; ;lcd.c: 288: DisplayBuf[10] |= 0x1 + 0x2;
+
+"288
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+"289
+}
+[; ;lcd.c: 289: }
+
+[e $U 61  ]
+"290
+[e :U 60 ]
+[; ;lcd.c: 290: else
+
+[; ;lcd.c: 291: {
+
+"291
+{
+[; ;lcd.c: 292: if (MyPMSUnion.MyPMFrame.PM2_5_US > 50)
+
+"292
+[e $ ! > . . _MyPMSUnion 1 3 -> -> 50 `i `ui 62  ]
+[; ;lcd.c: 293: {
+
+"293
+{
+[; ;lcd.c: 294: DisplayBuf[11] |= 0x20 + 0x10;
+
+"294
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 16 `i `uc ]
+[; ;lcd.c: 295: DisplayBuf[10] |= 0x1;
+
+"295
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 1 `i `uc ]
+"296
+}
+[; ;lcd.c: 296: }
+
+[e $U 63  ]
+"297
+[e :U 62 ]
+[; ;lcd.c: 297: else
+
+[; ;lcd.c: 298: {
+
+"298
+{
+[; ;lcd.c: 299: if (MyPMSUnion.MyPMFrame.PM2_5_US > 25)
+
+"299
+[e $ ! > . . _MyPMSUnion 1 3 -> -> 25 `i `ui 64  ]
+[; ;lcd.c: 300: DisplayBuf[11] |= 0x20 + 0x10;
+
+"300
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 32 `i -> 16 `i `uc ]
+[e $U 65  ]
+"301
+[e :U 64 ]
+[; ;lcd.c: 301: else
+
+[; ;lcd.c: 302: DisplayBuf[11] |= 0x20;
+
+"302
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 32 `i `uc ]
+[e :U 65 ]
+"303
+}
+[e :U 63 ]
+"304
+}
+[e :U 61 ]
+"305
+}
+[e :U 59 ]
+"306
+}
+[e :U 57 ]
+[; ;lcd.c: 303: }
+
+[; ;lcd.c: 304: }
+
+[; ;lcd.c: 305: }
+
+[; ;lcd.c: 306: }
+
+[; ;lcd.c: 308: if (Odor > 4)
+
+"308
+[e $ ! > -> _Odor `i -> 4 `i 66  ]
+[; ;lcd.c: 309: {
+
+"309
+{
+[; ;lcd.c: 310: DisplayBuf[11] |= 0x1 + 0x2;
+
+"310
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+[; ;lcd.c: 311: DisplayBuf[10] |= 0x10 + 0x20 + 0x40 + 0x80;
+
+"311
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + + + -> 16 `i -> 32 `i -> 64 `i -> 128 `i `uc ]
+"312
+}
+[; ;lcd.c: 312: }
+
+[e $U 67  ]
+"313
+[e :U 66 ]
+[; ;lcd.c: 313: else
+
+[; ;lcd.c: 314: {
+
+"314
+{
+[; ;lcd.c: 315: if (Odor > 3)
+
+"315
+[e $ ! > -> _Odor `i -> 3 `i 68  ]
+[; ;lcd.c: 316: {
+
+"316
+{
+[; ;lcd.c: 317: DisplayBuf[11] |= 0x1 + 0x2;
+
+"317
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+[; ;lcd.c: 318: DisplayBuf[10] |= 0x10 + 0x20 + 0x40;
+
+"318
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + + -> 16 `i -> 32 `i -> 64 `i `uc ]
+"319
+}
+[; ;lcd.c: 319: }
+
+[e $U 69  ]
+"320
+[e :U 68 ]
+[; ;lcd.c: 320: else
+
+[; ;lcd.c: 321: {
+
+"321
+{
+[; ;lcd.c: 322: if (Odor > 2)
+
+"322
+[e $ ! > -> _Odor `i -> 2 `i 70  ]
+[; ;lcd.c: 323: {
+
+"323
+{
+[; ;lcd.c: 324: DisplayBuf[11] |= 0x1 + 0x2;
+
+"324
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+[; ;lcd.c: 325: DisplayBuf[10] |= 0x10 + 0x20;
+
+"325
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 16 `i -> 32 `i `uc ]
+"326
+}
+[; ;lcd.c: 326: }
+
+[e $U 71  ]
+"327
+[e :U 70 ]
+[; ;lcd.c: 327: else
+
+[; ;lcd.c: 328: {
+
+"328
+{
+[; ;lcd.c: 329: if (Odor > 1)
+
+"329
+[e $ ! > -> _Odor `i -> 1 `i 72  ]
+[; ;lcd.c: 330: {
+
+"330
+{
+[; ;lcd.c: 331: DisplayBuf[11] |= 0x1 + 0x2;
+
+"331
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+[; ;lcd.c: 332: DisplayBuf[10] |= 0x10;
+
+"332
+[e =| *U + &U _DisplayBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 16 `i `uc ]
+"333
+}
+[; ;lcd.c: 333: }
+
+[e $U 73  ]
+"334
+[e :U 72 ]
+[; ;lcd.c: 334: else
+
+[; ;lcd.c: 335: {
+
+"335
+{
+[; ;lcd.c: 336: if (Odor > 0)
+
+"336
+[e $ ! > -> _Odor `i -> 0 `i 74  ]
+[; ;lcd.c: 337: DisplayBuf[11] |= 0x1 + 0x2;
+
+"337
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 1 `i -> 2 `i `uc ]
+[e $U 75  ]
+"338
+[e :U 74 ]
+[; ;lcd.c: 338: else
+
+[; ;lcd.c: 339: DisplayBuf[11] |= 0x2;
+
+"339
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 2 `i `uc ]
+[e :U 75 ]
+"340
+}
+[e :U 73 ]
+"341
+}
+[e :U 71 ]
+"342
+}
+[e :U 69 ]
+"343
+}
+[e :U 67 ]
+[; ;lcd.c: 340: }
+
+[; ;lcd.c: 341: }
+
+[; ;lcd.c: 342: }
+
+[; ;lcd.c: 343: }
+
+[; ;lcd.c: 345: DisplayBuf[5] |= 0x8;
+
+"345
+[e =| *U + &U _DisplayBuf * -> -> -> 5 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> -> 8 `i `uc ]
+[; ;lcd.c: 346: DisplayBuf[6] |= 0x4 + 0x8;
+
+"346
+[e =| *U + &U _DisplayBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 4 `i -> 8 `i `uc ]
+[; ;lcd.c: 347: DisplayBuf[7] |= 0x40 + 0x80;
+
+"347
+[e =| *U + &U _DisplayBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 64 `i -> 128 `i `uc ]
+[; ;lcd.c: 348: DisplayBuf[11] |= 0x4 + 0x40;
+
+"348
+[e =| *U + &U _DisplayBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _DisplayBuf `ui `ux -> + -> 4 `i -> 64 `i `uc ]
+[; ;lcd.c: 349: WriteAll_1621(0,DisplayBuf,12);
+
+"23 ./HT1621B.h
+[v _WriteAll_1621 `(v 0 ef3`uc`*uc`uc ]
+"349 ./lcd.c
+[e ( _WriteAll_1621 (3
+ , , -> -> 0 `i `uc &U _DisplayBuf -> -> 12 `i `uc ]
+"350
+[; ;lcd.c: 350: }
+
+[e :UE 28 ]
+}
+"353
+[v _LCD_Init `(v 1 ef ]
+{
+[; ;lcd.c: 352: void LCD_Init()
+
+[; ;lcd.c: 353: {
+
+[e :U _LCD_Init ]
+[f ]
+[; ;lcd.c: 354: LifeFlag = 0;
+
+"354
+[e = _LifeFlag -> -> 0 `i `uc ]
+[; ;lcd.c: 355: RH_T_Flag = 1;
+
+"355
+[e = _RH_T_Flag -> -> 1 `i `uc ]
+[; ;lcd.c: 356: mode = 0;
+
+"356
+[e = _mode -> -> 0 `i `uc ]
+[; ;lcd.c: 357: LockStatus = 1;
+
+"357
+[e = _LockStatus -> -> 1 `i `uc ]
+[; ;lcd.c: 358: Plasma = 1;
+
+"358
+[e = _Plasma -> -> 1 `i `uc ]
+[; ;lcd.c: 359: Odor = 3;
+
+"359
+[e = _Odor -> -> 3 `i `uc ]
+[; ;lcd.c: 360: SpeedLvl = 1;
+
+"360
+[e = _SpeedLvl -> -> 1 `i `uc ]
+[; ;lcd.c: 361: PM_Flag = 0;
+
+"361
+[e = _PM_Flag -> -> 0 `i `uc ]
+[; ;lcd.c: 362: HeapLife = 85;
+
+"362
+[e = _HeapLife -> -> 85 `i `uc ]
+[; ;lcd.c: 363: CarbonLife = 73;
+
+"363
+[e = _CarbonLife -> -> 73 `i `uc ]
+"364
+[; ;lcd.c: 364: }
+
+[e :UE 76 ]
+}

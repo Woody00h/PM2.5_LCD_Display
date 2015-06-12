@@ -1,32 +1,11 @@
 #include "HT1621B.h"
 #include "ParticleSensor.h"
 #include "include.h"
+#include "Si7020.h"
+#define  MY_LCD
+#include "LCD.h"
 #include <stdlib.h>
 
-const unsigned char DigitSeg[]    ={0xf5,0x60,0xb6,0xf2,0x63,0xd3,0xd7,0x70,0xf7,0xf3};
-const unsigned char DigitSegSwap[]={0x5f,0x06,0x6b,0x2f,0x36,0x3d,0x7d,0x07,0x7f,0x3f};
-
-unsigned char DisplayBuf[12]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-										0xff,0xff,0xff,0xff};
-unsigned char DisplayNum[3];
-
-extern unsigned char LifeFlag;
-extern unsigned char RH_T_Flag;
-extern unsigned char mode;
-extern unsigned char LockStatus;
-extern unsigned char Plasma;
-extern unsigned char PlasmaFlag;
-extern unsigned char Odor;
-extern unsigned char FanFlag;
-extern unsigned char SpeedLvl;
-extern unsigned char PM_Flag;
-extern unsigned char HeapLife;
-extern unsigned char CarbonLife;
-extern unsigned char FanUpdateTimer;
-extern unsigned char PlasmaTimer;
-extern unsigned char FanUpdateTimeReload;
-extern unsigned char Humidity;
-extern signed   char Temperature;
 extern unsigned char Timer;
 
 void DisplayPMxx(unsigned int pm)
@@ -135,7 +114,7 @@ void LCDOuputAll(void)
 {
 	char k = 0;
 	
-	for (k=0;k<16;k++)
+	for (k=0;k<LCD_BUF_LENGTH;k++)
 	{
 		DisplayBuf[k] = 0;
 	}
@@ -145,12 +124,12 @@ void LCDOuputAll(void)
 	//
 	if (PM_Flag == PM2_5)//show the PM2.5 value
 	{
-		DisplayPMxx(MyPMSUnion.MyPMFrame.PM2_5_US);
+		DisplayPMxx(data_pm2_5);
 		DisplayBuf[0] |= BIT3; //PM2.5 segment
 	}
 	else //show the PM1.0 
 	{
-		DisplayPMxx(MyPMSUnion.MyPMFrame.PM1_0_US);
+		DisplayPMxx(data_pm1_0);
 		DisplayBuf[1] |= BIT3;	//PM1.0 segment
 	}
 	DisplayBuf[2] |= BIT3; //ug/m3 segment
@@ -368,4 +347,18 @@ void LCDOuputAll(void)
 	DisplayBuf[7] |= BIT6 + BIT7;
 	DisplayBuf[11] |= BIT2 + BIT6;
 	WriteAll_1621(0,DisplayBuf,12);
+}
+
+void LCD_Init()
+{
+	LifeFlag	= HEAP_LIFE;
+	RH_T_Flag	= TEMPERATURE;
+	mode		= AUTO_MODE;
+	LockStatus	= 1;
+	Plasma		= 1;
+	Odor		= 3;
+	SpeedLvl	= 1;
+	PM_Flag		= PM2_5;
+	HeapLife	= 85;
+	CarbonLife	= 73;
 }

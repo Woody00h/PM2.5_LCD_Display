@@ -8,11 +8,11 @@
 #include "ParticleSensor.h"
 #include "software_IIC.h"
 #include "Si7020.h"
+#include "LCD.h"
 #include "include.h"
 
 #define ONE_SECOND_TIMER_RELOAD 8
 
-unsigned char RecBuf[5];
 unsigned int LightADCValue;										
 
 unsigned char FanUpdateTimer	= ONE_SECOND_TIMER_RELOAD;
@@ -21,25 +21,7 @@ unsigned char rh_sample_timer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char PlasmaTimer		= PLASMA_TIMER_RELOAD;
 unsigned char LcdUpdateTimer	= 4;
 unsigned char IICTimeOutTimer;
-
-unsigned char LifeFlag	 = HEAP_LIFE;
-unsigned char RH_T_Flag  = TEMPERATURE;
-unsigned char mode = AUTO_MODE;
-unsigned char LockStatus = 1;
-unsigned char Plasma = 1;
-unsigned char PlasmaFlag;
-unsigned char Odor = 2;
-unsigned char FanFlag;
-unsigned char SpeedLvl = 1;
-unsigned char PM_Flag = PM2_5;
-unsigned char HeapLife = 78;
-unsigned char CarbonLife = 56;
-unsigned char FanUpdateTimeReload = ONE_SECOND_TIMER_RELOAD;
-unsigned char Humidity;
-signed   char Temperature;
-unsigned char Timer = 3;
 unsigned char RHSampleStep = 0;
-extern void LCDOuputAll(void);
 
 void Timer16ISR(void)
 {
@@ -49,6 +31,7 @@ void Timer16ISR(void)
 	if (PlasmaTimer) 		PlasmaTimer--;
 	if (LcdUpdateTimer)		LcdUpdateTimer--;
 	if (IICTimeOutTimer)	IICTimeOutTimer--;
+	if (RecTimeoutTimer)	RecTimeoutTimer--;
 }
 
 void main(void)
@@ -58,7 +41,7 @@ void main(void)
 	unsigned int *p;
 	M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
 	// Insert your main routine code here.
-	
+	RES_WDT = 0;
 	Init_IIC();
 	
 	delay_us(200);	//wait for the LCD driver power on
@@ -72,17 +55,19 @@ void main(void)
 	//WriteAll_1621(0,a,16); //在起始地址为0 处连续写入16个字节数据
 	
 	UART_Board_Start(UART_PARITY_NONE);
-	UART_Board_EnableInt();
+//	UART_Board_EnableInt();
+//	UART_Board_IntCntl(UART_ENABLE_RX_INT | UART_DISABLE_TX_INT);
 	
 	UART_Sensor_Start(UART_PARITY_NONE);
-	UART_Sensor_EnableInt();
+//	UART_Sensor_EnableInt();
+	UART_Sensor_IntCntl(UART_Sensor_ENABLE_RX_INT | UART_Sensor_DISABLE_TX_INT);
 	
 	Timer16_WritePeriod(9600);
 	Timer16_WriteCompareValue(9000);
 	Timer16_EnableInt();
 	Timer16_Start();
 
-//	UART_Board_CPutString("Woody is a genius!");
+	UART_Board_CPutString("Woody is a genius!");
 	
 	PMSFrameFlag = 0;
 	HeadFlag = 0;	
@@ -94,22 +79,35 @@ void main(void)
 	SAR10_DisableInt(); // Enable SAR10 interrupt
 	SAR10_Start(); // Start conversion
 
-
+	Si7020Init();
+	
+	LCD_Init();
+	
+	RES_WDT = 0;
 	while(1)
 	{
+		if (!RecTimeoutTimer)
+		{
+			PMSFrameFlag = 0;
+			HeadFlag = 0;	
+            DataPtr = 0;
+		}
+		
 		if (PMSFrameFlag)
 		{
 			PMSFrameFlag = 0;
 			if (FrameCheck())
 			{
+				data_pm2_5 = MyPMSUnion.MyPMFrame.PM2_5_US;
+				data_pm1_0 = MyPMSUnion.MyPMFrame.PM1_0_US;
 				UART_Board_CPutString("PM2.5:");
-				UART_Board_PutSHexInt(MyPMSUnion.MyPMFrame.PM2_5_US);
+				UART_Board_PutSHexInt(data_pm2_5);
 				UART_Board_PutCRLF();
 				
 			}
 			else
 			{
-				
+				UART_Board_CPutString("Checksum fail");
 			}
 		}
 		
@@ -158,30 +156,36 @@ void main(void)
 			}
 			else 
 			{				
-					Si7020Read_RH_NHM(RecBuf);
-		//			UART_Board_CPutString("RH: ");
-		//			UART_Board_PutSHexInt(*(unsigned int *)RecBuf);
-		//			UART_Board_PutCRLF();
-					Humidity = Si7020CalcRH(*(unsigned int *)RecBuf);
-		//			UART_Board_PutSHexByte(Humidity);
-		//			UART_Board_PutCRLF();
-					
-					Si7020Read_Temp_after_RHM(RecBuf);
-//					UART_Board_CPutString("Temperature: ");
-		//			UART_Board_PutSHexInt(*(unsigned int *)RecBuf);
-		//			UART_Board_PutCRLF();
-					Temperature = Si7020CalcTemp(*(unsigned int *)RecBuf);
-//					UART_Board_PutSHexByte(Temperature);
-//					UART_Board_PutCRLF();
-					RHSampleStep = 0;
+				Si7020Read_RH_NHM(RecBuf);
+				Si7020Data = *(unsigned int *)RecBuf;
+				if (CRC8Check())
+				{				
+					UART_Board_CPutString("RH: ");
+					UART_Board_PutSHexInt(Si7020Data);
+					UART_Board_PutCRLF();
+					Humidity = Si7020CalcRH(Si7020Data);
+					UART_Board_PutSHexByte(Humidity);
+					UART_Board_PutCRLF();
+				}
+				
+				Si7020Read_Temp_after_RHM(RecBuf);
+				Si7020Data = *(unsigned int *)RecBuf;
+				UART_Board_CPutString("Temperature: ");
+				UART_Board_PutSHexInt(Si7020Data);
+				UART_Board_PutCRLF();
+				Temperature = Si7020CalcTemp(Si7020Data);
+				UART_Board_PutSHexByte(Temperature);
+				UART_Board_PutCRLF();
+				RHSampleStep = 0;
 			}
 		}
-		
-next:		
+				
 		if (!LcdUpdateTimer)
 		{
 			LcdUpdateTimer = 4;
 			LCDOuputAll();
 		}
+		
+		RES_WDT = 0;
 	}
 }

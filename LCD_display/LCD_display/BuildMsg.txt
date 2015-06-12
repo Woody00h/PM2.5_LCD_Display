@@ -1,116 +1,34 @@
 Starting MAKE...
-creating project.mk 
+creating project.mk -- no changes
 
-lib/psocconfig.asm
+sed: can't read HTlinkOpts.lkp: No such file or directory
 
-lib/psocconfigtbl.asm
+expanded_libs = 
 
-lib/pwm8_bl.asm
+Linking..
 
-lib/pwm8_blint.asm
+HI-TECH C COMPILER (Cypress PSOC) Pro  V9.61
 
-lib/sar10.asm
+Copyright (C) 1984-2008 HI-TECH SOFTWARE
 
-lib/sar10int.asm
+Serial number: HCPSOC-679591
 
-lib/timer16.asm
 
-lib/timer16int.asm
 
-lib/uart_board.asm
+Memory Summary:
 
-lib/uart_boardint.asm
+    Program space        used  14FDh (  5373) of  4000h bytes   ( 32.8%)
 
-lib/uart_boardplus.asm
+    Data space           used    85h (   133) of   400h bytes   ( 13.0%)
 
-lib/uart_sensor.asm
 
-lib/uart_sensorint.asm
 
-lib/uart_sensorplus.asm
+Comparative memory usage (excludes absolute areas and stack variables)
 
-./boot.asm
+    ROM used:  5037 bytes
 
-Linking..
-
-LMM info: area 'data' item of 40 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 12 bytes allocated in SRAM page 0
-
-LMM info: area 'virtual_registers' uses 7 bytes in SRAM page 0
-
-LMM info: area 'data' item of 5 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 3 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
-
-idata dump at output/LCD_display.idata
-
-  ROM 39% full. 6239 out of 16384 bytes used (does not include absolute areas).
-
-  RAM 13% full. 98 bytes used (does not include stack usage).
-
-Built with ICCM8C STD V7.05.00
+    RAM used:    97 bytes
 
  
-LCD_display - 0 error(s) 0 warning(s) 15:57:45
+LCD_display - 0 error(s) 0 warning(s) 10:41:27
 

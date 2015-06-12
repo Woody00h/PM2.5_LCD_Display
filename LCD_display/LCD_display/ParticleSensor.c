@@ -16,9 +16,12 @@ void SensorUART(void )
 	
 	
 	//send to PC terminal
+	/*
 	while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
 	UART_Board_SendData(rxdata);
+	*/
 	
+	RecTimeoutTimer = 3;
 	
 	if(HeadFlag == 0)
     {
@@ -59,11 +62,11 @@ void SensorUART(void )
 			HeadFlag = 0;	
             DataPtr = 0;
 			
-			for (i = 0; i < (MyPMSUnion.MyPMFrame.Length+4); i++)
-			{
-				while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
-				UART_Board_SendData(MyPMSUnion.PMRxBuf[i]);
-			}
+//			for (i = 0; i < (MyPMSUnion.MyPMFrame.Length+4); i++)
+//			{
+//				while (!(UART_Board_bReadTxStatus() & UART_TX_BUFFER_EMPTY));
+//				UART_Board_SendData(MyPMSUnion.PMRxBuf[i]);
+//			}
 		}
     }
 }

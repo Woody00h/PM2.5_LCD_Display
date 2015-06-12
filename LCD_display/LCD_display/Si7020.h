@@ -18,9 +18,26 @@
 
 #define SI7020_ADDR			0x80
 
-unsigned char Si7020SendCommand(unsigned char cmd);
-void Si7020Read_RH_NHM(unsigned char * buffer);
-unsigned char Si7020Read_Temp_after_RHM(unsigned char * buffer);
-signed char Si7020CalcTemp(unsigned int data);
-unsigned char Si7020CalcRH(unsigned int data);
+#ifdef SI7020
+#define SI7020_EXTERN 
+unsigned char poly_h=0x98;//10011000b;
+unsigned char poly_l=0x80;//1b;
+unsigned char data_length;
+#else 
+#define SI7020_EXTERN extern 
+#endif 
+
+SI7020_EXTERN unsigned char Si7020SendCommand(unsigned char cmd);
+SI7020_EXTERN void Si7020Read_RH_NHM(unsigned char * buffer);
+SI7020_EXTERN unsigned char Si7020Read_Temp_after_RHM(unsigned char * buffer);
+SI7020_EXTERN signed char Si7020CalcTemp(unsigned int data);
+SI7020_EXTERN unsigned char Si7020CalcRH(unsigned int data);
+SI7020_EXTERN unsigned char CRC8Check();
+SI7020_EXTERN void LeftRotate();
+SI7020_EXTERN void Si7020Init();
+
+SI7020_EXTERN unsigned char Humidity;
+SI7020_EXTERN signed   char Temperature;
+SI7020_EXTERN unsigned char RecBuf[5];
+SI7020_EXTERN unsigned int  Si7020Data;
 #endif

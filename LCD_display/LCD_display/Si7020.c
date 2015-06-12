@@ -1,3 +1,4 @@
+#define SI7020
 #include "Si7020.h"
 #include "software_IIC.h"
 
@@ -38,7 +39,7 @@ unsigned char Si7020Read_Temp_after_RHM(unsigned char * buffer)
 		return 0;
 	}
 	
-	ret = IRcvBytes(SI7020_ADDR,buffer,3);
+	ret = IRcvBytes(SI7020_ADDR,buffer,2);
 	
 	if (!ret)
 	{
@@ -97,4 +98,59 @@ unsigned char Si7020CalcRH(unsigned int data)
 	
 	result = temp;
 	return result;
+}
+
+
+void Si7020Init()
+{
+	unsigned char my_data[2];
+	my_data[0] = WR_REG1;
+	my_data[1] = 0;
+	ISendStr[SI7020_ADDR,my_data,2];
+	data_length = 24;
+}
+
+void LeftRotate()
+{
+	unsigned char k;
+	for(k=0;k<3;k++)
+	{
+		RecBuf[k] <<= 1;
+		if(k < 2)
+		{
+			RecBuf[k] |= (RecBuf[k+1]&0x80)?1:0;
+		}
+	}
+	data_length --;
+}
+
+unsigned char CRC8Check()
+{
+	while(1)
+	{
+		if(RecBuf[0]&0x80)
+		{
+			RecBuf[0] ^= poly_h;
+			RecBuf[1] ^= poly_l;
+			LeftRotate();
+		}
+		else
+		{
+			LeftRotate();
+		}
+
+		if(data_length <= 8)
+			break;
+	}
+	
+	data_length = 24;
+	
+	if(!RecBuf[0])
+	{
+		return 1;	//check pass
+	}
+	else
+	{
+		return 0; //check fail
+	}
 }
