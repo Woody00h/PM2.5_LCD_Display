@@ -105,7 +105,7 @@ startup:
 	mov	a,low __Lbss0
 	swap	a,sp
 	mov	a,0
-	mov	x,90
+	mov	x,92
 bssloop0:
 	push	a
 	dec	x

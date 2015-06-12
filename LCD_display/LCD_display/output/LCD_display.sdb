@@ -797,10 +797,10 @@
 "4 ./ParticleSensor.h
 [v _u16 `ui  1 t 2 ]
 "23
-[s S2219 . 24 `ui 1 Head 2 0 `ui 1 Length 2 2 `ui 1 PM1_0_US 2 4 `ui 1 PM2_5_US 2 6 `ui 1 PM10_US 2 8 `ui 1 PM1_0_CN 2 10 `ui 1 PM2_5_CN 2 12 `ui 1 PM10_CN 2 14 `ui 1 Reserve1 2 16 `ui 1 Reserve2 2 18 `ui 1 Reserve3 2 20 `ui 1 checksum 2 22 ]
+[s S2225 . 24 `ui 1 Head 2 0 `ui 1 Length 2 2 `ui 1 PM1_0_US 2 4 `ui 1 PM2_5_US 2 6 `ui 1 PM10_US 2 8 `ui 1 PM1_0_CN 2 10 `ui 1 PM2_5_CN 2 12 `ui 1 PM10_CN 2 14 `ui 1 Reserve1 2 16 `ui 1 Reserve2 2 18 `ui 1 Reserve3 2 20 `ui 1 checksum 2 22 ]
 [v _PMFrameField `S1041  1 t 24 ]
 "29
-[u S2233 . 40 `[40]uc 1 PMRxBuf 40 0 `S1041 1 MyPMFrame 24 0 ]
+[u S2239 . 40 `[40]uc 1 PMRxBuf 40 0 `S1041 1 MyPMFrame 24 0 ]
 [v _PMSFrameUnion `S1055  1 t 40 ]
 "18 D:/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1\m8c.h
 [v _BOOL `uc  1 t 1 ]
@@ -997,16 +997,16 @@
 "6
 [v _wchar_t `us  1 t 2 ]
 "47
-[s S2836 . 4 `i 1 quot 2 0 `i 1 rem 2 2 ]
+[s S2842 . 4 `i 1 quot 2 0 `i 1 rem 2 2 ]
 [v _div_t `S1082  1 t 4 ]
 "51
-[s S2840 . 4 `ui 1 quot 2 0 `ui 1 rem 2 2 ]
+[s S2846 . 4 `ui 1 quot 2 0 `ui 1 rem 2 2 ]
 [v _udiv_t `S1086  1 t 4 ]
 "55
-[s S2844 . 8 `l 1 quot 4 0 `l 1 rem 4 4 ]
+[s S2850 . 8 `l 1 quot 4 0 `l 1 rem 4 4 ]
 [v _ldiv_t `S1090  1 t 8 ]
 "59
-[s S2848 . 8 `ul 1 quot 4 0 `ul 1 rem 4 4 ]
+[s S2854 . 8 `ul 1 quot 4 0 `ul 1 rem 4 4 ]
 [v _uldiv_t `S1094  1 t 8 ]
 "124
 [v F79 `(v  1 t 0 ]
@@ -1104,7 +1104,9 @@
 [v _UART_Sensor_IntCntl `BR(v  1 e 0 0 ]
 "27 ./main.c
 [v _Timer16ISR `(v  1 e 0 0 ]
-"38
+"42
+[v _LightRank `(uc  1 e 1 0 ]
+"59
 [v _main `(v  1 e 0 0 ]
 "12 ./particlesensor.c
 [v _SensorUART `(v  1 e 0 0 ]
@@ -1458,7 +1460,9 @@
 [v _UART_Sensor_TX_INT_REG `Auc  1 e 1 @225 ]
 "185
 [v _UART_Sensor_RX_INT_REG `Auc  1 e 1 @225 ]
-"19 ./main.c
+"16 ./main.c
+[v _LightADCValue `ui  1 e 2 0 ]
+"19
 [v _one_sec_timer `uc  1 e 1 0 ]
 "20
 [v _rh_sample_timer `uc  1 e 1 0 ]
@@ -1468,6 +1472,8 @@
 [v _IICTimeOutTimer `uc  1 e 1 0 ]
 "24
 [v _RHSampleStep `uc  1 e 1 0 ]
+"25
+[v _RankLevel `C[8]uc  1 e 8 0 ]
 "37 ./ParticleSensor.h
 [v _HeadFlag `uc  1 e 1 0 ]
 "39
@@ -2047,12 +2053,12 @@
 "986
 [v _AMUX_CFG1 `Auc  1 e 1 @362 ]
 "121
-"38 ./main.c
+"59 ./main.c
 [v _main `(v  1 e 0 0 ]
 {
-"40
+"61
 [v _ret `uc  1 a 1 0 ]
-"191
+"216
 } 1
 "80 ./particlesensor.c
 [v _FrameCheck `(uc  1 e 1 0 ]
@@ -2112,7 +2118,18 @@
 [v _buffer `*uc  1 a 1 a ]
 "50
 } 2
+"42 ./main.c
+[v _LightRank `(uc  1 e 1 0 ]
+{
+[v _light `ui  1 a 2 xa ]
+"43
+[v _i `uc  1 a 1 2 ]
+[v _duty `uc  1 a 1 3 ]
+"42
+[v _light `ui  1 a 2 xa ]
 "57
+} 4
+"57 ./si7020.c
 [v _Si7020CalcTemp `(c  1 e 1 0 ]
 {
 [v _data `ui  1 a 2 xa ]

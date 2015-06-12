@@ -22,7 +22,7 @@ unsigned char PlasmaTimer		= PLASMA_TIMER_RELOAD;
 unsigned char LcdUpdateTimer	= 4;
 unsigned char IICTimeOutTimer;
 unsigned char RHSampleStep = 0;
-
+const unsigned char RankLevel[8] = {48,96,144,192,240,288,336,384};
 void Timer16ISR(void)
 {
 	if (one_sec_timer)		one_sec_timer--;
@@ -34,6 +34,27 @@ void Timer16ISR(void)
 	if (RecTimeoutTimer)	RecTimeoutTimer--;
 }
 
+//
+//return the backlight duty according to the light strength
+//
+
+unsigned char LightRank(unsigned int light)
+{
+	unsigned char duty,i;
+	duty = 255;
+	for(i=0;i<8;i++)
+	{
+		if (light < RankLevel[i])
+		{
+			break;
+		}
+		else 
+		{
+			duty -= 31;
+		}
+	}
+	return duty;
+}
 void main(void)
 {
 	unsigned char k;
@@ -131,8 +152,12 @@ void main(void)
 		 	while(SAR10_fIsDataAvailable()==0);//Wait while data is not ready
 		 	LightADCValue = SAR10_iGetData(); // Read result
 			MUX_CR2 &= ~0X02; //disconnect P2.1 Analog bus
-//			UART_Board_PutSHexInt(LightADCValue);
-//			UART_Board_PutCRLF();
+			UART_Board_CPutString("Light: ");
+			UART_Board_PutSHexInt(LightADCValue);
+			UART_Board_PutCRLF();
+			
+			PWM8_BL_WritePulseWidth(LightRank(LightADCValue));
+			
 		}
 		
 		
@@ -161,8 +186,8 @@ void main(void)
 				if (CRC8Check())
 				{				
 					UART_Board_CPutString("RH: ");
-					UART_Board_PutSHexInt(Si7020Data);
-					UART_Board_PutCRLF();
+//					UART_Board_PutSHexInt(Si7020Data);
+//					UART_Board_PutCRLF();
 					Humidity = Si7020CalcRH(Si7020Data);
 					UART_Board_PutSHexByte(Humidity);
 					UART_Board_PutCRLF();
@@ -171,8 +196,8 @@ void main(void)
 				Si7020Read_Temp_after_RHM(RecBuf);
 				Si7020Data = *(unsigned int *)RecBuf;
 				UART_Board_CPutString("Temperature: ");
-				UART_Board_PutSHexInt(Si7020Data);
-				UART_Board_PutCRLF();
+//				UART_Board_PutSHexInt(Si7020Data);
+//				UART_Board_PutCRLF();
 				Temperature = Si7020CalcTemp(Si7020Data);
 				UART_Board_PutSHexByte(Temperature);
 				UART_Board_PutCRLF();

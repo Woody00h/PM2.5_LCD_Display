@@ -2225,6 +2225,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 24: unsigned char RHSampleStep = 0;
 
+"25
+[v _RankLevel `Cuc -> 8 `i e ]
+[i _RankLevel
+:U ..
+-> -> 48 `i `uc
+-> -> 96 `i `uc
+-> -> 144 `i `uc
+-> -> 192 `i `uc
+-> -> 240 `i `uc
+-> -> 288 `i `uc
+-> -> 336 `i `uc
+-> -> 384 `i `uc
+..
+][; ;main.c: 25: const unsigned char RankLevel[8] = {48,96,144,192,240,288,336,384};
+
 "27
 [v _Timer16ISR `(v 1 ef ]
 {
@@ -2283,591 +2298,679 @@ Version 3.2 HI-TECH Software Intermediate Code
 
 [e :UE 3 ]
 }
-"38
+"42
+[v _LightRank `(uc 1 ef1`ui ]
+{
+[; ;main.c: 41: unsigned char LightRank(unsigned int light)
+
+[; ;main.c: 42: {
+
+[e :U _LightRank ]
+[v _light `ui 1 r1 ]
+[f ]
+"43
+[v _duty `uc 1 a ]
+[v _i `uc 1 a ]
+[; ;main.c: 43: unsigned char duty,i;
+
+[; ;main.c: 44: duty = 255;
+
+"44
+[e = _duty -> -> 255 `i `uc ]
+[; ;main.c: 45: for(i=0;i<8;i++)
+
+"45
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 12  ]
+[e $U 13  ]
+"46
+[e :U 12 ]
+[; ;main.c: 46: {
+
+{
+[; ;main.c: 47: if (light < RankLevel[i])
+
+"47
+[e $ ! < _light -> *U + &U _RankLevel * -> _i `ux -> -> # *U &U _RankLevel `ui `ux `ui 15  ]
+[; ;main.c: 48: {
+
+"48
+{
+[; ;main.c: 49: break;
+
+"49
+[e $U 13  ]
+"50
+}
+[; ;main.c: 50: }
+
+[e $U 16  ]
+"51
+[e :U 15 ]
+[; ;main.c: 51: else
+
+[; ;main.c: 52: {
+
+"52
+{
+[; ;main.c: 53: duty -= 31;
+
+"53
+[e =- _duty -> -> 31 `i `uc ]
+"54
+}
+[e :U 16 ]
+"55
+}
+"45
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 12  ]
+[e :U 13 ]
+"55
+}
+[; ;main.c: 54: }
+
+[; ;main.c: 55: }
+
+[; ;main.c: 56: return duty;
+
+"56
+[e ) _duty ]
+[e $UE 11  ]
+"57
+[; ;main.c: 57: }
+
+[e :UE 11 ]
+}
+"59
 [v _main `(v 1 e ]
 [p mainexit ]
 {
-[; ;main.c: 37: void main(void)
+[; ;main.c: 58: void main(void)
 
-[; ;main.c: 38: {
+[; ;main.c: 59: {
 
 [e :U _main ]
 [f ]
-"39
+"60
 [v _k `uc 1 a ]
-"40
+"61
 [v _ret `uc 1 a ]
-"41
+"62
 [v _p `*ui 1 a ]
-[; ;main.c: 39: unsigned char k;
+[; ;main.c: 60: unsigned char k;
 
-[; ;main.c: 40: unsigned char ret;
+[; ;main.c: 61: unsigned char ret;
 
-[; ;main.c: 41: unsigned int *p;
+[; ;main.c: 62: unsigned int *p;
 
-[; ;main.c: 42: asm("or  F, 01h") ;
+[; ;main.c: 63: asm("or  F, 01h") ;
 
-"42
+"63
 [; or  F, 01h ;#
-[; ;main.c: 44: RES_WDT = 0;
+[; ;main.c: 65: RES_WDT = 0;
 
-"44
+"65
 [e = _RES_WDT -> -> 0 `i `uc ]
-[; ;main.c: 45: Init_IIC();
+[; ;main.c: 66: Init_IIC();
 
 "28 ./software_IIC.h
 [v _Init_IIC `(v 0 ef ]
-"45 ./main.c
+"66 ./main.c
 [e ( _Init_IIC ..  ]
-[; ;main.c: 47: delay_us(200);
+[; ;main.c: 68: delay_us(200);
 
 "25 ./HT1621B.h
 [v _delay_us `(v 0 ef1`ui ]
-"47 ./main.c
+"68 ./main.c
 [e ( _delay_us (1
  -> -> 200 `i `ui ]
-[; ;main.c: 48: HT1621B_Init();
+[; ;main.c: 69: HT1621B_Init();
 
 "24 ./HT1621B.h
 [v _HT1621B_Init `(v 0 ef ]
-"48 ./main.c
+"69 ./main.c
 [e ( _HT1621B_Init ..  ]
-[; ;main.c: 51: PWM8_BL_WritePeriod(255);
+[; ;main.c: 72: PWM8_BL_WritePeriod(255);
 
 "42 ./lib\PWM8_BL.h
 [v _PWM8_BL_WritePeriod `BF371 0 e ]
-"51 ./main.c
+"72 ./main.c
 [e ( _PWM8_BL_WritePeriod (1
  -> -> 255 `i `uc ]
-[; ;main.c: 52: PWM8_BL_WritePulseWidth(5);
+[; ;main.c: 73: PWM8_BL_WritePulseWidth(5);
 
 "44 ./lib\PWM8_BL.h
 [v _PWM8_BL_WritePulseWidth `BF377 0 e ]
-"52 ./main.c
+"73 ./main.c
 [e ( _PWM8_BL_WritePulseWidth (1
  -> -> 5 `i `uc ]
-[; ;main.c: 53: PWM8_BL_Start();
+[; ;main.c: 74: PWM8_BL_Start();
 
 "39 ./lib\PWM8_BL.h
 [v _PWM8_BL_Start `BF362 0 e ]
-"53 ./main.c
+"74 ./main.c
 [e ( _PWM8_BL_Start ..  ]
-[; ;main.c: 57: UART_Board_Start(0x00);
+[; ;main.c: 78: UART_Board_Start(0x00);
 
 "73 ./lib\UART_Board.h
 [v _UART_Board_Start `BF504 0 e ]
-"57 ./main.c
+"78 ./main.c
 [e ( _UART_Board_Start (1
  -> -> 0 `i `uc ]
-[; ;main.c: 61: UART_Sensor_Start(0x00);
+[; ;main.c: 82: UART_Sensor_Start(0x00);
 
 "73 ./lib\UART_Sensor.h
 [v _UART_Sensor_Start `BF595 0 e ]
-"61 ./main.c
+"82 ./main.c
 [e ( _UART_Sensor_Start (1
  -> -> 0 `i `uc ]
-[; ;main.c: 63: UART_Sensor_IntCntl(0x01 | 0x00);
+[; ;main.c: 84: UART_Sensor_IntCntl(0x01 | 0x00);
 
 "95 ./lib\UART_Sensor.h
 [v _UART_Sensor_IntCntl `BF651 0 e ]
-"63 ./main.c
+"84 ./main.c
 [e ( _UART_Sensor_IntCntl (1
  -> | -> 1 `i -> 0 `i `uc ]
-[; ;main.c: 65: Timer16_WritePeriod(9600);
+[; ;main.c: 86: Timer16_WritePeriod(9600);
 
 "47 ./lib\Timer16.h
 [v _Timer16_WritePeriod `BF456 0 e ]
-"65 ./main.c
+"86 ./main.c
 [e ( _Timer16_WritePeriod (1
  -> -> 9600 `i `ui ]
-[; ;main.c: 66: Timer16_WriteCompareValue(9000);
+[; ;main.c: 87: Timer16_WriteCompareValue(9000);
 
 "49 ./lib\Timer16.h
 [v _Timer16_WriteCompareValue `BF462 0 e ]
-"66 ./main.c
+"87 ./main.c
 [e ( _Timer16_WriteCompareValue (1
  -> -> 9000 `i `ui ]
-[; ;main.c: 67: Timer16_EnableInt();
+[; ;main.c: 88: Timer16_EnableInt();
 
 "41 ./lib\Timer16.h
 [v _Timer16_EnableInt `BF438 0 e ]
-"67 ./main.c
+"88 ./main.c
 [e ( _Timer16_EnableInt ..  ]
-[; ;main.c: 68: Timer16_Start();
+[; ;main.c: 89: Timer16_Start();
 
 "43 ./lib\Timer16.h
 [v _Timer16_Start `BF444 0 e ]
-"68 ./main.c
+"89 ./main.c
 [e ( _Timer16_Start ..  ]
-[; ;main.c: 70: UART_Board_CPutString("Woody is a genius!");
+[; ;main.c: 91: UART_Board_CPutString("Woody is a genius!");
 
 "81 ./lib\UART_Board.h
 [v _UART_Board_CPutString `BF522 0 e ]
-"70 ./main.c
+"91 ./main.c
 [e ( _UART_Board_CPutString (1
  :s 1C ]
-[; ;main.c: 72: PMSFrameFlag = 0;
+[; ;main.c: 93: PMSFrameFlag = 0;
 
 "40 ./ParticleSensor.h
 [v _PMSFrameFlag `uc 0 e ]
-"72 ./main.c
+"93 ./main.c
 [e = _PMSFrameFlag -> -> 0 `i `uc ]
-[; ;main.c: 73: HeadFlag = 0;
+[; ;main.c: 94: HeadFlag = 0;
 
 "37 ./ParticleSensor.h
 [v _HeadFlag `uc 0 e ]
-"73 ./main.c
+"94 ./main.c
 [e = _HeadFlag -> -> 0 `i `uc ]
-[; ;main.c: 74: DataPtr = 0;
+[; ;main.c: 95: DataPtr = 0;
 
 "39 ./ParticleSensor.h
 [v _DataPtr `uc 0 e ]
-"74 ./main.c
+"95 ./main.c
 [e = _DataPtr -> -> 0 `i `uc ]
-[; ;main.c: 76: SAR10_SetClk((0x0A));
+[; ;main.c: 97: SAR10_SetClk((0x0A));
 
 "46 ./lib\SAR10.h
 [v _SAR10_SetClk `BF427 0 e ]
-"76 ./main.c
+"97 ./main.c
 [e ( _SAR10_SetClk (1
  -> -> 10 `i `uc ]
-[; ;main.c: 77: SAR10_SetRunMode((0x00));
+[; ;main.c: 98: SAR10_SetRunMode((0x00));
 
 "47 ./lib\SAR10.h
 [v _SAR10_SetRunMode `BF430 0 e ]
-"77 ./main.c
+"98 ./main.c
 [e ( _SAR10_SetRunMode (1
  -> -> 0 `i `uc ]
-[; ;main.c: 78: SAR10_SetADCChannel((0x60));
+[; ;main.c: 99: SAR10_SetADCChannel((0x60));
 
 "43 ./lib\SAR10.h
 [v _SAR10_SetADCChannel `BF418 0 e ]
-"78 ./main.c
+"99 ./main.c
 [e ( _SAR10_SetADCChannel (1
  -> -> 96 `i `uc ]
-[; ;main.c: 79: SAR10_DisableInt();
+[; ;main.c: 100: SAR10_DisableInt();
 
 "36 ./lib\SAR10.h
 [v _SAR10_DisableInt `BF397 0 e ]
-"79 ./main.c
+"100 ./main.c
 [e ( _SAR10_DisableInt ..  ]
-[; ;main.c: 80: SAR10_Start();
+[; ;main.c: 101: SAR10_Start();
 
 "37 ./lib\SAR10.h
 [v _SAR10_Start `BF400 0 e ]
-"80 ./main.c
+"101 ./main.c
 [e ( _SAR10_Start ..  ]
-[; ;main.c: 82: Si7020Init();
+[; ;main.c: 103: Si7020Init();
 
 "37 ./Si7020.h
 [v _Si7020Init `(v 0 ef ]
-"82 ./main.c
+"103 ./main.c
 [e ( _Si7020Init ..  ]
-[; ;main.c: 84: LCD_Init();
+[; ;main.c: 105: LCD_Init();
 
 "37 ./LCD.h
 [v _LCD_Init `(v 0 ef ]
-"84 ./main.c
+"105 ./main.c
 [e ( _LCD_Init ..  ]
-[; ;main.c: 86: RES_WDT = 0;
+[; ;main.c: 107: RES_WDT = 0;
 
-"86
+"107
 [e = _RES_WDT -> -> 0 `i `uc ]
-[; ;main.c: 87: while(1)
+[; ;main.c: 108: while(1)
 
-"87
-[e :U 13 ]
-[; ;main.c: 88: {
+"108
+[e :U 19 ]
+[; ;main.c: 109: {
 
-"88
+"109
 {
-[; ;main.c: 89: if (!RecTimeoutTimer)
+[; ;main.c: 110: if (!RecTimeoutTimer)
 
-"89
-[e $ ! ! != -> _RecTimeoutTimer `i -> -> -> 0 `i `uc `i 15  ]
-[; ;main.c: 90: {
+"110
+[e $ ! ! != -> _RecTimeoutTimer `i -> -> -> 0 `i `uc `i 21  ]
+[; ;main.c: 111: {
 
-"90
+"111
 {
-[; ;main.c: 91: PMSFrameFlag = 0;
+[; ;main.c: 112: PMSFrameFlag = 0;
 
-"91
+"112
 [e = _PMSFrameFlag -> -> 0 `i `uc ]
-[; ;main.c: 92: HeadFlag = 0;
+[; ;main.c: 113: HeadFlag = 0;
 
-"92
+"113
 [e = _HeadFlag -> -> 0 `i `uc ]
-[; ;main.c: 93: DataPtr = 0;
+[; ;main.c: 114: DataPtr = 0;
 
-"93
+"114
 [e = _DataPtr -> -> 0 `i `uc ]
-"94
+"115
 }
-[e :U 15 ]
-[; ;main.c: 94: }
+[e :U 21 ]
+[; ;main.c: 115: }
 
-[; ;main.c: 96: if (PMSFrameFlag)
+[; ;main.c: 117: if (PMSFrameFlag)
 
-"96
-[e $ ! != -> _PMSFrameFlag `i -> -> -> 0 `i `uc `i 16  ]
-[; ;main.c: 97: {
+"117
+[e $ ! != -> _PMSFrameFlag `i -> -> -> 0 `i `uc `i 22  ]
+[; ;main.c: 118: {
 
-"97
+"118
 {
-[; ;main.c: 98: PMSFrameFlag = 0;
+[; ;main.c: 119: PMSFrameFlag = 0;
 
-"98
+"119
 [e = _PMSFrameFlag -> -> 0 `i `uc ]
-[; ;main.c: 99: if (FrameCheck())
+[; ;main.c: 120: if (FrameCheck())
 
 "42 ./ParticleSensor.h
 [v _FrameCheck `(uc 0 ef ]
-"99 ./main.c
-[e $ ! != -> ( _FrameCheck ..  `i -> -> -> 0 `i `uc `i 17  ]
-[; ;main.c: 100: {
+"120 ./main.c
+[e $ ! != -> ( _FrameCheck ..  `i -> -> -> 0 `i `uc `i 23  ]
+[; ;main.c: 121: {
 
-"100
+"121
 {
-[; ;main.c: 101: data_pm2_5 = MyPMSUnion.MyPMFrame.PM2_5_US;
+[; ;main.c: 122: data_pm2_5 = MyPMSUnion.MyPMFrame.PM2_5_US;
 
 "43 ./ParticleSensor.h
 [v _data_pm2_5 `ui 0 e ]
 "41
 [v _MyPMSUnion `S2 0 e ]
-"101 ./main.c
+"122 ./main.c
 [e = _data_pm2_5 . . _MyPMSUnion 1 3 ]
-[; ;main.c: 102: data_pm1_0 = MyPMSUnion.MyPMFrame.PM1_0_US;
+[; ;main.c: 123: data_pm1_0 = MyPMSUnion.MyPMFrame.PM1_0_US;
 
 "44 ./ParticleSensor.h
 [v _data_pm1_0 `ui 0 e ]
-"102 ./main.c
+"123 ./main.c
 [e = _data_pm1_0 . . _MyPMSUnion 1 2 ]
-[; ;main.c: 103: UART_Board_CPutString("PM2.5:");
+[; ;main.c: 124: UART_Board_CPutString("PM2.5:");
 
-"103
+"124
 [e ( _UART_Board_CPutString (1
  :s 2C ]
-[; ;main.c: 104: UART_Board_PutSHexInt(data_pm2_5);
+[; ;main.c: 125: UART_Board_PutSHexInt(data_pm2_5);
 
 "87 ./lib\UART_Board.h
 [v _UART_Board_PutSHexInt `BF542 0 e ]
-"104 ./main.c
+"125 ./main.c
 [e ( _UART_Board_PutSHexInt (1
  -> _data_pm2_5 `i ]
-[; ;main.c: 105: UART_Board_PutCRLF();
+[; ;main.c: 126: UART_Board_PutCRLF();
 
 "88 ./lib\UART_Board.h
 [v _UART_Board_PutCRLF `BF545 0 e ]
-"105 ./main.c
+"126 ./main.c
 [e ( _UART_Board_PutCRLF ..  ]
-"107
+"128
 }
-[; ;main.c: 107: }
+[; ;main.c: 128: }
 
-[e $U 18  ]
-"108
-[e :U 17 ]
-[; ;main.c: 108: else
+[e $U 24  ]
+"129
+[e :U 23 ]
+[; ;main.c: 129: else
 
-[; ;main.c: 109: {
+[; ;main.c: 130: {
 
-"109
+"130
 {
-[; ;main.c: 110: UART_Board_CPutString("Checksum fail");
+[; ;main.c: 131: UART_Board_CPutString("Checksum fail");
 
-"110
+"131
 [e ( _UART_Board_CPutString (1
  :s 3C ]
-"111
+"132
 }
-[e :U 18 ]
-"112
+[e :U 24 ]
+"133
 }
-[e :U 16 ]
-[; ;main.c: 111: }
+[e :U 22 ]
+[; ;main.c: 132: }
 
-[; ;main.c: 112: }
+[; ;main.c: 133: }
 
-[; ;main.c: 114: if (!one_sec_timer)
+[; ;main.c: 135: if (!one_sec_timer)
 
-"114
-[e $ ! ! != -> _one_sec_timer `i -> -> -> 0 `i `uc `i 19  ]
-[; ;main.c: 115: {
+"135
+[e $ ! ! != -> _one_sec_timer `i -> -> -> 0 `i `uc `i 25  ]
+[; ;main.c: 136: {
 
-"115
+"136
 {
-[; ;main.c: 116: one_sec_timer = 8;
+[; ;main.c: 137: one_sec_timer = 8;
 
-"116
+"137
 [e = _one_sec_timer -> -> 8 `i `uc ]
-[; ;main.c: 129: MUX_CR2 |= 0X02;
+[; ;main.c: 150: MUX_CR2 |= 0X02;
 
-"129
+"150
 [e =| _MUX_CR2 -> -> 2 `i `uc ]
-[; ;main.c: 130: SAR10_Trigger();
+[; ;main.c: 151: SAR10_Trigger();
 
 "39 ./lib\SAR10.h
 [v _SAR10_Trigger `BF406 0 e ]
-"130 ./main.c
+"151 ./main.c
 [e ( _SAR10_Trigger ..  ]
-[; ;main.c: 131: while(SAR10_fIsDataAvailable()==0);
+[; ;main.c: 152: while(SAR10_fIsDataAvailable()==0);
 
 "40 ./lib\SAR10.h
 [v _SAR10_fIsDataAvailable `BF409 0 e ]
-"131 ./main.c
-[e $U 20  ]
-[e :U 21 ]
-[e :U 20 ]
-[e $ == -> ( _SAR10_fIsDataAvailable ..  `i -> 0 `i 21  ]
-[e :U 22 ]
-[; ;main.c: 132: LightADCValue = SAR10_iGetData();
+"152 ./main.c
+[e $U 26  ]
+[e :U 27 ]
+[e :U 26 ]
+[e $ == -> ( _SAR10_fIsDataAvailable ..  `i -> 0 `i 27  ]
+[e :U 28 ]
+[; ;main.c: 153: LightADCValue = SAR10_iGetData();
 
 "41 ./lib\SAR10.h
 [v _SAR10_iGetData `BF412 0 e ]
-"132 ./main.c
+"153 ./main.c
 [e = _LightADCValue -> ( _SAR10_iGetData ..  `ui ]
-[; ;main.c: 133: MUX_CR2 &= ~0X02;
+[; ;main.c: 154: MUX_CR2 &= ~0X02;
 
-"133
+"154
 [e =& _MUX_CR2 -> ~ -> 2 `i `uc ]
-"136
+[; ;main.c: 155: UART_Board_CPutString("Light: ");
+
+"155
+[e ( _UART_Board_CPutString (1
+ :s 4C ]
+[; ;main.c: 156: UART_Board_PutSHexInt(LightADCValue);
+
+"156
+[e ( _UART_Board_PutSHexInt (1
+ -> _LightADCValue `i ]
+[; ;main.c: 157: UART_Board_PutCRLF();
+
+"157
+[e ( _UART_Board_PutCRLF ..  ]
+[; ;main.c: 159: PWM8_BL_WritePulseWidth(LightRank(LightADCValue));
+
+"159
+[e ( _PWM8_BL_WritePulseWidth (1
+ ( _LightRank (1
+ _LightADCValue ]
+"161
 }
-[e :U 19 ]
-[; ;main.c: 136: }
+[e :U 25 ]
+[; ;main.c: 161: }
 
-[; ;main.c: 139: if(!rh_sample_timer)
+[; ;main.c: 164: if(!rh_sample_timer)
 
-"139
-[e $ ! ! != -> _rh_sample_timer `i -> -> -> 0 `i `uc `i 23  ]
-[; ;main.c: 140: {
+"164
+[e $ ! ! != -> _rh_sample_timer `i -> -> -> 0 `i `uc `i 29  ]
+[; ;main.c: 165: {
 
-"140
+"165
 {
-[; ;main.c: 141: rh_sample_timer = 8;
+[; ;main.c: 166: rh_sample_timer = 8;
 
-"141
+"166
 [e = _rh_sample_timer -> -> 8 `i `uc ]
-[; ;main.c: 142: if (!RHSampleStep)
+[; ;main.c: 167: if (!RHSampleStep)
 
-"142
-[e $ ! ! != -> _RHSampleStep `i -> -> -> 0 `i `uc `i 24  ]
-[; ;main.c: 143: {
+"167
+[e $ ! ! != -> _RHSampleStep `i -> -> -> 0 `i `uc `i 30  ]
+[; ;main.c: 168: {
 
-"143
+"168
 {
-[; ;main.c: 144: ret = Si7020SendCommand(0xF5);
+[; ;main.c: 169: ret = Si7020SendCommand(0xF5);
 
 "30 ./Si7020.h
 [v _Si7020SendCommand `(uc 0 ef1`uc ]
-"144 ./main.c
+"169 ./main.c
 [e = _ret ( _Si7020SendCommand (1
  -> -> 245 `i `uc ]
-[; ;main.c: 145: if(ret)
+[; ;main.c: 170: if(ret)
 
-"145
-[e $ ! != -> _ret `i -> -> -> 0 `i `uc `i 25  ]
-[; ;main.c: 146: {
+"170
+[e $ ! != -> _ret `i -> -> -> 0 `i `uc `i 31  ]
+[; ;main.c: 171: {
 
-"146
+"171
 {
-[; ;main.c: 149: RHSampleStep = 1;
+[; ;main.c: 174: RHSampleStep = 1;
 
-"149
+"174
 [e = _RHSampleStep -> -> 1 `i `uc ]
-"150
+"175
 }
-[; ;main.c: 150: }
+[; ;main.c: 175: }
 
-[e $U 26  ]
-"151
-[e :U 25 ]
-[; ;main.c: 151: else
+[e $U 32  ]
+"176
+[e :U 31 ]
+[; ;main.c: 176: else
 
-[; ;main.c: 152: {
+[; ;main.c: 177: {
 
-"152
+"177
 {
-"155
+"180
 }
-[e :U 26 ]
-"156
+[e :U 32 ]
+"181
 }
-[; ;main.c: 155: }
+[; ;main.c: 180: }
 
-[; ;main.c: 156: }
+[; ;main.c: 181: }
 
-[e $U 27  ]
-"157
-[e :U 24 ]
-[; ;main.c: 157: else
+[e $U 33  ]
+"182
+[e :U 30 ]
+[; ;main.c: 182: else
 
-[; ;main.c: 158: {
+[; ;main.c: 183: {
 
-"158
+"183
 {
-[; ;main.c: 159: Si7020Read_RH_NHM(RecBuf);
+[; ;main.c: 184: Si7020Read_RH_NHM(RecBuf);
 
 "31 ./Si7020.h
 [v _Si7020Read_RH_NHM `(v 0 ef1`*uc ]
 "41
 [v _RecBuf `uc -> 0 `x e ]
-"159 ./main.c
+"184 ./main.c
 [e ( _Si7020Read_RH_NHM (1
  &U _RecBuf ]
-[; ;main.c: 160: Si7020Data = *(unsigned int *)RecBuf;
+[; ;main.c: 185: Si7020Data = *(unsigned int *)RecBuf;
 
 "42 ./Si7020.h
 [v _Si7020Data `ui 0 e ]
-"160 ./main.c
+"185 ./main.c
 [e = _Si7020Data *U -> &U _RecBuf `*ui ]
-[; ;main.c: 161: if (CRC8Check())
+[; ;main.c: 186: if (CRC8Check())
 
 "35 ./Si7020.h
 [v _CRC8Check `(uc 0 ef ]
-"161 ./main.c
-[e $ ! != -> ( _CRC8Check ..  `i -> -> -> 0 `i `uc `i 28  ]
-[; ;main.c: 162: {
+"186 ./main.c
+[e $ ! != -> ( _CRC8Check ..  `i -> -> -> 0 `i `uc `i 34  ]
+[; ;main.c: 187: {
 
-"162
+"187
 {
-[; ;main.c: 163: UART_Board_CPutString("RH: ");
+[; ;main.c: 188: UART_Board_CPutString("RH: ");
 
-"163
+"188
 [e ( _UART_Board_CPutString (1
- :s 4C ]
-[; ;main.c: 164: UART_Board_PutSHexInt(Si7020Data);
-
-"164
-[e ( _UART_Board_PutSHexInt (1
- -> _Si7020Data `i ]
-[; ;main.c: 165: UART_Board_PutCRLF();
-
-"165
-[e ( _UART_Board_PutCRLF ..  ]
-[; ;main.c: 166: Humidity = Si7020CalcRH(Si7020Data);
+ :s 5C ]
+[; ;main.c: 191: Humidity = Si7020CalcRH(Si7020Data);
 
 "39 ./Si7020.h
 [v _Humidity `uc 0 e ]
 "34
 [v _Si7020CalcRH `(uc 0 ef1`ui ]
-"166 ./main.c
+"191 ./main.c
 [e = _Humidity ( _Si7020CalcRH (1
  _Si7020Data ]
-[; ;main.c: 167: UART_Board_PutSHexByte(Humidity);
+[; ;main.c: 192: UART_Board_PutSHexByte(Humidity);
 
 "86 ./lib\UART_Board.h
 [v _UART_Board_PutSHexByte `BF539 0 e ]
-"167 ./main.c
+"192 ./main.c
 [e ( _UART_Board_PutSHexByte (1
  _Humidity ]
-[; ;main.c: 168: UART_Board_PutCRLF();
+[; ;main.c: 193: UART_Board_PutCRLF();
 
-"168
+"193
 [e ( _UART_Board_PutCRLF ..  ]
-"169
+"194
 }
-[e :U 28 ]
-[; ;main.c: 169: }
+[e :U 34 ]
+[; ;main.c: 194: }
 
-[; ;main.c: 171: Si7020Read_Temp_after_RHM(RecBuf);
+[; ;main.c: 196: Si7020Read_Temp_after_RHM(RecBuf);
 
 "32 ./Si7020.h
 [v _Si7020Read_Temp_after_RHM `(uc 0 ef1`*uc ]
-"171 ./main.c
+"196 ./main.c
 [e ( _Si7020Read_Temp_after_RHM (1
  &U _RecBuf ]
-[; ;main.c: 172: Si7020Data = *(unsigned int *)RecBuf;
+[; ;main.c: 197: Si7020Data = *(unsigned int *)RecBuf;
 
-"172
+"197
 [e = _Si7020Data *U -> &U _RecBuf `*ui ]
-[; ;main.c: 173: UART_Board_CPutString("Temperature: ");
+[; ;main.c: 198: UART_Board_CPutString("Temperature: ");
 
-"173
+"198
 [e ( _UART_Board_CPutString (1
- :s 5C ]
-[; ;main.c: 174: UART_Board_PutSHexInt(Si7020Data);
-
-"174
-[e ( _UART_Board_PutSHexInt (1
- -> _Si7020Data `i ]
-[; ;main.c: 175: UART_Board_PutCRLF();
-
-"175
-[e ( _UART_Board_PutCRLF ..  ]
-[; ;main.c: 176: Temperature = Si7020CalcTemp(Si7020Data);
+ :s 6C ]
+[; ;main.c: 201: Temperature = Si7020CalcTemp(Si7020Data);
 
 "40 ./Si7020.h
 [v _Temperature `c 0 e ]
 "33
 [v _Si7020CalcTemp `(c 0 ef1`ui ]
-"176 ./main.c
+"201 ./main.c
 [e = _Temperature ( _Si7020CalcTemp (1
  _Si7020Data ]
-[; ;main.c: 177: UART_Board_PutSHexByte(Temperature);
+[; ;main.c: 202: UART_Board_PutSHexByte(Temperature);
 
-"177
+"202
 [e ( _UART_Board_PutSHexByte (1
  -> _Temperature `uc ]
-[; ;main.c: 178: UART_Board_PutCRLF();
+[; ;main.c: 203: UART_Board_PutCRLF();
 
-"178
+"203
 [e ( _UART_Board_PutCRLF ..  ]
-[; ;main.c: 179: RHSampleStep = 0;
+[; ;main.c: 204: RHSampleStep = 0;
 
-"179
+"204
 [e = _RHSampleStep -> -> 0 `i `uc ]
-"180
+"205
 }
-[e :U 27 ]
-"181
+[e :U 33 ]
+"206
 }
-[e :U 23 ]
-[; ;main.c: 180: }
+[e :U 29 ]
+[; ;main.c: 205: }
 
-[; ;main.c: 181: }
+[; ;main.c: 206: }
 
-[; ;main.c: 183: if (!LcdUpdateTimer)
+[; ;main.c: 208: if (!LcdUpdateTimer)
 
-"183
-[e $ ! ! != -> _LcdUpdateTimer `i -> -> -> 0 `i `uc `i 29  ]
-[; ;main.c: 184: {
+"208
+[e $ ! ! != -> _LcdUpdateTimer `i -> -> -> 0 `i `uc `i 35  ]
+[; ;main.c: 209: {
 
-"184
+"209
 {
-[; ;main.c: 185: LcdUpdateTimer = 4;
+[; ;main.c: 210: LcdUpdateTimer = 4;
 
-"185
+"210
 [e = _LcdUpdateTimer -> -> 4 `i `uc ]
-[; ;main.c: 186: LCDOuputAll();
+[; ;main.c: 211: LCDOuputAll();
 
 "41 ./LCD.h
 [v _LCDOuputAll `(v 0 ef ]
-"186 ./main.c
+"211 ./main.c
 [e ( _LCDOuputAll ..  ]
-"187
+"212
 }
-[e :U 29 ]
-[; ;main.c: 187: }
+[e :U 35 ]
+[; ;main.c: 212: }
 
-[; ;main.c: 189: RES_WDT = 0;
+[; ;main.c: 214: RES_WDT = 0;
 
-"189
+"214
 [e = _RES_WDT -> -> 0 `i `uc ]
-"190
+"215
 }
-[e :U 12 ]
-"87
-[e $U 13  ]
-[e :U 14 ]
-"191
-[; ;main.c: 190: }
+[e :U 18 ]
+"108
+[e $U 19  ]
+[e :U 20 ]
+"216
+[; ;main.c: 215: }
 
-[; ;main.c: 191: }
+[; ;main.c: 216: }
 
-[e :UE 11 ]
+[e :UE 17 ]
 }
 [a 3C 67 104 101 99 107 115 117 109 32 102 97 105 108 0 ]
 [a 2C 80 77 50 46 53 58 0 ]
 [a 1C 87 111 111 100 121 32 105 115 32 97 32 103 101 110 105 117 115 33 0 ]
-[a 5C 84 101 109 112 101 114 97 116 117 114 101 58 32 0 ]
-[a 4C 82 72 58 32 0 ]
+[a 4C 76 105 103 104 116 58 32 0 ]
+[a 6C 84 101 109 112 101 114 97 116 117 114 101 58 32 0 ]
+[a 5C 82 72 58 32 0 ]
