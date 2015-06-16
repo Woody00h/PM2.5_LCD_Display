@@ -9,11 +9,15 @@
 #include "software_IIC.h"
 #include "Si7020.h"
 #include "LCD.h"
+#include "HumiChipII.h";
 #include "include.h"
 
 #define ONE_SECOND_TIMER_RELOAD 8
 
 unsigned int LightADCValue;										
+unsigned int DstBackLight;
+unsigned int CurrentBackLight;
+unsigned char LightDuty;
 
 unsigned char FanUpdateTimer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char one_sec_timer		= ONE_SECOND_TIMER_RELOAD;
@@ -22,7 +26,8 @@ unsigned char PlasmaTimer		= PLASMA_TIMER_RELOAD;
 unsigned char LcdUpdateTimer	= 4;
 unsigned char IICTimeOutTimer;
 unsigned char RHSampleStep = 0;
-const unsigned char RankLevel[8] = {48,96,144,192,240,288,336,384};
+							//   255   192   129   66    3
+const unsigned char RankLevel[8] = {20,  120,  220,  320};
 void Timer16ISR(void)
 {
 	if (one_sec_timer)		one_sec_timer--;
@@ -32,6 +37,22 @@ void Timer16ISR(void)
 	if (LcdUpdateTimer)		LcdUpdateTimer--;
 	if (IICTimeOutTimer)	IICTimeOutTimer--;
 	if (RecTimeoutTimer)	RecTimeoutTimer--;
+	
+	if (DstBackLight >= (CurrentBackLight + 9))
+	{
+		CurrentBackLight += 9;
+		LightDuty = CurrentBackLight;
+		PWM8_BL_WritePulseWidth(LightDuty);
+	}
+	else
+	{
+		if ((DstBackLight + 9) <= CurrentBackLight)
+		{
+			CurrentBackLight -= 9;
+			LightDuty = CurrentBackLight;
+			PWM8_BL_WritePulseWidth(LightDuty);
+		}
+	}
 }
 
 //
@@ -42,7 +63,7 @@ unsigned char LightRank(unsigned int light)
 {
 	unsigned char duty,i;
 	duty = 255;
-	for(i=0;i<8;i++)
+	for(i=0;i<4;i++)
 	{
 		if (light < RankLevel[i])
 		{
@@ -50,7 +71,7 @@ unsigned char LightRank(unsigned int light)
 		}
 		else 
 		{
-			duty -= 31;
+			duty -= 63;
 		}
 	}
 	return duty;
@@ -68,9 +89,10 @@ void main(void)
 	delay_us(200);	//wait for the LCD driver power on
 	HT1621B_Init();
 	
-	//back light 
+	//back light
+	CurrentBackLight = 3;
 	PWM8_BL_WritePeriod(255);    // Set period to eight clocks
-	PWM8_BL_WritePulseWidth(5);   // Set pulse width to generate a 50% duty 
+	PWM8_BL_WritePulseWidth(3);   // Set pulse width to generate a 50% duty 
 	PWM8_BL_Start();
 	
 	//WriteAll_1621(0,a,16); //在起始地址为0 处连续写入16个字节数据
@@ -101,6 +123,7 @@ void main(void)
 	SAR10_Start(); // Start conversion
 
 	Si7020Init();
+	HumiChipInit();
 	
 	LCD_Init();
 	
@@ -121,14 +144,14 @@ void main(void)
 			{
 				data_pm2_5 = MyPMSUnion.MyPMFrame.PM2_5_US;
 				data_pm1_0 = MyPMSUnion.MyPMFrame.PM1_0_US;
-				UART_Board_CPutString("PM2.5:");
-				UART_Board_PutSHexInt(data_pm2_5);
-				UART_Board_PutCRLF();
+//				UART_Board_CPutString("PM2.5:");
+//				UART_Board_PutSHexInt(data_pm2_5);
+//				UART_Board_PutCRLF();
 				
 			}
 			else
 			{
-				UART_Board_CPutString("Checksum fail");
+//				UART_Board_CPutString("Checksum fail");
 			}
 		}
 		
@@ -152,11 +175,12 @@ void main(void)
 		 	while(SAR10_fIsDataAvailable()==0);//Wait while data is not ready
 		 	LightADCValue = SAR10_iGetData(); // Read result
 			MUX_CR2 &= ~0X02; //disconnect P2.1 Analog bus
-			UART_Board_CPutString("Light: ");
-			UART_Board_PutSHexInt(LightADCValue);
-			UART_Board_PutCRLF();
+//			UART_Board_CPutString("Light: ");
+//			UART_Board_PutSHexInt(LightADCValue);
+//			UART_Board_PutCRLF();
 			
-			PWM8_BL_WritePulseWidth(LightRank(LightADCValue));
+//			PWM8_BL_WritePulseWidth(LightRank(LightADCValue));
+			DstBackLight = LightRank(LightADCValue);
 			
 		}
 		
@@ -164,19 +188,13 @@ void main(void)
 		if(!rh_sample_timer)
 		{
 			rh_sample_timer = ONE_SECOND_TIMER_RELOAD;
+#if 0
 			if (!RHSampleStep)
 			{
 				ret = Si7020SendCommand(MRH_NHMM); // send the command(Measure RH, No Hold Master Mode)
 				if(ret)
 				{
-//					UART_Board_CPutString("Send commad success");
-//					UART_Board_PutCRLF();
 					RHSampleStep = 1;
-				}
-				else
-				{			
-//					UART_Board_CPutString("Send commad fail");
-//					UART_Board_PutCRLF();					
 				}
 			}
 			else 
@@ -185,24 +203,47 @@ void main(void)
 				Si7020Data = *(unsigned int *)RecBuf;
 				if (CRC8Check())
 				{				
-					UART_Board_CPutString("RH: ");
+//					UART_Board_CPutString("RH: ");
 //					UART_Board_PutSHexInt(Si7020Data);
 //					UART_Board_PutCRLF();
 					Humidity = Si7020CalcRH(Si7020Data);
-					UART_Board_PutSHexByte(Humidity);
-					UART_Board_PutCRLF();
+//					UART_Board_PutSHexByte(Humidity);
+//					UART_Board_PutCRLF();
 				}
 				
 				Si7020Read_Temp_after_RHM(RecBuf);
 				Si7020Data = *(unsigned int *)RecBuf;
-				UART_Board_CPutString("Temperature: ");
+//				UART_Board_CPutString("Temperature: ");
 //				UART_Board_PutSHexInt(Si7020Data);
 //				UART_Board_PutCRLF();
 				Temperature = Si7020CalcTemp(Si7020Data);
-				UART_Board_PutSHexByte(Temperature);
-				UART_Board_PutCRLF();
+//				UART_Board_PutSHexByte(Temperature);
+//				UART_Board_PutCRLF();
 				RHSampleStep = 0;
 			}
+#else
+			HumiChipRdHnT();
+			/*print the data to the PC*/
+			/*
+			UART_Board_CPutString("HumiChip: ");
+			UART_Board_PutSHexByte(HumiChipData[0]);
+			UART_Board_PutChar(' ');
+			UART_Board_PutSHexByte(HumiChipData[1]);
+			UART_Board_PutChar(' ');
+			UART_Board_PutSHexByte(HumiChipData[2]);
+			UART_Board_PutChar(' ');
+			UART_Board_PutSHexByte(HumiChipData[3]);
+			UART_Board_PutChar(' ');
+			UART_Board_PutSHexByte(HumiChipData[4]);
+			UART_Board_PutChar(' ');
+			UART_Board_PutSHexByte(HumiChipData[5]);
+			UART_Board_PutCRLF();*/
+			if (HumiChipCheckSum())
+			{
+				Humidity	= HumiChipData[4];
+				Temperature	= HumiChipData[1];
+			}
+#endif
 		}
 				
 		if (!LcdUpdateTimer)

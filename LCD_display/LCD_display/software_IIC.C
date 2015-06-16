@@ -187,6 +187,32 @@ uchar ISendByte(uchar sla,uchar c)
 	return(1);
 }
 
+uchar ISendBytes(uchar sla,uchar *s,uchar no)
+{
+	uchar i;
+	uchar Tmp;
+	Start_I2c();               //������� 
+	SendByte(sla);            //����������ַ 
+	if(ack==0)
+	{
+		Stop_I2c();
+		return(0);
+	}
+	
+	for(i=0;i<no;i++)
+	{   
+		SendByte(*s);               //�������� 
+		if(ack==0)
+		{
+			Stop_I2c();
+			return(0);
+		}
+		s++;
+	}
+	Stop_I2c();                 //��������  
+	return(1);
+}
+
 //******************************************************************
 //                    �����ӵ�ַ�������Ͷ��ֽ����ݺ���               
 //����ԭ��: bit  ISendStr(uchar sla,uchar suba,ucahr *s,uchar no);  
