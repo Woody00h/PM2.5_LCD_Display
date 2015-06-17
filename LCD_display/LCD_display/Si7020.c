@@ -2,6 +2,8 @@
 #include "Si7020.h"
 #include "software_IIC.h"
 
+#define QUARTER_SEC_TIMER_RELOAD 6
+
 extern unsigned char IICTimeOutTimer;
 //
 //Measure Relative Humidity, Hold Master Mode
@@ -17,7 +19,7 @@ unsigned char Si7020SendCommand(char cmd)
 void Si7020Read_RH_NHM(unsigned char * buffer)
 {
 	char ret;
-	IICTimeOutTimer = 2;
+	IICTimeOutTimer = QUARTER_SEC_TIMER_RELOAD;
 	while (1)
 	{
 		ret = IRcvBytes(SI7020_ADDR,buffer,3);

@@ -8,6 +8,8 @@
  *     Do not apply it on other particle sensor.
  */
 
+#define RECV_TIMEOUT_RELOAD 9
+
 void SensorUART(void )
 {
 	unsigned char rxdata;
@@ -21,7 +23,7 @@ void SensorUART(void )
 	UART_Board_SendData(rxdata);
 	*/
 	
-	RecTimeoutTimer = 3;
+	RecTimeoutTimer = RECV_TIMEOUT_RELOAD;
 	
 	if(HeadFlag == 0)
     {

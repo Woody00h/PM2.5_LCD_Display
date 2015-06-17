@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 extern unsigned char Timer;
+#define ONE_SECOND_TIMER_RELOAD		24
 
 void DisplayPMxx(unsigned int pm)
 {
@@ -361,4 +362,5 @@ void LCD_Init()
 	PM_Flag		= PM2_5;
 	HeapLife	= 85;
 	CarbonLife	= 73;
+	FanUpdateTimeReload = ONE_SECOND_TIMER_RELOAD;
 }
