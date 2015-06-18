@@ -12,9 +12,7 @@
 #include "HumiChipII.h";
 #include "include.h"
 
-#define ONE_SECOND_TIMER_RELOAD		24
-#define HALF_SECOND_TIMER_RELOAD	12
-#define BACKLIGHT_DIM_STEP			3
+#define ONE_SECOND_TIMER_RELOAD 8
 
 unsigned int LightADCValue;										
 unsigned int DstBackLight;
@@ -25,14 +23,11 @@ unsigned char FanUpdateTimer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char one_sec_timer		= ONE_SECOND_TIMER_RELOAD;
 unsigned char rh_sample_timer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char PlasmaTimer		= PLASMA_TIMER_RELOAD;
-unsigned char LcdUpdateTimer	= HALF_SECOND_TIMER_RELOAD;
+unsigned char LcdUpdateTimer	= 4;
 unsigned char IICTimeOutTimer;
 unsigned char RHSampleStep = 0;
 							//   255   192   129   66    3
 const unsigned char RankLevel[8] = {20,  120,  220,  320};
-
-#define USE_SI7020 //if use HumiChipII then comment this macro
-
 void Timer16ISR(void)
 {
 	if (one_sec_timer)		one_sec_timer--;
@@ -43,17 +38,17 @@ void Timer16ISR(void)
 	if (IICTimeOutTimer)	IICTimeOutTimer--;
 	if (RecTimeoutTimer)	RecTimeoutTimer--;
 	
-	if (DstBackLight >= (CurrentBackLight + BACKLIGHT_DIM_STEP))
+	if (DstBackLight >= (CurrentBackLight + 9))
 	{
-		CurrentBackLight += BACKLIGHT_DIM_STEP;
+		CurrentBackLight += 9;
 		LightDuty = CurrentBackLight;
 		PWM8_BL_WritePulseWidth(LightDuty);
 	}
 	else
 	{
-		if ((DstBackLight + BACKLIGHT_DIM_STEP) <= CurrentBackLight)
+		if ((DstBackLight + 9) <= CurrentBackLight)
 		{
-			CurrentBackLight -= BACKLIGHT_DIM_STEP;
+			CurrentBackLight -= 9;
 			LightDuty = CurrentBackLight;
 			PWM8_BL_WritePulseWidth(LightDuty);
 		}
@@ -110,8 +105,8 @@ void main(void)
 //	UART_Sensor_EnableInt();
 	UART_Sensor_IntCntl(UART_Sensor_ENABLE_RX_INT | UART_Sensor_DISABLE_TX_INT);
 	
-	Timer16_WritePeriod(3200);
-	Timer16_WriteCompareValue(3200);
+	Timer16_WritePeriod(9600);
+	Timer16_WriteCompareValue(9000);
 	Timer16_EnableInt();
 	Timer16_Start();
 
@@ -127,12 +122,9 @@ void main(void)
 	SAR10_DisableInt(); // Enable SAR10 interrupt
 	SAR10_Start(); // Start conversion
 
-#ifdef USE_SI7020
 	Si7020Init();
-#else
 	HumiChipInit();
-#endif 
-
+	
 	LCD_Init();
 	
 	RES_WDT = 0;
@@ -196,7 +188,7 @@ void main(void)
 		if(!rh_sample_timer)
 		{
 			rh_sample_timer = ONE_SECOND_TIMER_RELOAD;
-#ifdef USE_SI7020
+#if 0
 			if (!RHSampleStep)
 			{
 				ret = Si7020SendCommand(MRH_NHMM); // send the command(Measure RH, No Hold Master Mode)
@@ -256,7 +248,7 @@ void main(void)
 				
 		if (!LcdUpdateTimer)
 		{
-			LcdUpdateTimer = HALF_SECOND_TIMER_RELOAD;
+			LcdUpdateTimer = 4;
 			LCDOuputAll();
 		}
 		

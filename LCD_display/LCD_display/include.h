@@ -23,5 +23,5 @@
 #define AUTO_MODE	0
 #define MANUAL_MODE	1
 
-#define PLASMA_TIMER_RELOAD 24
+#define PLASMA_TIMER_RELOAD 8
 #endif	
