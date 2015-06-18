@@ -7,6 +7,11 @@
    ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
    D:/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\HT1621B.h
+./obj/humichipii.p1 :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8_BL.h\
+   ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
+   D:/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
+   E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\HUMICH~1.H\
+   E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\SOFTWA~1.H
 ./obj/lcd.p1 :  E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\HT1621B.h\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\LCD.h\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\PARTIC~1.H\
@@ -16,6 +21,7 @@
    ./lib/SAR10.h ./lib/Timer16.h ./lib/UART_B~1.H ./lib/UART_S~1.H\
    D:/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C22~1/m8c.h\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\HT1621B.h\
+   E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\HUMICH~1.H\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\LCD.h\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\PARTIC~1.H\
    E:\430PRO~1\PM2~2.5_L\LCD_DI~1\LCD_DI~1\Si7020.h\

@@ -2023,44 +2023,346 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F683 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 203: extern BYTE bUART_Sensor_ReadRxStatus(void);
 
-"5 ./boardcommunication.c
-[v _BoardUART `(v 1 ef ]
+"25 ./HumiChipII.h
+[v _CmdBuf `uc -> 3 `i e ]
+[; ;HumiChipII.h: 25: unsigned char CmdBuf[3];
+
+"26
+[v _HumiChipData `uc -> 6 `i e ]
+[; ;HumiChipII.h: 26: unsigned char HumiChipData[6];
+
+[; ;HumiChipII.h: 27: unsigned char HumiChipRdHnT();
+
+[; ;HumiChipII.h: 28: void HumiChipInit();
+
+[; ;HumiChipII.h: 29: unsigned char HumiChipCheckSum();
+
+[; ;Software_IIC.h: 25: extern unsigned char ack;
+
+[; ;Software_IIC.h: 26: extern char eepromtype;
+
+[; ;Software_IIC.h: 28: extern void Init_IIC(void);
+
+[; ;Software_IIC.h: 29: extern unsigned char SetAddr(unsigned char sla,unsigned int suba);
+
+[; ;Software_IIC.h: 30: extern void Start_I2c(void);
+
+[; ;Software_IIC.h: 31: extern void Stop_I2c(void);
+
+[; ;Software_IIC.h: 32: extern void SendByte(unsigned char c);
+
+[; ;Software_IIC.h: 33: extern unsigned char RcvByte(void);
+
+[; ;Software_IIC.h: 34: extern void Ack_I2c(unsigned char a);
+
+[; ;Software_IIC.h: 35: extern unsigned char ISendByte(unsigned char sla,unsigned char c);
+
+[; ;Software_IIC.h: 36: extern unsigned char ISendBytes(unsigned char sla,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 37: extern unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 38: extern unsigned char IRcvByte(unsigned char sla,unsigned char *c);
+
+[; ;Software_IIC.h: 39: extern unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 40: extern unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 41: extern void ChangeToRead(void);
+
+[; ;Software_IIC.h: 42: extern void ChangeToOD(void);
+
+[; ;humichipii.c: 7: extern void delay_us(unsigned int us);
+
+"10 ./humichipii.c
+[v _HumiChipRdHnT `(uc 1 ef ]
 {
-[; ;boardcommunication.c: 4: void BoardUART(void )
+[; ;humichipii.c: 9: unsigned char HumiChipRdHnT()
 
-[; ;boardcommunication.c: 5: {
+[; ;humichipii.c: 10: {
 
-[e :U _BoardUART ]
+[e :U _HumiChipRdHnT ]
 [f ]
-"6
-[v _rxdata `uc 1 a ]
-[; ;boardcommunication.c: 6: unsigned char rxdata;
+"11
+[v _ret `uc 1 a ]
+[; ;humichipii.c: 11: unsigned char ret;
 
-[; ;boardcommunication.c: 8: rxdata = UART_Board_bReadRxData();
+[; ;humichipii.c: 12: CmdBuf[0] = 0x40;
 
-"77 ./lib\UART_Board.h
-[v _UART_Board_bReadRxData `BF525 0 e ]
-"8 ./boardcommunication.c
-[e = _rxdata ( _UART_Board_bReadRxData ..  ]
-[; ;boardcommunication.c: 10: while (!(UART_Board_bReadTxStatus() & 0x10));
-
-"76 ./lib\UART_Board.h
-[v _UART_Board_bReadTxStatus `BF522 0 e ]
-"10 ./boardcommunication.c
-[e $U 2  ]
-[e :U 3 ]
-[e :U 2 ]
-[e $ ! != & -> ( _UART_Board_bReadTxStatus ..  `i -> 16 `i -> 0 `i 3  ]
-[e :U 4 ]
-[; ;boardcommunication.c: 11: UART_Board_SendData(rxdata);
-
-"75 ./lib\UART_Board.h
-[v _UART_Board_SendData `BF519 0 e ]
-"11 ./boardcommunication.c
-[e ( _UART_Board_SendData (1
- _rxdata ]
 "12
-[; ;boardcommunication.c: 12: }
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 64 `i `uc ]
+[; ;humichipii.c: 13: CmdBuf[1] = 0;
+
+"13
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 0 `i `uc ]
+[; ;humichipii.c: 14: if(!(PRT1DR&0x10))
+
+"14
+[e $ ! ! != & -> _PRT1DR `i -> 16 `i -> 0 `i 2  ]
+[; ;humichipii.c: 15: {
+
+"15
+{
+[; ;humichipii.c: 16: ret = ISendBytes(0x50,CmdBuf,2);
+
+"36 ./Software_IIC.h
+[v _ISendBytes `(uc 0 ef3`uc`*uc`uc ]
+"16 ./humichipii.c
+[e = _ret ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 2 `i `uc ]
+[; ;humichipii.c: 17: if(!ret)
+
+"17
+[e $ ! ! != -> _ret `i -> -> -> 0 `i `uc `i 3  ]
+[; ;humichipii.c: 18: return 0;
+
+"18
+[e ) -> -> 0 `i `uc ]
+[e $UE 1  ]
+[e :U 3 ]
+[; ;humichipii.c: 20: ret = IRcvBytes(0x50,HumiChipData,6);
+
+"40 ./Software_IIC.h
+[v _IRcvBytes `(uc 0 ef3`uc`*uc`uc ]
+"20 ./humichipii.c
+[e = _ret ( _IRcvBytes (3
+ , , -> -> 80 `i `uc &U _HumiChipData -> -> 6 `i `uc ]
+[; ;humichipii.c: 21: return ret;
+
+"21
+[e ) _ret ]
+[e $UE 1  ]
+"22
+}
+[; ;humichipii.c: 22: }
+
+[e $U 4  ]
+"23
+[e :U 2 ]
+[; ;humichipii.c: 23: else
+
+[; ;humichipii.c: 24: {
+
+"24
+{
+[; ;humichipii.c: 25: return 0;
+
+"25
+[e ) -> -> 0 `i `uc ]
+[e $UE 1  ]
+"26
+}
+[e :U 4 ]
+"27
+[; ;humichipii.c: 26: }
+
+[; ;humichipii.c: 27: }
 
 [e :UE 1 ]
+}
+"30
+[v _HumiChipInit `(v 1 ef ]
+{
+[; ;humichipii.c: 29: void HumiChipInit()
+
+[; ;humichipii.c: 30: {
+
+[e :U _HumiChipInit ]
+[f ]
+[; ;humichipii.c: 31: CmdBuf[0] = 0xc0;
+
+"31
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 192 `i `uc ]
+[; ;humichipii.c: 32: CmdBuf[1] = 0x1c;
+
+"32
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 28 `i `uc ]
+[; ;humichipii.c: 33: CmdBuf[2] = 0xc4;
+
+"33
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 196 `i `uc ]
+[; ;humichipii.c: 34: ISendBytes(0x50,CmdBuf,3);
+
+"34
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 35: delay_us(10);
+
+"7
+[v _delay_us `(v 0 ef1`ui ]
+"35
+[e ( _delay_us (1
+ -> -> 10 `i `ui ]
+[; ;humichipii.c: 37: CmdBuf[0] = 0x60;
+
+"37
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 96 `i `uc ]
+[; ;humichipii.c: 38: CmdBuf[1] = 0x7F;
+
+"38
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 39: ISendBytes(0x50,CmdBuf,2);
+
+"39
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 2 `i `uc ]
+[; ;humichipii.c: 40: delay_us(1);
+
+"40
+[e ( _delay_us (1
+ -> -> 1 `i `ui ]
+[; ;humichipii.c: 41: IRcvByte(0x50,HumiChipData);
+
+"38 ./Software_IIC.h
+[v _IRcvByte `(uc 0 ef2`uc`*uc ]
+"41 ./humichipii.c
+[e ( _IRcvByte (2
+ , -> -> 80 `i `uc &U _HumiChipData ]
+[; ;humichipii.c: 43: if (!(HumiChipData[0] & 0x08))
+
+"43
+[e $ ! ! != & -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> 8 `i -> 0 `i 6  ]
+[; ;humichipii.c: 44: {
+
+"44
+{
+[; ;humichipii.c: 45: delay_us(1);
+
+"45
+[e ( _delay_us (1
+ -> -> 1 `i `ui ]
+[; ;humichipii.c: 46: CmdBuf[0] = 0xe2;
+
+"46
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 226 `i `uc ]
+[; ;humichipii.c: 47: CmdBuf[1] = 0x7f;
+
+"47
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 48: CmdBuf[2] = 0x00;
+
+"48
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 0 `i `uc ]
+[; ;humichipii.c: 49: ISendBytes(0x50,CmdBuf,3);
+
+"49
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 51: delay_us(7000);
+
+"51
+[e ( _delay_us (1
+ -> -> 7000 `i `ui ]
+[; ;humichipii.c: 53: CmdBuf[0] = 0xe0;
+
+"53
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 224 `i `uc ]
+[; ;humichipii.c: 54: CmdBuf[1] = 0x7f;
+
+"54
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 55: CmdBuf[2] = HumiChipData[0] | 0x08;
+
+"55
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> | -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> 8 `i `uc ]
+[; ;humichipii.c: 56: ISendBytes(0x50,CmdBuf,3);
+
+"56
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 58: delay_us(7000);
+
+"58
+[e ( _delay_us (1
+ -> -> 7000 `i `ui ]
+"59
+}
+[e :U 6 ]
+[; ;humichipii.c: 59: }
+
+[; ;humichipii.c: 61: CmdBuf[0] = 0xc0;
+
+"61
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 192 `i `uc ]
+[; ;humichipii.c: 62: CmdBuf[1] = 0x1c;
+
+"62
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 28 `i `uc ]
+[; ;humichipii.c: 63: CmdBuf[2] = 0x44;
+
+"63
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 68 `i `uc ]
+[; ;humichipii.c: 64: ISendBytes(0x50,CmdBuf,3);
+
+"64
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 66: delay_us(10);
+
+"66
+[e ( _delay_us (1
+ -> -> 10 `i `ui ]
+[; ;humichipii.c: 68: CmdBuf[0] = 0x88;
+
+"68
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 136 `i `uc ]
+[; ;humichipii.c: 69: ISendBytes(0x50,CmdBuf,1);
+
+"69
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 1 `i `uc ]
+"70
+[; ;humichipii.c: 70: }
+
+[e :UE 5 ]
+}
+"73
+[v _HumiChipCheckSum `(uc 1 ef ]
+{
+[; ;humichipii.c: 72: unsigned char HumiChipCheckSum()
+
+[; ;humichipii.c: 73: {
+
+[e :U _HumiChipCheckSum ]
+[f ]
+"74
+[v _temp `uc 1 a ]
+[; ;humichipii.c: 74: unsigned char temp;
+
+[; ;humichipii.c: 75: temp = HumiChipData[0] + HumiChipData[1];
+
+"75
+[e = _temp -> + -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> *U + &U _HumiChipData * -> -> -> 1 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i `uc ]
+[; ;humichipii.c: 76: if( temp != HumiChipData[2])
+
+"76
+[e $ ! != -> _temp `i -> *U + &U _HumiChipData * -> -> -> 2 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i 8  ]
+[; ;humichipii.c: 77: return 0;
+
+"77
+[e ) -> -> 0 `i `uc ]
+[e $UE 7  ]
+[e :U 8 ]
+[; ;humichipii.c: 79: temp = HumiChipData[3] + HumiChipData[4];
+
+"79
+[e = _temp -> + -> *U + &U _HumiChipData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> *U + &U _HumiChipData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i `uc ]
+[; ;humichipii.c: 80: if( temp != HumiChipData[5])
+
+"80
+[e $ ! != -> _temp `i -> *U + &U _HumiChipData * -> -> -> 5 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i 9  ]
+[; ;humichipii.c: 81: return 0;
+
+"81
+[e ) -> -> 0 `i `uc ]
+[e $UE 7  ]
+[e :U 9 ]
+[; ;humichipii.c: 83: return 1;
+
+"83
+[e ) -> -> 1 `i `uc ]
+[e $UE 7  ]
+"84
+[; ;humichipii.c: 84: }
+
+[e :UE 7 ]
 }

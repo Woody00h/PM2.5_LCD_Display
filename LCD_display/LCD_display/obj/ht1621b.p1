@@ -1344,115 +1344,151 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\PSoCGPIOINT.h: 124: BYTE CS_MUXBusCtrl_ADDR;
 
 "127
-[v _SDA_Data_ADDR `Auc 1 e@4 ]
-[; ;lib\PSoCGPIOINT.h: 127: BYTE SDA_Data_ADDR;
+[v _HumiChipReady_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 127: BYTE HumiChipReady_Data_ADDR;
 
 "129
-[v _SDA_DriveMode_0_ADDR `Auc 1 e@260 ]
-[; ;lib\PSoCGPIOINT.h: 129: BYTE SDA_DriveMode_0_ADDR;
+[v _HumiChipReady_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 129: BYTE HumiChipReady_DriveMode_0_ADDR;
 
 "131
-[v _SDA_DriveMode_1_ADDR `Auc 1 e@261 ]
-[; ;lib\PSoCGPIOINT.h: 131: BYTE SDA_DriveMode_1_ADDR;
+[v _HumiChipReady_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 131: BYTE HumiChipReady_DriveMode_1_ADDR;
 
 "133
-[v _SDA_DriveMode_2_ADDR `Auc 1 e@7 ]
-[; ;lib\PSoCGPIOINT.h: 133: BYTE SDA_DriveMode_2_ADDR;
+[v _HumiChipReady_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 133: BYTE HumiChipReady_DriveMode_2_ADDR;
 
 "135
-[v _SDA_GlobalSelect_ADDR `Auc 1 e@6 ]
-[; ;lib\PSoCGPIOINT.h: 135: BYTE SDA_GlobalSelect_ADDR;
+[v _HumiChipReady_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 135: BYTE HumiChipReady_GlobalSelect_ADDR;
 
 "137
-[v _SDA_IntCtrl_0_ADDR `Auc 1 e@262 ]
-[; ;lib\PSoCGPIOINT.h: 137: BYTE SDA_IntCtrl_0_ADDR;
+[v _HumiChipReady_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 137: BYTE HumiChipReady_IntCtrl_0_ADDR;
 
 "139
-[v _SDA_IntCtrl_1_ADDR `Auc 1 e@263 ]
-[; ;lib\PSoCGPIOINT.h: 139: BYTE SDA_IntCtrl_1_ADDR;
+[v _HumiChipReady_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 139: BYTE HumiChipReady_IntCtrl_1_ADDR;
 
 "141
-[v _SDA_IntEn_ADDR `Auc 1 e@5 ]
-[; ;lib\PSoCGPIOINT.h: 141: BYTE SDA_IntEn_ADDR;
+[v _HumiChipReady_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 141: BYTE HumiChipReady_IntEn_ADDR;
 
 "144
-[v _SDA_MUXBusCtrl_ADDR `Auc 1 e@473 ]
-[; ;lib\PSoCGPIOINT.h: 144: BYTE SDA_MUXBusCtrl_ADDR;
+[v _HumiChipReady_MUXBusCtrl_ADDR `Auc 1 e@473 ]
+[; ;lib\PSoCGPIOINT.h: 144: BYTE HumiChipReady_MUXBusCtrl_ADDR;
 
 "147
-[v _SCL_Data_ADDR `Auc 1 e@4 ]
-[; ;lib\PSoCGPIOINT.h: 147: BYTE SCL_Data_ADDR;
+[v _SDA_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 147: BYTE SDA_Data_ADDR;
 
 "149
-[v _SCL_DriveMode_0_ADDR `Auc 1 e@260 ]
-[; ;lib\PSoCGPIOINT.h: 149: BYTE SCL_DriveMode_0_ADDR;
+[v _SDA_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 149: BYTE SDA_DriveMode_0_ADDR;
 
 "151
-[v _SCL_DriveMode_1_ADDR `Auc 1 e@261 ]
-[; ;lib\PSoCGPIOINT.h: 151: BYTE SCL_DriveMode_1_ADDR;
+[v _SDA_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 151: BYTE SDA_DriveMode_1_ADDR;
 
 "153
-[v _SCL_DriveMode_2_ADDR `Auc 1 e@7 ]
-[; ;lib\PSoCGPIOINT.h: 153: BYTE SCL_DriveMode_2_ADDR;
+[v _SDA_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 153: BYTE SDA_DriveMode_2_ADDR;
 
 "155
-[v _SCL_GlobalSelect_ADDR `Auc 1 e@6 ]
-[; ;lib\PSoCGPIOINT.h: 155: BYTE SCL_GlobalSelect_ADDR;
+[v _SDA_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 155: BYTE SDA_GlobalSelect_ADDR;
 
 "157
-[v _SCL_IntCtrl_0_ADDR `Auc 1 e@262 ]
-[; ;lib\PSoCGPIOINT.h: 157: BYTE SCL_IntCtrl_0_ADDR;
+[v _SDA_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 157: BYTE SDA_IntCtrl_0_ADDR;
 
 "159
-[v _SCL_IntCtrl_1_ADDR `Auc 1 e@263 ]
-[; ;lib\PSoCGPIOINT.h: 159: BYTE SCL_IntCtrl_1_ADDR;
+[v _SDA_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 159: BYTE SDA_IntCtrl_1_ADDR;
 
 "161
-[v _SCL_IntEn_ADDR `Auc 1 e@5 ]
-[; ;lib\PSoCGPIOINT.h: 161: BYTE SCL_IntEn_ADDR;
+[v _SDA_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 161: BYTE SDA_IntEn_ADDR;
 
 "164
+[v _SDA_MUXBusCtrl_ADDR `Auc 1 e@473 ]
+[; ;lib\PSoCGPIOINT.h: 164: BYTE SDA_MUXBusCtrl_ADDR;
+
+"167
+[v _SCL_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 167: BYTE SCL_Data_ADDR;
+
+"169
+[v _SCL_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 169: BYTE SCL_DriveMode_0_ADDR;
+
+"171
+[v _SCL_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 171: BYTE SCL_DriveMode_1_ADDR;
+
+"173
+[v _SCL_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 173: BYTE SCL_DriveMode_2_ADDR;
+
+"175
+[v _SCL_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 175: BYTE SCL_GlobalSelect_ADDR;
+
+"177
+[v _SCL_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 177: BYTE SCL_IntCtrl_0_ADDR;
+
+"179
+[v _SCL_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 179: BYTE SCL_IntCtrl_1_ADDR;
+
+"181
+[v _SCL_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 181: BYTE SCL_IntEn_ADDR;
+
+"184
 [v _SCL_MUXBusCtrl_ADDR `Auc 1 e@473 ]
-[; ;lib\PSoCGPIOINT.h: 164: BYTE SCL_MUXBusCtrl_ADDR;
+[; ;lib\PSoCGPIOINT.h: 184: BYTE SCL_MUXBusCtrl_ADDR;
 
 "37 ./lib\PWM8_BL.h
-[v F356 `(v 1 tf ]
+[v F365 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 37: extern void PWM8_BL_EnableInt(void);
 
 "38
-[v F359 `(v 1 tf ]
+[v F368 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 38: extern void PWM8_BL_DisableInt(void);
 
 "39
-[v F362 `(v 1 tf ]
+[v F371 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 39: extern void PWM8_BL_Start(void);
 
 "40
-[v F365 `(v 1 tf ]
+[v F374 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 40: extern void PWM8_BL_Stop(void);
 
 "41
-[v F368 `(uc 1 tf ]
+[v F377 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 41: extern BYTE PWM8_BL_bReadCounter(void);
 
 "42
-[v F371 `(v 1 tf1`uc ]
+[v F380 `(v 1 tf1`uc ]
 [; ;lib\PWM8_BL.h: 42: extern void PWM8_BL_WritePeriod(BYTE bPeriod);
 
 "43
-[v F374 `(uc 1 tf ]
+[v F383 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 43: extern BYTE PWM8_BL_bReadPulseWidth(void);
 
 "44
-[v F377 `(v 1 tf1`uc ]
+[v F386 `(v 1 tf1`uc ]
 [; ;lib\PWM8_BL.h: 44: extern void PWM8_BL_WritePulseWidth(BYTE bPulseWidth);
 
 "49
-[v F380 `(uc 1 tf ]
+[v F389 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 49: extern BYTE bPWM8_BL_ReadCounter(void);
 
 "50
-[v F383 `(uc 1 tf ]
+[v F392 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 50: extern BYTE bPWM8_BL_ReadPulseWidth(void);
 
 "75
@@ -1488,55 +1524,55 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\PWM8_BL.h: 89: BYTE PWM8_BL_INT_REG;
 
 "35 ./lib\SAR10.h
-[v F394 `(v 1 tf ]
+[v F403 `(v 1 tf ]
 [; ;lib\SAR10.h: 35: extern void SAR10_EnableInt(void);
 
 "36
-[v F397 `(v 1 tf ]
+[v F406 `(v 1 tf ]
 [; ;lib\SAR10.h: 36: extern void SAR10_DisableInt(void);
 
 "37
-[v F400 `(v 1 tf ]
+[v F409 `(v 1 tf ]
 [; ;lib\SAR10.h: 37: extern void SAR10_Start(void);
 
 "38
-[v F403 `(v 1 tf ]
+[v F412 `(v 1 tf ]
 [; ;lib\SAR10.h: 38: extern void SAR10_Stop(void);
 
 "39
-[v F406 `(v 1 tf ]
+[v F415 `(v 1 tf ]
 [; ;lib\SAR10.h: 39: extern void SAR10_Trigger(void);
 
 "40
-[v F409 `(uc 1 tf ]
+[v F418 `(uc 1 tf ]
 [; ;lib\SAR10.h: 40: extern BYTE SAR10_fIsDataAvailable(void);
 
 "41
-[v F412 `(i 1 tf ]
+[v F421 `(i 1 tf ]
 [; ;lib\SAR10.h: 41: extern INT SAR10_iGetData(void);
 
 "42
-[v F415 `(uc 1 tf ]
+[v F424 `(uc 1 tf ]
 [; ;lib\SAR10.h: 42: extern BYTE SAR10_bGetData(void);
 
 "43
-[v F418 `(v 1 tf1`uc ]
+[v F427 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 43: extern void SAR10_SetADCChannel(BYTE bChannel);
 
 "44
-[v F421 `(v 1 tf1`uc ]
+[v F430 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 44: extern void SAR10_SetTriggerSrc(BYTE bSrc);
 
 "45
-[v F424 `(v 1 tf1`uc ]
+[v F433 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 45: extern void SAR10_EnableAutoTrigger(BYTE bMode);
 
 "46
-[v F427 `(v 1 tf1`uc ]
+[v F436 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 46: extern void SAR10_SetClk(BYTE bClkMode);
 
 "47
-[v F430 `(v 1 tf1`uc ]
+[v F439 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 47: extern void SAR10_SetRunMode(BYTE bRunMode);
 
 "118
@@ -1560,59 +1596,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\SAR10.h: 126: BYTE SAR10_SAR_DL_REG;
 
 "41 ./lib\Timer16.h
-[v F438 `(v 1 tf ]
+[v F447 `(v 1 tf ]
 [; ;lib\Timer16.h: 41: extern void Timer16_EnableInt(void);
 
 "42
-[v F441 `(v 1 tf ]
+[v F450 `(v 1 tf ]
 [; ;lib\Timer16.h: 42: extern void Timer16_DisableInt(void);
 
 "43
-[v F444 `(v 1 tf ]
+[v F453 `(v 1 tf ]
 [; ;lib\Timer16.h: 43: extern void Timer16_Start(void);
 
 "44
-[v F447 `(v 1 tf ]
+[v F456 `(v 1 tf ]
 [; ;lib\Timer16.h: 44: extern void Timer16_Stop(void);
 
 "45
-[v F450 `(ui 1 tf ]
+[v F459 `(ui 1 tf ]
 [; ;lib\Timer16.h: 45: extern WORD Timer16_wReadTimer(void);
 
 "46
-[v F453 `(ui 1 tf ]
+[v F462 `(ui 1 tf ]
 [; ;lib\Timer16.h: 46: extern WORD Timer16_wReadTimerSaveCV(void);
 
 "47
-[v F456 `(v 1 tf1`ui ]
+[v F465 `(v 1 tf1`ui ]
 [; ;lib\Timer16.h: 47: extern void Timer16_WritePeriod(WORD wPeriod);
 
 "48
-[v F459 `(ui 1 tf ]
+[v F468 `(ui 1 tf ]
 [; ;lib\Timer16.h: 48: extern WORD Timer16_wReadCompareValue(void);
 
 "49
-[v F462 `(v 1 tf1`ui ]
+[v F471 `(v 1 tf1`ui ]
 [; ;lib\Timer16.h: 49: extern void Timer16_WriteCompareValue(WORD wCompareValue);
 
 "54
-[v F465 `(ui 1 tf ]
+[v F474 `(ui 1 tf ]
 [; ;lib\Timer16.h: 54: extern WORD wTimer16_ReadCompareValue(void);
 
 "55
-[v F468 `(ui 1 tf ]
+[v F477 `(ui 1 tf ]
 [; ;lib\Timer16.h: 55: extern WORD wTimer16_ReadTimerSaveCV(void);
 
 "56
-[v F471 `(ui 1 tf ]
+[v F480 `(ui 1 tf ]
 [; ;lib\Timer16.h: 56: extern WORD wTimer16_ReadCounter(void);
 
 "57
-[v F474 `(ui 1 tf ]
+[v F483 `(ui 1 tf ]
 [; ;lib\Timer16.h: 57: extern WORD wTimer16_ReadTimer(void);
 
 "58
-[v F477 `(ui 1 tf ]
+[v F486 `(ui 1 tf ]
 [; ;lib\Timer16.h: 58: extern WORD wTimer16_CaptureCounter(void);
 
 "83
@@ -1676,91 +1712,91 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\Timer16.h: 111: BYTE Timer16_INT_REG;
 
 "70 ./lib\UART_Board.h
-[v F495 `(v 1 tf1`uc ]
+[v F504 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 70: extern void UART_Board_SetTxIntMode(BYTE bTxIntMode);
 
 "71
-[v F498 `(v 1 tf ]
+[v F507 `(v 1 tf ]
 [; ;lib\UART_Board.h: 71: extern void UART_Board_EnableInt(void);
 
 "72
-[v F501 `(v 1 tf ]
+[v F510 `(v 1 tf ]
 [; ;lib\UART_Board.h: 72: extern void UART_Board_DisableInt(void);
 
 "73
-[v F504 `(v 1 tf1`uc ]
+[v F513 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 73: extern void UART_Board_Start(BYTE bParitySetting);
 
 "74
-[v F507 `(v 1 tf ]
+[v F516 `(v 1 tf ]
 [; ;lib\UART_Board.h: 74: extern void UART_Board_Stop(void);
 
 "75
-[v F510 `(v 1 tf1`uc ]
+[v F519 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 75: extern void UART_Board_SendData(BYTE bTxData);
 
 "76
-[v F513 `(uc 1 tf ]
+[v F522 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 76: extern BYTE UART_Board_bReadTxStatus(void);
 
 "77
-[v F516 `(uc 1 tf ]
+[v F525 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 77: extern BYTE UART_Board_bReadRxData(void);
 
 "78
-[v F519 `(uc 1 tf ]
+[v F528 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 78: extern BYTE UART_Board_bReadRxStatus(void);
 
 "81
-[v F522 `(v 1 tf1`*Cuc ]
+[v F531 `(v 1 tf1`*Cuc ]
 [; ;lib\UART_Board.h: 81: extern void UART_Board_CPutString(const BYTE * szRomString);
 
 "82
-[v F525 `(v 1 tf1`*uc ]
+[v F534 `(v 1 tf1`*uc ]
 [; ;lib\UART_Board.h: 82: extern void UART_Board_PutString(BYTE * szRamString);
 
 "83
-[v F528 `(v 1 tf1`c ]
+[v F537 `(v 1 tf1`c ]
 [; ;lib\UART_Board.h: 83: extern void UART_Board_PutChar(CHAR cData);
 
 "84
-[v F532 `(v 1 tf2`*uc`uc ]
+[v F541 `(v 1 tf2`*uc`uc ]
 [; ;lib\UART_Board.h: 84: extern void UART_Board_Write(BYTE * szRamString, BYTE bCount);
 
 "85
-[v F536 `(v 1 tf2`*Cuc`i ]
+[v F545 `(v 1 tf2`*Cuc`i ]
 [; ;lib\UART_Board.h: 85: extern void UART_Board_CWrite(const BYTE * szRomString, INT iCount);
 
 "86
-[v F539 `(v 1 tf1`uc ]
+[v F548 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 86: extern void UART_Board_PutSHexByte(BYTE bValue);
 
 "87
-[v F542 `(v 1 tf1`i ]
+[v F551 `(v 1 tf1`i ]
 [; ;lib\UART_Board.h: 87: extern void UART_Board_PutSHexInt(INT iValue);
 
 "88
-[v F545 `(v 1 tf ]
+[v F554 `(v 1 tf ]
 [; ;lib\UART_Board.h: 88: extern void UART_Board_PutCRLF(void);
 
 "89
-[v F548 `(v 1 tf1`uc ]
+[v F557 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 89: extern void UART_Board_TxIntMode(BYTE bMask);
 
 "92
-[v F551 `(c 1 tf ]
+[v F560 `(c 1 tf ]
 [; ;lib\UART_Board.h: 92: extern CHAR UART_Board_cGetChar(void);
 
 "93
-[v F554 `(c 1 tf ]
+[v F563 `(c 1 tf ]
 [; ;lib\UART_Board.h: 93: extern CHAR UART_Board_cReadChar(void);
 
 "94
-[v F557 `(i 1 tf ]
+[v F566 `(i 1 tf ]
 [; ;lib\UART_Board.h: 94: extern INT UART_Board_iReadChar(void);
 
 "95
-[v F560 `(v 1 tf1`uc ]
+[v F569 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 95: extern void UART_Board_IntCntl(BYTE bMask);
 
 "158
@@ -1820,103 +1856,103 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\UART_Board.h: 185: BYTE UART_Board_RX_INT_REG;
 
 "201
-[v F577 `(uc 1 tf ]
+[v F586 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 201: extern BYTE bUART_Board_ReadTxStatus(void);
 
 "202
-[v F580 `(uc 1 tf ]
+[v F589 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 202: extern BYTE bUART_Board_ReadRxData(void);
 
 "203
-[v F583 `(uc 1 tf ]
+[v F592 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 203: extern BYTE bUART_Board_ReadRxStatus(void);
 
 "70 ./lib\UART_Sensor.h
-[v F586 `(v 1 tf1`uc ]
+[v F595 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 70: extern void UART_Sensor_SetTxIntMode(BYTE bTxIntMode);
 
 "71
-[v F589 `(v 1 tf ]
+[v F598 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 71: extern void UART_Sensor_EnableInt(void);
 
 "72
-[v F592 `(v 1 tf ]
+[v F601 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 72: extern void UART_Sensor_DisableInt(void);
 
 "73
-[v F595 `(v 1 tf1`uc ]
+[v F604 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 73: extern void UART_Sensor_Start(BYTE bParitySetting);
 
 "74
-[v F598 `(v 1 tf ]
+[v F607 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 74: extern void UART_Sensor_Stop(void);
 
 "75
-[v F601 `(v 1 tf1`uc ]
+[v F610 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 75: extern void UART_Sensor_SendData(BYTE bTxData);
 
 "76
-[v F604 `(uc 1 tf ]
+[v F613 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 76: extern BYTE UART_Sensor_bReadTxStatus(void);
 
 "77
-[v F607 `(uc 1 tf ]
+[v F616 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 77: extern BYTE UART_Sensor_bReadRxData(void);
 
 "78
-[v F610 `(uc 1 tf ]
+[v F619 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 78: extern BYTE UART_Sensor_bReadRxStatus(void);
 
 "81
-[v F613 `(v 1 tf1`*Cuc ]
+[v F622 `(v 1 tf1`*Cuc ]
 [; ;lib\UART_Sensor.h: 81: extern void UART_Sensor_CPutString(const BYTE * szRomString);
 
 "82
-[v F616 `(v 1 tf1`*uc ]
+[v F625 `(v 1 tf1`*uc ]
 [; ;lib\UART_Sensor.h: 82: extern void UART_Sensor_PutString(BYTE * szRamString);
 
 "83
-[v F619 `(v 1 tf1`c ]
+[v F628 `(v 1 tf1`c ]
 [; ;lib\UART_Sensor.h: 83: extern void UART_Sensor_PutChar(CHAR cData);
 
 "84
-[v F623 `(v 1 tf2`*uc`uc ]
+[v F632 `(v 1 tf2`*uc`uc ]
 [; ;lib\UART_Sensor.h: 84: extern void UART_Sensor_Write(BYTE * szRamString, BYTE bCount);
 
 "85
-[v F627 `(v 1 tf2`*Cuc`i ]
+[v F636 `(v 1 tf2`*Cuc`i ]
 [; ;lib\UART_Sensor.h: 85: extern void UART_Sensor_CWrite(const BYTE * szRomString, INT iCount);
 
 "86
-[v F630 `(v 1 tf1`uc ]
+[v F639 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 86: extern void UART_Sensor_PutSHexByte(BYTE bValue);
 
 "87
-[v F633 `(v 1 tf1`i ]
+[v F642 `(v 1 tf1`i ]
 [; ;lib\UART_Sensor.h: 87: extern void UART_Sensor_PutSHexInt(INT iValue);
 
 "88
-[v F636 `(v 1 tf ]
+[v F645 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 88: extern void UART_Sensor_PutCRLF(void);
 
 "89
-[v F639 `(v 1 tf1`uc ]
+[v F648 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 89: extern void UART_Sensor_TxIntMode(BYTE bMask);
 
 "92
-[v F642 `(c 1 tf ]
+[v F651 `(c 1 tf ]
 [; ;lib\UART_Sensor.h: 92: extern CHAR UART_Sensor_cGetChar(void);
 
 "93
-[v F645 `(c 1 tf ]
+[v F654 `(c 1 tf ]
 [; ;lib\UART_Sensor.h: 93: extern CHAR UART_Sensor_cReadChar(void);
 
 "94
-[v F648 `(i 1 tf ]
+[v F657 `(i 1 tf ]
 [; ;lib\UART_Sensor.h: 94: extern INT UART_Sensor_iReadChar(void);
 
 "95
-[v F651 `(v 1 tf1`uc ]
+[v F660 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 95: extern void UART_Sensor_IntCntl(BYTE bMask);
 
 "158
@@ -1976,15 +2012,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\UART_Sensor.h: 185: BYTE UART_Sensor_RX_INT_REG;
 
 "201
-[v F668 `(uc 1 tf ]
+[v F677 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 201: extern BYTE bUART_Sensor_ReadTxStatus(void);
 
 "202
-[v F671 `(uc 1 tf ]
+[v F680 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 202: extern BYTE bUART_Sensor_ReadRxData(void);
 
 "203
-[v F674 `(uc 1 tf ]
+[v F683 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 203: extern BYTE bUART_Sensor_ReadRxStatus(void);
 
 [; ;HT1621B.h: 19: void SendBit_1621(unsigned char data,unsigned char cnt);

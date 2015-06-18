@@ -3,6 +3,8 @@ creating project.mk -- no changes
 
 sed: can't read HTlinkOpts.lkp: No such file or directory
 
+sed: can't read HTlinkOpts.lkp: No such file or directory
+
 expanded_libs = 
 
 Linking..
@@ -17,18 +19,18 @@ Serial number: HCPSOC-679591
 
 Memory Summary:
 
-    Program space        used  1548h (  5448) of  4000h bytes   ( 33.3%)
+    Program space        used  14FAh (  5370) of  4000h bytes   ( 32.8%)
 
-    Data space           used    87h (   135) of   400h bytes   ( 13.2%)
+    Data space           used    8Ch (   140) of   400h bytes   ( 13.7%)
 
 
 
 Comparative memory usage (excludes absolute areas and stack variables)
 
-    ROM used:  5112 bytes
+    ROM used:  5034 bytes
 
-    RAM used:    99 bytes
+    RAM used:   104 bytes
 
  
-LCD_display - 0 error(s) 0 warning(s) 15:43:23
+LCD_display - 0 error(s) 0 warning(s) 09:40:09
 
