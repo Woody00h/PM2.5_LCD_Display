@@ -8,6 +8,8 @@
  *     Do not apply it on other particle sensor.
  */
 
+#define RECV_TIMEOUT_RELOAD 9
+
 void SensorUART(void )
 {
 	unsigned char rxdata;
@@ -21,7 +23,7 @@ void SensorUART(void )
 	UART_Board_SendData(rxdata);
 	*/
 	
-	RecTimeoutTimer = 3;
+	RecTimeoutTimer = RECV_TIMEOUT_RELOAD;
 	
 	if(HeadFlag == 0)
     {
@@ -49,7 +51,10 @@ void SensorUART(void )
     	MyPMSUnion.PMRxBuf[DataPtr] = rxdata;
         if(DataPtr >= (BUF_LENGTH-1))
         {
-            DataPtr = (BUF_LENGTH-1);
+            HeadFlag = 0;	
+            DataPtr = 0;
+			MyPMSUnion.MyPMFrame.Length = 0;
+			MyPMSUnion.MyPMFrame.Head = 0;
         }
 		else
 		{

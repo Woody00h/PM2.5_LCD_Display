@@ -66,6 +66,17 @@ CS_IntCtrl_1_ADDR:	equ	103h
 CS_IntEn_ADDR:	equ	1h
 CS_MASK:	equ	80h
 CS_MUXBusCtrl_ADDR:	equ	1d8h
+; HumiChipReady address and mask equates
+HumiChipReady_Data_ADDR:	equ	4h
+HumiChipReady_DriveMode_0_ADDR:	equ	104h
+HumiChipReady_DriveMode_1_ADDR:	equ	105h
+HumiChipReady_DriveMode_2_ADDR:	equ	7h
+HumiChipReady_GlobalSelect_ADDR:	equ	6h
+HumiChipReady_IntCtrl_0_ADDR:	equ	106h
+HumiChipReady_IntCtrl_1_ADDR:	equ	107h
+HumiChipReady_IntEn_ADDR:	equ	5h
+HumiChipReady_MASK:	equ	10h
+HumiChipReady_MUXBusCtrl_ADDR:	equ	1d9h
 ; SDA address and mask equates
 SDA_Data_ADDR:	equ	4h
 SDA_DriveMode_0_ADDR:	equ	104h
@@ -88,3 +99,14 @@ SCL_IntCtrl_1_ADDR:	equ	107h
 SCL_IntEn_ADDR:	equ	5h
 SCL_MASK:	equ	80h
 SCL_MUXBusCtrl_ADDR:	equ	1d9h
+; RTS address and mask equates
+RTS_Data_ADDR:	equ	8h
+RTS_DriveMode_0_ADDR:	equ	108h
+RTS_DriveMode_1_ADDR:	equ	109h
+RTS_DriveMode_2_ADDR:	equ	bh
+RTS_GlobalSelect_ADDR:	equ	ah
+RTS_IntCtrl_0_ADDR:	equ	10ah
+RTS_IntCtrl_1_ADDR:	equ	10bh
+RTS_IntEn_ADDR:	equ	9h
+RTS_MASK:	equ	20h
+RTS_MUXBusCtrl_ADDR:	equ	1dah

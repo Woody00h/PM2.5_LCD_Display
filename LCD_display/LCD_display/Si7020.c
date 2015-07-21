@@ -1,6 +1,11 @@
 #define SI7020
 #include "Si7020.h"
 #include "software_IIC.h"
+#include <m8c.h>        // part specific constants and macros
+#include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+#include "BoardCommunication.h"
+
+#define QUARTER_SEC_TIMER_RELOAD 6
 
 extern unsigned char IICTimeOutTimer;
 //
@@ -17,7 +22,7 @@ unsigned char Si7020SendCommand(char cmd)
 void Si7020Read_RH_NHM(unsigned char * buffer)
 {
 	char ret;
-	IICTimeOutTimer = 2;
+	IICTimeOutTimer = QUARTER_SEC_TIMER_RELOAD;
 	while (1)
 	{
 		ret = IRcvBytes(SI7020_ADDR,buffer,3);
@@ -57,6 +62,10 @@ signed char Si7020CalcTemp(unsigned int data)
 {
 	signed long temp;
 	signed char result;
+	
+	RTS_H;
+	M8C_DisableGInt;
+	
 	temp = data;
 	temp = temp*175;
 	temp += (data>>2)*3;
@@ -66,6 +75,9 @@ signed char Si7020CalcTemp(unsigned int data)
 		temp = -9;
 	
 	result = temp;
+	
+	M8C_EnableGInt;
+	RTS_L;
 	return result;
 }
 
@@ -77,6 +89,10 @@ unsigned char Si7020CalcRH(unsigned int data)
 {
 	unsigned long temp;
 	unsigned char result;
+	
+	RTS_H;
+	M8C_DisableGInt;
+	
 	temp = data;
 	temp = 125*temp;
 	temp >>= 16;
@@ -97,6 +113,8 @@ unsigned char Si7020CalcRH(unsigned int data)
 	}
 	
 	result = temp;
+	M8C_EnableGInt;
+	RTS_L;
 	return result;
 }
 

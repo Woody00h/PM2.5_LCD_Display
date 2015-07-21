@@ -11,8 +11,9 @@
 	; --asmlist --errformat --chip=CY8C22345 --WARN=0 --OPT=asm,9 \
 	; -OLCD_display -Moutput/LCD_display.mp --OUTDIR=./output \
 	; ./obj/boot.obj ./obj/boardcommunication.p1 ./obj/ht1621b.p1 \
-	; ./obj/lcd.p1 ./obj/main.p1 ./obj/particlesensor.p1 ./obj/si7020.p1 \
-	; ./obj/software_iic.p1 lib/libpsoc.lib lib/libpsoc.lpp \
+	; ./obj/humichipii.p1 ./obj/lcd.p1 ./obj/main.p1 \
+	; ./obj/particlesensor.p1 ./obj/si7020.p1 ./obj/software_iic.p1 \
+	; lib/libpsoc.lib lib/libpsoc.lpp \
 	; D:/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/lib/CY8C22045/cms.lib
 	;
 
@@ -105,7 +106,7 @@ startup:
 	mov	a,low __Lbss0
 	swap	a,sp
 	mov	a,0
-	mov	x,92
+	mov	x,131
 bssloop0:
 	push	a
 	dec	x
@@ -122,7 +123,7 @@ dataloop0:
 	push	a
 	inc	x
 		mov	a,x
-cmp	a,low (__Lromdata0+7)
+cmp	a,low (__Lromdata0+8)
 	jnz	dataloop0
 	mov	reg[CUR_PP],0
 	mov	reg[STK_PP],3

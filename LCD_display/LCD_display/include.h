@@ -20,8 +20,8 @@
 #define TEMPERATURE 1
 #define TIMER		2
 
-#define AUTO_MODE	0
-#define MANUAL_MODE	1
+#define AUTO_MODE	'A'
+#define MANUAL_MODE	'M'
 
-#define PLASMA_TIMER_RELOAD 8
+#define PLASMA_TIMER_RELOAD 24
 #endif	

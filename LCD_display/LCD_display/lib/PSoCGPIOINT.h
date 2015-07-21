@@ -122,6 +122,26 @@ BYTE			CS_IntEn_ADDR;
 #define CS_MASK 0x80
 #pragma	ioport	CS_MUXBusCtrl_ADDR:	0x1d8
 BYTE			CS_MUXBusCtrl_ADDR;
+// HumiChipReady address and mask defines
+#pragma	ioport	HumiChipReady_Data_ADDR:	0x4
+BYTE			HumiChipReady_Data_ADDR;
+#pragma	ioport	HumiChipReady_DriveMode_0_ADDR:	0x104
+BYTE			HumiChipReady_DriveMode_0_ADDR;
+#pragma	ioport	HumiChipReady_DriveMode_1_ADDR:	0x105
+BYTE			HumiChipReady_DriveMode_1_ADDR;
+#pragma	ioport	HumiChipReady_DriveMode_2_ADDR:	0x7
+BYTE			HumiChipReady_DriveMode_2_ADDR;
+#pragma	ioport	HumiChipReady_GlobalSelect_ADDR:	0x6
+BYTE			HumiChipReady_GlobalSelect_ADDR;
+#pragma	ioport	HumiChipReady_IntCtrl_0_ADDR:	0x106
+BYTE			HumiChipReady_IntCtrl_0_ADDR;
+#pragma	ioport	HumiChipReady_IntCtrl_1_ADDR:	0x107
+BYTE			HumiChipReady_IntCtrl_1_ADDR;
+#pragma	ioport	HumiChipReady_IntEn_ADDR:	0x5
+BYTE			HumiChipReady_IntEn_ADDR;
+#define HumiChipReady_MASK 0x10
+#pragma	ioport	HumiChipReady_MUXBusCtrl_ADDR:	0x1d9
+BYTE			HumiChipReady_MUXBusCtrl_ADDR;
 // SDA address and mask defines
 #pragma	ioport	SDA_Data_ADDR:	0x4
 BYTE			SDA_Data_ADDR;
@@ -162,3 +182,23 @@ BYTE			SCL_IntEn_ADDR;
 #define SCL_MASK 0x80
 #pragma	ioport	SCL_MUXBusCtrl_ADDR:	0x1d9
 BYTE			SCL_MUXBusCtrl_ADDR;
+// RTS address and mask defines
+#pragma	ioport	RTS_Data_ADDR:	0x8
+BYTE			RTS_Data_ADDR;
+#pragma	ioport	RTS_DriveMode_0_ADDR:	0x108
+BYTE			RTS_DriveMode_0_ADDR;
+#pragma	ioport	RTS_DriveMode_1_ADDR:	0x109
+BYTE			RTS_DriveMode_1_ADDR;
+#pragma	ioport	RTS_DriveMode_2_ADDR:	0xb
+BYTE			RTS_DriveMode_2_ADDR;
+#pragma	ioport	RTS_GlobalSelect_ADDR:	0xa
+BYTE			RTS_GlobalSelect_ADDR;
+#pragma	ioport	RTS_IntCtrl_0_ADDR:	0x10a
+BYTE			RTS_IntCtrl_0_ADDR;
+#pragma	ioport	RTS_IntCtrl_1_ADDR:	0x10b
+BYTE			RTS_IntCtrl_1_ADDR;
+#pragma	ioport	RTS_IntEn_ADDR:	0x9
+BYTE			RTS_IntEn_ADDR;
+#define RTS_MASK 0x20
+#pragma	ioport	RTS_MUXBusCtrl_ADDR:	0x1da
+BYTE			RTS_MUXBusCtrl_ADDR;

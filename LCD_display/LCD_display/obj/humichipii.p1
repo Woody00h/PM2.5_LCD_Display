@@ -2059,379 +2059,346 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F692 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 203: extern BYTE bUART_Sensor_ReadRxStatus(void);
 
-"4 ./ParticleSensor.h
-[v _u16 `ui 1 t ]
-[; ;ParticleSensor.h: 4: typedef unsigned int u16;
-
-"23
-[s S1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S1 . Head Length PM1_0_US PM2_5_US PM10_US PM1_0_CN PM2_5_CN PM10_CN Reserve1 Reserve2 Reserve3 checksum ]
-[v _PMFrameField `S1 1 t ]
-[; ;ParticleSensor.h: 9: typedef struct
-
-[; ;ParticleSensor.h: 10: {
-
-[; ;ParticleSensor.h: 11: u16 Head;
-
-[; ;ParticleSensor.h: 12: u16 Length;
-
-[; ;ParticleSensor.h: 13: u16 PM1_0_US;
-
-[; ;ParticleSensor.h: 14: u16 PM2_5_US;
-
-[; ;ParticleSensor.h: 15: u16 PM10_US;
-
-[; ;ParticleSensor.h: 16: u16 PM1_0_CN;
-
-[; ;ParticleSensor.h: 17: u16 PM2_5_CN;
-
-[; ;ParticleSensor.h: 18: u16 PM10_CN;
-
-[; ;ParticleSensor.h: 19: u16 Reserve1;
-
-[; ;ParticleSensor.h: 20: u16 Reserve2;
-
-[; ;ParticleSensor.h: 21: u16 Reserve3;
-
-[; ;ParticleSensor.h: 22: u16 checksum;
-
-[; ;ParticleSensor.h: 23: }PMFrameField;
-
-"29
-[u S2 `uc -> 40 `i `S1 1 ]
-[n S2 . PMRxBuf MyPMFrame ]
-[v _PMSFrameUnion `S2 1 t ]
-[; ;ParticleSensor.h: 25: typedef union
-
-[; ;ParticleSensor.h: 26: {
-
-[; ;ParticleSensor.h: 27: unsigned char PMRxBuf[40];
-
-[; ;ParticleSensor.h: 28: PMFrameField MyPMFrame;
-
-[; ;ParticleSensor.h: 29: }PMSFrameUnion;
-
-"37
-[v _HeadFlag `uc 1 e ]
-[; ;ParticleSensor.h: 37: unsigned char HeadFlag;
-
-"38
-[v _HeadPointer `uc 1 e ]
-[; ;ParticleSensor.h: 38: unsigned char HeadPointer;
-
-"39
-[v _DataPtr `uc 1 e ]
-[; ;ParticleSensor.h: 39: unsigned char DataPtr;
-
-"40
-[v _PMSFrameFlag `uc 1 e ]
-[; ;ParticleSensor.h: 40: unsigned char PMSFrameFlag;
-
-"41
-[v _MyPMSUnion `S2 1 e ]
-[; ;ParticleSensor.h: 41: PMSFrameUnion MyPMSUnion;
-
-[; ;ParticleSensor.h: 42: unsigned char FrameCheck(void);
-
-"43
-[v _data_pm2_5 `ui 1 e ]
-[; ;ParticleSensor.h: 43: unsigned int data_pm2_5;
-
-"44
-[v _data_pm1_0 `ui 1 e ]
-[; ;ParticleSensor.h: 44: unsigned int data_pm1_0;
-
-"45
-[v _RecTimeoutTimer `uc 1 e ]
-[; ;ParticleSensor.h: 45: unsigned char RecTimeoutTimer;
-
-"14 ./particlesensor.c
-[v _SensorUART `(v 1 ef ]
-{
-[; ;particlesensor.c: 13: void SensorUART(void )
-
-[; ;particlesensor.c: 14: {
-
-[e :U _SensorUART ]
-[f ]
-"15
-[v _rxdata `uc 1 a ]
-"16
-[v _i `uc 1 a ]
-[; ;particlesensor.c: 15: unsigned char rxdata;
-
-[; ;particlesensor.c: 16: unsigned char i;
-
-[; ;particlesensor.c: 17: rxdata = UART_Sensor_bReadRxData();
-
-"77 ./lib\UART_Sensor.h
-[v _UART_Sensor_bReadRxData `BF625 0 e ]
-"17 ./particlesensor.c
-[e = _rxdata ( _UART_Sensor_bReadRxData ..  ]
-[; ;particlesensor.c: 26: RecTimeoutTimer = 9;
+"25 ./HumiChipII.h
+[v _CmdBuf `uc -> 3 `i e ]
+[; ;HumiChipII.h: 25: unsigned char CmdBuf[3];
 
 "26
-[e = _RecTimeoutTimer -> -> 9 `i `uc ]
-[; ;particlesensor.c: 28: if(HeadFlag == 0)
+[v _HumiChipData `uc -> 6 `i e ]
+[; ;HumiChipII.h: 26: unsigned char HumiChipData[6];
 
-"28
-[e $ ! == -> _HeadFlag `i -> 0 `i 4  ]
-[; ;particlesensor.c: 29: {
+[; ;HumiChipII.h: 27: unsigned char HumiChipRdHnT();
 
-"29
+[; ;HumiChipII.h: 28: void HumiChipInit();
+
+[; ;HumiChipII.h: 29: unsigned char HumiChipCheckSum();
+
+[; ;Software_IIC.h: 25: extern unsigned char ack;
+
+[; ;Software_IIC.h: 26: extern char eepromtype;
+
+[; ;Software_IIC.h: 28: extern void Init_IIC(void);
+
+[; ;Software_IIC.h: 29: extern unsigned char SetAddr(unsigned char sla,unsigned int suba);
+
+[; ;Software_IIC.h: 30: extern void Start_I2c(void);
+
+[; ;Software_IIC.h: 31: extern void Stop_I2c(void);
+
+[; ;Software_IIC.h: 32: extern void SendByte(unsigned char c);
+
+[; ;Software_IIC.h: 33: extern unsigned char RcvByte(void);
+
+[; ;Software_IIC.h: 34: extern void Ack_I2c(unsigned char a);
+
+[; ;Software_IIC.h: 35: extern unsigned char ISendByte(unsigned char sla,unsigned char c);
+
+[; ;Software_IIC.h: 36: extern unsigned char ISendBytes(unsigned char sla,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 37: extern unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 38: extern unsigned char IRcvByte(unsigned char sla,unsigned char *c);
+
+[; ;Software_IIC.h: 39: extern unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 40: extern unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no);
+
+[; ;Software_IIC.h: 41: extern void ChangeToRead(void);
+
+[; ;Software_IIC.h: 42: extern void ChangeToOD(void);
+
+[; ;humichipii.c: 7: extern void delay_us(unsigned int us);
+
+"10 ./humichipii.c
+[v _HumiChipRdHnT `(uc 1 ef ]
 {
-[; ;particlesensor.c: 31: if(DataPtr < 2)
+[; ;humichipii.c: 9: unsigned char HumiChipRdHnT()
+
+[; ;humichipii.c: 10: {
+
+[e :U _HumiChipRdHnT ]
+[f ]
+"11
+[v _ret `uc 1 a ]
+[; ;humichipii.c: 11: unsigned char ret;
+
+[; ;humichipii.c: 12: CmdBuf[0] = 0x40;
+
+"12
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 64 `i `uc ]
+[; ;humichipii.c: 13: CmdBuf[1] = 0;
+
+"13
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 0 `i `uc ]
+[; ;humichipii.c: 14: if(!(PRT1DR&0x10))
+
+"14
+[e $ ! ! != & -> _PRT1DR `i -> 16 `i -> 0 `i 2  ]
+[; ;humichipii.c: 15: {
+
+"15
+{
+[; ;humichipii.c: 16: ret = ISendBytes(0x50,CmdBuf,2);
+
+"36 ./Software_IIC.h
+[v _ISendBytes `(uc 0 ef3`uc`*uc`uc ]
+"16 ./humichipii.c
+[e = _ret ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 2 `i `uc ]
+[; ;humichipii.c: 17: if(!ret)
+
+"17
+[e $ ! ! != -> _ret `i -> -> -> 0 `i `uc `i 3  ]
+[; ;humichipii.c: 18: return 0;
+
+"18
+[e ) -> -> 0 `i `uc ]
+[e $UE 1  ]
+[e :U 3 ]
+[; ;humichipii.c: 20: ret = IRcvBytes(0x50,HumiChipData,6);
+
+"40 ./Software_IIC.h
+[v _IRcvBytes `(uc 0 ef3`uc`*uc`uc ]
+"20 ./humichipii.c
+[e = _ret ( _IRcvBytes (3
+ , , -> -> 80 `i `uc &U _HumiChipData -> -> 6 `i `uc ]
+[; ;humichipii.c: 21: return ret;
+
+"21
+[e ) _ret ]
+[e $UE 1  ]
+"22
+}
+[; ;humichipii.c: 22: }
+
+[e $U 4  ]
+"23
+[e :U 2 ]
+[; ;humichipii.c: 23: else
+
+[; ;humichipii.c: 24: {
+
+"24
+{
+[; ;humichipii.c: 25: return 0;
+
+"25
+[e ) -> -> 0 `i `uc ]
+[e $UE 1  ]
+"26
+}
+[e :U 4 ]
+"27
+[; ;humichipii.c: 26: }
+
+[; ;humichipii.c: 27: }
+
+[e :UE 1 ]
+}
+"30
+[v _HumiChipInit `(v 1 ef ]
+{
+[; ;humichipii.c: 29: void HumiChipInit()
+
+[; ;humichipii.c: 30: {
+
+[e :U _HumiChipInit ]
+[f ]
+[; ;humichipii.c: 31: CmdBuf[0] = 0xc0;
 
 "31
-[e $ ! < -> _DataPtr `i -> 2 `i 5  ]
-[; ;particlesensor.c: 32: {
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 192 `i `uc ]
+[; ;humichipii.c: 32: CmdBuf[1] = 0x1c;
 
 "32
-{
-[; ;particlesensor.c: 33: MyPMSUnion.PMRxBuf[DataPtr] = rxdata;
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 28 `i `uc ]
+[; ;humichipii.c: 33: CmdBuf[2] = 0xc4;
 
 "33
-[e = *U + &U . _MyPMSUnion 0 * -> _DataPtr `ux -> -> # *U &U . _MyPMSUnion 0 `ui `ux _rxdata ]
-[; ;particlesensor.c: 34: DataPtr ++;
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 196 `i `uc ]
+[; ;humichipii.c: 34: ISendBytes(0x50,CmdBuf,3);
 
 "34
-[e ++ _DataPtr -> -> 1 `i `uc ]
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 35: delay_us(10);
+
+"7
+[v _delay_us `(v 0 ef1`ui ]
 "35
-}
-[; ;particlesensor.c: 35: }
-
-[e $U 6  ]
-"36
-[e :U 5 ]
-[; ;particlesensor.c: 36: else
-
-[; ;particlesensor.c: 37: {
+[e ( _delay_us (1
+ -> -> 10 `i `ui ]
+[; ;humichipii.c: 37: CmdBuf[0] = 0x60;
 
 "37
-{
-[; ;particlesensor.c: 38: MyPMSUnion.MyPMFrame.Head <<= 8;
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 96 `i `uc ]
+[; ;humichipii.c: 38: CmdBuf[1] = 0x7F;
 
 "38
-[e =<< . . _MyPMSUnion 1 0 -> 8 `i ]
-[; ;particlesensor.c: 39: MyPMSUnion.PMRxBuf[1] = rxdata;
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 39: ISendBytes(0x50,CmdBuf,2);
 
 "39
-[e = *U + &U . _MyPMSUnion 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _MyPMSUnion 0 `ui `ux _rxdata ]
-[; ;particlesensor.c: 40: DataPtr = 2;
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 2 `i `uc ]
+[; ;humichipii.c: 40: delay_us(1);
 
 "40
-[e = _DataPtr -> -> 2 `i `uc ]
-"41
-}
-[e :U 6 ]
-[; ;particlesensor.c: 41: }
+[e ( _delay_us (1
+ -> -> 1 `i `ui ]
+[; ;humichipii.c: 41: IRcvByte(0x50,HumiChipData);
 
-[; ;particlesensor.c: 44: if(DataPtr == 2 && MyPMSUnion.MyPMFrame.Head == 0x424d)
+"38 ./Software_IIC.h
+[v _IRcvByte `(uc 0 ef2`uc`*uc ]
+"41 ./humichipii.c
+[e ( _IRcvByte (2
+ , -> -> 80 `i `uc &U _HumiChipData ]
+[; ;humichipii.c: 43: if (!(HumiChipData[0] & 0x08))
+
+"43
+[e $ ! ! != & -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> 8 `i -> 0 `i 6  ]
+[; ;humichipii.c: 44: {
 
 "44
-[e $ ! && == -> _DataPtr `i -> 2 `i == . . _MyPMSUnion 1 0 -> -> 16973 `i `ui 7  ]
-[; ;particlesensor.c: 45: {
+{
+[; ;humichipii.c: 45: delay_us(1);
 
 "45
-{
-[; ;particlesensor.c: 46: HeadFlag = 1;
+[e ( _delay_us (1
+ -> -> 1 `i `ui ]
+[; ;humichipii.c: 46: CmdBuf[0] = 0xe2;
 
 "46
-[e = _HeadFlag -> -> 1 `i `uc ]
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 226 `i `uc ]
+[; ;humichipii.c: 47: CmdBuf[1] = 0x7f;
+
 "47
-}
-[e :U 7 ]
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 48: CmdBuf[2] = 0x00;
+
 "48
-}
-[; ;particlesensor.c: 47: }
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 0 `i `uc ]
+[; ;humichipii.c: 49: ISendBytes(0x50,CmdBuf,3);
 
-[; ;particlesensor.c: 48: }
-
-[e $U 8  ]
 "49
-[e :U 4 ]
-[; ;particlesensor.c: 49: else
-
-[; ;particlesensor.c: 50: {
-
-"50
-{
-[; ;particlesensor.c: 51: MyPMSUnion.PMRxBuf[DataPtr] = rxdata;
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 51: delay_us(7000);
 
 "51
-[e = *U + &U . _MyPMSUnion 0 * -> _DataPtr `ux -> -> # *U &U . _MyPMSUnion 0 `ui `ux _rxdata ]
-[; ;particlesensor.c: 52: if(DataPtr >= (40-1))
-
-"52
-[e $ ! >= -> _DataPtr `i - -> 40 `i -> 1 `i 9  ]
-[; ;particlesensor.c: 53: {
+[e ( _delay_us (1
+ -> -> 7000 `i `ui ]
+[; ;humichipii.c: 53: CmdBuf[0] = 0xe0;
 
 "53
-{
-[; ;particlesensor.c: 54: HeadFlag = 0;
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 224 `i `uc ]
+[; ;humichipii.c: 54: CmdBuf[1] = 0x7f;
 
 "54
-[e = _HeadFlag -> -> 0 `i `uc ]
-[; ;particlesensor.c: 55: DataPtr = 0;
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 127 `i `uc ]
+[; ;humichipii.c: 55: CmdBuf[2] = HumiChipData[0] | 0x08;
 
 "55
-[e = _DataPtr -> -> 0 `i `uc ]
-[; ;particlesensor.c: 56: MyPMSUnion.MyPMFrame.Length = 0;
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> | -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> 8 `i `uc ]
+[; ;humichipii.c: 56: ISendBytes(0x50,CmdBuf,3);
 
 "56
-[e = . . _MyPMSUnion 1 1 -> -> 0 `i `ui ]
-[; ;particlesensor.c: 57: MyPMSUnion.MyPMFrame.Head = 0;
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 58: delay_us(7000);
 
-"57
-[e = . . _MyPMSUnion 1 0 -> -> 0 `i `ui ]
 "58
-}
-[; ;particlesensor.c: 58: }
-
-[e $U 10  ]
+[e ( _delay_us (1
+ -> -> 7000 `i `ui ]
 "59
-[e :U 9 ]
-[; ;particlesensor.c: 59: else
+}
+[e :U 6 ]
+[; ;humichipii.c: 59: }
 
-[; ;particlesensor.c: 60: {
-
-"60
-{
-[; ;particlesensor.c: 61: DataPtr++;
+[; ;humichipii.c: 61: CmdBuf[0] = 0xc0;
 
 "61
-[e ++ _DataPtr -> -> 1 `i `uc ]
-"62
-}
-[e :U 10 ]
-[; ;particlesensor.c: 62: }
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 192 `i `uc ]
+[; ;humichipii.c: 62: CmdBuf[1] = 0x1c;
 
-[; ;particlesensor.c: 64: if(DataPtr == (MyPMSUnion.MyPMFrame.Length + 4) && DataPtr >= 6)
+"62
+[e = *U + &U _CmdBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 28 `i `uc ]
+[; ;humichipii.c: 63: CmdBuf[2] = 0x44;
+
+"63
+[e = *U + &U _CmdBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 68 `i `uc ]
+[; ;humichipii.c: 64: ISendBytes(0x50,CmdBuf,3);
 
 "64
-[e $ ! && == -> _DataPtr `ui + . . _MyPMSUnion 1 1 -> -> 4 `i `ui >= -> _DataPtr `i -> 6 `i 11  ]
-[; ;particlesensor.c: 65: {
-
-"65
-{
-[; ;particlesensor.c: 66: PMSFrameFlag = 1;
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 3 `i `uc ]
+[; ;humichipii.c: 66: delay_us(10);
 
 "66
-[e = _PMSFrameFlag -> -> 1 `i `uc ]
-[; ;particlesensor.c: 67: HeadFlag = 0;
-
-"67
-[e = _HeadFlag -> -> 0 `i `uc ]
-[; ;particlesensor.c: 68: DataPtr = 0;
+[e ( _delay_us (1
+ -> -> 10 `i `ui ]
+[; ;humichipii.c: 68: CmdBuf[0] = 0x88;
 
 "68
-[e = _DataPtr -> -> 0 `i `uc ]
-"75
-}
-[e :U 11 ]
-"76
-}
-[e :U 8 ]
-"77
-[; ;particlesensor.c: 75: }
+[e = *U + &U _CmdBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _CmdBuf `ui `ux -> -> 136 `i `uc ]
+[; ;humichipii.c: 69: ISendBytes(0x50,CmdBuf,1);
 
-[; ;particlesensor.c: 76: }
+"69
+[e ( _ISendBytes (3
+ , , -> -> 80 `i `uc &U _CmdBuf -> -> 1 `i `uc ]
+"70
+[; ;humichipii.c: 70: }
 
-[; ;particlesensor.c: 77: }
-
-[e :UE 3 ]
+[e :UE 5 ]
 }
-"85
-[v _FrameCheck `(uc 1 ef ]
+"73
+[v _HumiChipCheckSum `(uc 1 ef ]
 {
-[; ;particlesensor.c: 84: unsigned char FrameCheck(void)
+[; ;humichipii.c: 72: unsigned char HumiChipCheckSum()
 
-[; ;particlesensor.c: 85: {
+[; ;humichipii.c: 73: {
 
-[e :U _FrameCheck ]
+[e :U _HumiChipCheckSum ]
 [f ]
-"86
-[v _checksum `ui 1 a ]
-[; ;particlesensor.c: 86: unsigned int checksum = 0;
+"74
+[v _temp `uc 1 a ]
+[; ;humichipii.c: 74: unsigned char temp;
 
-[e = _checksum -> -> 0 `i `ui ]
-"87
-[v _i `uc 1 a ]
-[; ;particlesensor.c: 87: unsigned char i = 0;
+[; ;humichipii.c: 75: temp = HumiChipData[0] + HumiChipData[1];
 
-[e = _i -> -> 0 `i `uc ]
-[; ;particlesensor.c: 89: for (i = 0; i < (MyPMSUnion.MyPMFrame.Length+2); i++)
+"75
+[e = _temp -> + -> *U + &U _HumiChipData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> *U + &U _HumiChipData * -> -> -> 1 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i `uc ]
+[; ;humichipii.c: 76: if( temp != HumiChipData[2])
 
-"89
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 16  ]
-"90
-[e :U 13 ]
-[; ;particlesensor.c: 90: {
+"76
+[e $ ! != -> _temp `i -> *U + &U _HumiChipData * -> -> -> 2 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i 8  ]
+[; ;humichipii.c: 77: return 0;
 
-{
-[; ;particlesensor.c: 91: checksum += MyPMSUnion.PMRxBuf[i];
-
-"91
-[e =+ _checksum -> *U + &U . _MyPMSUnion 0 * -> _i `ux -> -> # *U &U . _MyPMSUnion 0 `ui `ux `ui ]
-"92
-}
-"89
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 16 ]
-[e $ < -> _i `ui + . . _MyPMSUnion 1 1 -> -> 2 `i `ui 13  ]
-[e :U 14 ]
-"92
-}
-[; ;particlesensor.c: 92: }
-
-[; ;particlesensor.c: 94: MyPMSUnion.MyPMFrame.Length = 0;
-
-"94
-[e = . . _MyPMSUnion 1 1 -> -> 0 `i `ui ]
-[; ;particlesensor.c: 95: MyPMSUnion.MyPMFrame.Head = 0;
-
-"95
-[e = . . _MyPMSUnion 1 0 -> -> 0 `i `ui ]
-[; ;particlesensor.c: 97: if (checksum == MyPMSUnion.MyPMFrame.checksum)
-
-"97
-[e $ ! == _checksum . . _MyPMSUnion 1 11 17  ]
-[; ;particlesensor.c: 98: {
-
-"98
-{
-[; ;particlesensor.c: 99: return 1;
-
-"99
-[e ) -> -> 1 `i `uc ]
-[e $UE 12  ]
-"100
-}
-[; ;particlesensor.c: 100: }
-
-[e $U 18  ]
-"101
-[e :U 17 ]
-[; ;particlesensor.c: 101: else
-
-[; ;particlesensor.c: 102: {
-
-"102
-{
-[; ;particlesensor.c: 114: return 0;
-
-"114
+"77
 [e ) -> -> 0 `i `uc ]
-[e $UE 12  ]
-"115
-}
-[e :U 18 ]
-"116
-[; ;particlesensor.c: 115: }
+[e $UE 7  ]
+[e :U 8 ]
+[; ;humichipii.c: 79: temp = HumiChipData[3] + HumiChipData[4];
 
-[; ;particlesensor.c: 116: }
+"79
+[e = _temp -> + -> *U + &U _HumiChipData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i -> *U + &U _HumiChipData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i `uc ]
+[; ;humichipii.c: 80: if( temp != HumiChipData[5])
 
-[e :UE 12 ]
+"80
+[e $ ! != -> _temp `i -> *U + &U _HumiChipData * -> -> -> 5 `i `ui `ux -> -> # *U &U _HumiChipData `ui `ux `i 9  ]
+[; ;humichipii.c: 81: return 0;
+
+"81
+[e ) -> -> 0 `i `uc ]
+[e $UE 7  ]
+[e :U 9 ]
+[; ;humichipii.c: 83: return 1;
+
+"83
+[e ) -> -> 1 `i `uc ]
+[e $UE 7  ]
+"84
+[; ;humichipii.c: 84: }
+
+[e :UE 7 ]
 }

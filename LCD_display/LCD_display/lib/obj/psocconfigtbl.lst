@@ -1,7 +1,7 @@
 
 
 HI-TECH Software Macro Assembler (PSoC MCU) V9.61
-                                                                                                           Fri Jun 12 09:25:10 2015
+                                                                                                           Thu Jul 09 11:34:28 2015
 
 
      1                          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -715,22 +715,22 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
    709                          ;----------------------------------------------------
    710                              macro M8C_SetBank0
    711                              and   F, ~FLAG_XIO_MASK
-   712  3C41                        endm
+   712  3D73                        endm
    713                          
    714                              macro M8C_SetBank1
    715                              or    F, FLAG_XIO_MASK
-   716  3C41                        endm
+   716  3D73                        endm
    717                          
    718                          ;----------------------------------------------------
    719                          ;  Global Interrupt Enable/Disable
    720                          ;----------------------------------------------------
    721                              macro M8C_EnableGInt
    722                              or    F, FLAG_GLOBAL_IE
-   723  3C41                        endm
+   723  3D73                        endm
    724                          
    725                              macro M8C_DisableGInt
    726                              and   F, ~FLAG_GLOBAL_IE
-   727  3C41                        endm
+   727  3D73                        endm
    728                          
    729                          ;----------------------------------------------------
    730                          ;  Enable/Disable Interrupt Mask
@@ -748,12 +748,12 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
    742                          ; Disable Interrupt Bit Mask(s)
    743                              macro M8C_DisableIntMask
    744                              and   reg[@0], ~@1              ; disable specified interrupt enable bit
-   745  3C41                        endm
+   745  3D73                        endm
    746                          
    747                          ; Enable Interrupt Bit Mask(s)
    748                              macro M8C_EnableIntMask
    749                              or    reg[@0], @1               ; enable specified interrupt enable bit
-   750  3C41                        endm
+   750  3D73                        endm
    751                          
    752                          ;----------------------------------------------------
    753                          ;  Clear Posted Interrupt Flag Mask
@@ -768,22 +768,22 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
    762                          ;----------------------------------------------------
    763                              macro M8C_ClearIntFlag
    764                              mov   reg[@0], ~@1              ; clear specified interrupt enable bit
-   765  3C41                        endm
+   765  3D73                        endm
    766                          
    767                          ;----------------------------------------------------
    768                          ;  Power-On Reset & WatchDog Timer Functions
    769                          ;----------------------------------------------------
    770                              macro M8C_EnableWatchDog
    771                              and   reg[CPU_SCR0], ~CPU_SCR0_PORS_MASK
-   772  3C41                        endm
+   772  3D73                        endm
    773                          
    774                              macro M8C_ClearWDT
    775                              mov   reg[RES_WDT], 00h
-   776  3C41                        endm
+   776  3D73                        endm
    777                          
    778                              macro M8C_ClearWDTAndSleep
    779                              mov   reg[RES_WDT], 38h
-   780  3C41                        endm
+   780  3D73                        endm
    781                          
    782                          ;----------------------------------------------------
    783                          ;  Sleep, CPU Stop & Software Reset
@@ -797,21 +797,21 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
    791                              ; interrupts are also enabled then the next instruction will be
    792                              ; from the interrupt vector table. If no interrupts are enabled
    793                              ; then the CPU sleeps forever.
-   794  3C41                        endm
+   794  3D73                        endm
    795                          
    796                              macro M8C_Stop
    797                              ; In general, you probably don't want to do this, but here's how:
    798                              or    reg[CPU_SCR0], CPU_SCR0_STOP_MASK
    799                              ; Next instruction to be executed is located in the interrupt
    800                              ; vector table entry for Power-On Reset.
-   801  3C41                        endm
+   801  3D73                        endm
    802                          
    803                              macro M8C_Reset
    804                              ; Restore CPU to the power-on reset state.
    805                              mov A, 0
    806                              SSC
    807                              ; Next non-supervisor instruction will be at interrupt vector 0.
-   808  3C41                        endm
+   808  3D73                        endm
    809                          
    810                          ;----------------------------------------------------
    811                          ; ImageCraft Code Compressor Actions
@@ -821,12 +821,12 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
    815                              ; without resuming code compression
    816                              macro Suspend_CodeCompressor
    817                              or   F, 0
-   818  3C41                        endm
+   818  3D73                        endm
    819                          
    820                              ; Resume Code Compression
    821                              macro Resume_CodeCompressor
    822                              add  SP, 0
-   823  3C41                        endm
+   823  3D73                        endm
      1                          ;  Generated by PSoC Designer 5.4.2946
      2                          ;
      3                          ; =============================================================================
@@ -848,258 +848,258 @@ HI-TECH Software Macro Assembler (PSoC MCU) V9.61
     19                          export LoadConfigTBL_led_display_Bank0
     20                          export LoadConfigTBL_led_display_Ordered
     21                          AREA lit(rom, rel)
-    22  2B15                    LoadConfigTBL_led_display_Bank0:
+    22  2ACE                    LoadConfigTBL_led_display_Bank0:
     23                          ;  Instance name PWM8_BL, User Module PWM8
     24                          ;       Instance name PWM8_BL, Block Name PWM8(DBC10)
-    25  2B15  33 00             	db		33h, 00h		;PWM8_BL_CONTROL_REG(DBC10CR0)
-    26  2B17  31 00             	db		31h, 00h		;PWM8_BL_PERIOD_REG(DBC10DR1)
-    27  2B19  32 00             	db		32h, 00h		;PWM8_BL_COMPARE_REG(DBC10DR2)
+    25  2ACE  33 00             	db		33h, 00h		;PWM8_BL_CONTROL_REG(DBC10CR0)
+    26  2AD0  31 00             	db		31h, 00h		;PWM8_BL_PERIOD_REG(DBC10DR1)
+    27  2AD2  32 00             	db		32h, 00h		;PWM8_BL_COMPARE_REG(DBC10DR2)
     28                          ;  Instance name SAR10, User Module SAR10
     29                          ;  Instance name Timer16, User Module Timer16
     30                          ;       Instance name Timer16, Block Name TIMER16_LSB(DBC00)
-    31  2B1B  23 00             	db		23h, 00h		;Timer16_CONTROL_LSB_REG(DBC00CR0)
-    32  2B1D  21 80             	db		21h, 80h		;Timer16_PERIOD_LSB_REG(DBC00DR1)
-    33  2B1F  22 28             	db		22h, 28h		;Timer16_COMPARE_LSB_REG(DBC00DR2)
+    31  2AD4  23 00             	db		23h, 00h		;Timer16_CONTROL_LSB_REG(DBC00CR0)
+    32  2AD6  21 80             	db		21h, 80h		;Timer16_PERIOD_LSB_REG(DBC00DR1)
+    33  2AD8  22 28             	db		22h, 28h		;Timer16_COMPARE_LSB_REG(DBC00DR2)
     34                          ;       Instance name Timer16, Block Name TIMER16_MSB(DBC01)
-    35  2B21  27 04             	db		27h, 04h		;Timer16_CONTROL_MSB_REG(DBC01CR0)
-    36  2B23  25 25             	db		25h, 25h		;Timer16_PERIOD_MSB_REG(DBC01DR1)
-    37  2B25  26 23             	db		26h, 23h		;Timer16_COMPARE_MSB_REG(DBC01DR2)
+    35  2ADA  27 04             	db		27h, 04h		;Timer16_CONTROL_MSB_REG(DBC01CR0)
+    36  2ADC  25 25             	db		25h, 25h		;Timer16_PERIOD_MSB_REG(DBC01DR1)
+    37  2ADE  26 23             	db		26h, 23h		;Timer16_COMPARE_MSB_REG(DBC01DR2)
     38                          ;  Instance name UART_Board, User Module UART
     39                          ;       Instance name UART_Board, Block Name RX(DCC13)
-    40  2B27  3F 00             	db		3fh, 00h		;UART_Board_RX_CONTROL_REG(DCC13CR0)
-    41  2B29  3D 00             	db		3dh, 00h		;UART_Board_(DCC13DR1)
-    42  2B2B  3E 00             	db		3eh, 00h		;UART_Board_RX_BUFFER_REG (DCC13DR2)
+    40  2AE0  3F 00             	db		3fh, 00h		;UART_Board_RX_CONTROL_REG(DCC13CR0)
+    41  2AE2  3D 00             	db		3dh, 00h		;UART_Board_(DCC13DR1)
+    42  2AE4  3E 00             	db		3eh, 00h		;UART_Board_RX_BUFFER_REG (DCC13DR2)
     43                          ;       Instance name UART_Board, Block Name TX(DCC12)
-    44  2B2D  3B 00             	db		3bh, 00h		;UART_Board_TX_CONTROL_REG(DCC12CR0)
-    45  2B2F  39 00             	db		39h, 00h		;UART_Board_TX_BUFFER_REG (DCC12DR1)
-    46  2B31  3A 00             	db		3ah, 00h		;UART_Board_(DCC12DR2)
+    44  2AE6  3B 00             	db		3bh, 00h		;UART_Board_TX_CONTROL_REG(DCC12CR0)
+    45  2AE8  39 00             	db		39h, 00h		;UART_Board_TX_BUFFER_REG (DCC12DR1)
+    46  2AEA  3A 00             	db		3ah, 00h		;UART_Board_(DCC12DR2)
     47                          ;  Instance name UART_Sensor, User Module UART
     48                          ;       Instance name UART_Sensor, Block Name RX(DCC03)
-    49  2B33  2F 00             	db		2fh, 00h		;UART_Sensor_RX_CONTROL_REG(DCC03CR0)
-    50  2B35  2D 00             	db		2dh, 00h		;UART_Sensor_(DCC03DR1)
-    51  2B37  2E 00             	db		2eh, 00h		;UART_Sensor_RX_BUFFER_REG (DCC03DR2)
+    49  2AEC  2F 00             	db		2fh, 00h		;UART_Sensor_RX_CONTROL_REG(DCC03CR0)
+    50  2AEE  2D 00             	db		2dh, 00h		;UART_Sensor_(DCC03DR1)
+    51  2AF0  2E 00             	db		2eh, 00h		;UART_Sensor_RX_BUFFER_REG (DCC03DR2)
     52                          ;       Instance name UART_Sensor, Block Name TX(DCC02)
-    53  2B39  2B 00             	db		2bh, 00h		;UART_Sensor_TX_CONTROL_REG(DCC02CR0)
-    54  2B3B  29 00             	db		29h, 00h		;UART_Sensor_TX_BUFFER_REG (DCC02DR1)
-    55  2B3D  2A 00             	db		2ah, 00h		;UART_Sensor_(DCC02DR2)
+    53  2AF2  2B 00             	db		2bh, 00h		;UART_Sensor_TX_CONTROL_REG(DCC02CR0)
+    54  2AF4  29 00             	db		29h, 00h		;UART_Sensor_TX_BUFFER_REG (DCC02DR1)
+    55  2AF6  2A 00             	db		2ah, 00h		;UART_Sensor_(DCC02DR2)
     56                          ;  Global Register values Bank 0
-    57  2B3F  6A 00             	db		6ah, 00h		; ADCDataHigh register (ADC_DH)
-    58  2B41  6B 00             	db		6bh, 00h		; ADCDataLow register (ADC_DL)
-    59  2B43  60 09             	db		60h, 09h		; AnalogColumnInputSelect register (AMX_IN)
-    60  2B45  66 00             	db		66h, 00h		; AnalogComparatorControl1 register (CMP_CR1)
-    61  2B47  61 00             	db		61h, 00h		; AnalogMuxBusConfig register (AMUX_CFG)
-    62  2B49  FC 00             	db		fch, 00h		; AnalogMuxDACData:0 register (IDACR_D)
-    63  2B4B  FD 00             	db		fdh, 00h		; AnalogMuxDACData:1 register (IDACL_D)
-    64  2B4D  65 00             	db		65h, 00h		; AnalogSynchronizationControl register (ASY_CR)
-    65  2B4F  53 00             	db		53h, 00h		; CSD0Control0 register (CSD0_CR0)
-    66  2B51  57 00             	db		57h, 00h		; CSD0Control1 register (CSD0_CR1)
-    67  2B53  56 00             	db		56h, 00h		; CSD0CounterHigh register (CSD0_CNT_H)
-    68  2B55  52 00             	db		52h, 00h		; CSD0CounterLow register (CSD0_CNT_L)
-    69  2B57  54 00             	db		54h, 00h		; CSD0Data0High register (CSD0_DR0_H)
-    70  2B59  50 00             	db		50h, 00h		; CSD0Data0Low register (CSD0_DR0_L)
-    71  2B5B  55 00             	db		55h, 00h		; CSD0Data1High register (CSD0_DR1_H)
-    72  2B5D  51 00             	db		51h, 00h		; CSD0Data1Low register (CSD0_DR1_L)
-    73  2B5F  5B 00             	db		5bh, 00h		; CSD1Control0 register (CSD1_CR0)
-    74  2B61  5F 00             	db		5fh, 00h		; CSD1Control1 register (CSD1_CR1)
-    75  2B63  5E 00             	db		5eh, 00h		; CSD1CounterHigh register (CSD1_CNT_H)
-    76  2B65  5A 00             	db		5ah, 00h		; CSD1CounterLow register (CSD1_CNT_L)
-    77  2B67  5C 00             	db		5ch, 00h		; CSD1Data0High register (CSD1_DR0_H)
-    78  2B69  58 00             	db		58h, 00h		; CSD1Data0Low register (CSD1_DR0_L)
-    79  2B6B  5D 00             	db		5dh, 00h		; CSD1Data1High register (CSD1_DR1_H)
-    80  2B6D  59 00             	db		59h, 00h		; CSD1Data1Low register (CSD1_DR1_L)
-    81  2B6F  E6 00             	db		e6h, 00h		; DecimatorControl_0 register (DEC_CR0)
-    82  2B71  E7 00             	db		e7h, 00h		; DecimatorControl_1 register (DEC_CR1)
-    83  2B73  E4 00             	db		e4h, 00h		; DecimatorDataHigh register (DEC_DH)
-    84  2B75  E5 00             	db		e5h, 00h		; DecimatorDataLow register (DEC_DL)
-    85  2B77  D6 00             	db		d6h, 00h		; I2CConfig register (I2CCFG)
-    86  2B79  CA 00             	db		cah, 00h		; IDACMode register (IDACMODE)
-    87  2B7B  CB 00             	db		cbh, 00h		; PWMSource register (PWMSRC)
-    88  2B7D  C8 00             	db		c8h, 00h		; PWMVoltageReference_0 register (PWMVREF0)
-    89  2B7F  C9 00             	db		c9h, 00h		; PWMVoltageReference_1 register (PWMVREF1)
-    90  2B81  62 00             	db		62h, 00h		; PWM_Control register (PWM_CR)
-    91  2B83  B7 00             	db		b7h, 00h		; RowDigitalInterconnectInputSelect:0 register (RDI0DSM)
-    92  2B85  BF 00             	db		bfh, 00h		; RowDigitalInterconnectInputSelect:1 register (RDI1DSM)
-    93  2B87  B0 00             	db		b0h, 00h		; Row_0_InputMux register (RDI0RI)
-    94  2B89  B1 00             	db		b1h, 00h		; Row_0_InputSync register (RDI0SYN)
-    95  2B8B  B2 00             	db		b2h, 00h		; Row_0_LogicInputAMux register (RDI0IS)
-    96  2B8D  B3 33             	db		b3h, 33h		; Row_0_LogicSelect_0 register (RDI0LT0)
-    97  2B8F  B4 33             	db		b4h, 33h		; Row_0_LogicSelect_1 register (RDI0LT1)
-    98  2B91  B5 01             	db		b5h, 01h		; Row_0_OutputDrive_0 register (RDI0SRO0)
-    99  2B93  B6 00             	db		b6h, 00h		; Row_0_OutputDrive_1 register (RDI0SRO1)
-   100  2B95  B8 55             	db		b8h, 55h		; Row_1_InputMux register (RDI1RI)
-   101  2B97  B9 00             	db		b9h, 00h		; Row_1_InputSync register (RDI1SYN)
-   102  2B99  BA 10             	db		bah, 10h		; Row_1_LogicInputAMux register (RDI1IS)
-   103  2B9B  BB 33             	db		bbh, 33h		; Row_1_LogicSelect_0 register (RDI1LT0)
-   104  2B9D  BC 33             	db		bch, 33h		; Row_1_LogicSelect_1 register (RDI1LT1)
-   105  2B9F  BD 02             	db		bdh, 02h		; Row_1_OutputDrive_0 register (RDI1SRO0)
-   106  2BA1  BE 10             	db		beh, 10h		; Row_1_OutputDrive_1 register (RDI1SRO1)
-   107  2BA3  CD 00             	db		cdh, 00h		; TSCMPHigh register (TSCMPH)
-   108  2BA5  CE 00             	db		ceh, 00h		; TSCMPLow register (TSCMPL)
-   109  2BA7  CC 00             	db		cch, 00h		; TSource:0 register (TSCR0)
-   110  2BA9  CF 00             	db		cfh, 00h		; TSource:1 register (TSCR1)
-   111  2BAB  FF                	db		ffh
-   112  2BAC                    LoadConfigTBL_led_display_Bank1:
+    57  2AF8  6A 00             	db		6ah, 00h		; ADCDataHigh register (ADC_DH)
+    58  2AFA  6B 00             	db		6bh, 00h		; ADCDataLow register (ADC_DL)
+    59  2AFC  60 09             	db		60h, 09h		; AnalogColumnInputSelect register (AMX_IN)
+    60  2AFE  66 00             	db		66h, 00h		; AnalogComparatorControl1 register (CMP_CR1)
+    61  2B00  61 00             	db		61h, 00h		; AnalogMuxBusConfig register (AMUX_CFG)
+    62  2B02  FC 00             	db		fch, 00h		; AnalogMuxDACData:0 register (IDACR_D)
+    63  2B04  FD 00             	db		fdh, 00h		; AnalogMuxDACData:1 register (IDACL_D)
+    64  2B06  65 00             	db		65h, 00h		; AnalogSynchronizationControl register (ASY_CR)
+    65  2B08  53 00             	db		53h, 00h		; CSD0Control0 register (CSD0_CR0)
+    66  2B0A  57 00             	db		57h, 00h		; CSD0Control1 register (CSD0_CR1)
+    67  2B0C  56 00             	db		56h, 00h		; CSD0CounterHigh register (CSD0_CNT_H)
+    68  2B0E  52 00             	db		52h, 00h		; CSD0CounterLow register (CSD0_CNT_L)
+    69  2B10  54 00             	db		54h, 00h		; CSD0Data0High register (CSD0_DR0_H)
+    70  2B12  50 00             	db		50h, 00h		; CSD0Data0Low register (CSD0_DR0_L)
+    71  2B14  55 00             	db		55h, 00h		; CSD0Data1High register (CSD0_DR1_H)
+    72  2B16  51 00             	db		51h, 00h		; CSD0Data1Low register (CSD0_DR1_L)
+    73  2B18  5B 00             	db		5bh, 00h		; CSD1Control0 register (CSD1_CR0)
+    74  2B1A  5F 00             	db		5fh, 00h		; CSD1Control1 register (CSD1_CR1)
+    75  2B1C  5E 00             	db		5eh, 00h		; CSD1CounterHigh register (CSD1_CNT_H)
+    76  2B1E  5A 00             	db		5ah, 00h		; CSD1CounterLow register (CSD1_CNT_L)
+    77  2B20  5C 00             	db		5ch, 00h		; CSD1Data0High register (CSD1_DR0_H)
+    78  2B22  58 00             	db		58h, 00h		; CSD1Data0Low register (CSD1_DR0_L)
+    79  2B24  5D 00             	db		5dh, 00h		; CSD1Data1High register (CSD1_DR1_H)
+    80  2B26  59 00             	db		59h, 00h		; CSD1Data1Low register (CSD1_DR1_L)
+    81  2B28  E6 00             	db		e6h, 00h		; DecimatorControl_0 register (DEC_CR0)
+    82  2B2A  E7 00             	db		e7h, 00h		; DecimatorControl_1 register (DEC_CR1)
+    83  2B2C  E4 00             	db		e4h, 00h		; DecimatorDataHigh register (DEC_DH)
+    84  2B2E  E5 00             	db		e5h, 00h		; DecimatorDataLow register (DEC_DL)
+    85  2B30  D6 00             	db		d6h, 00h		; I2CConfig register (I2CCFG)
+    86  2B32  CA 00             	db		cah, 00h		; IDACMode register (IDACMODE)
+    87  2B34  CB 00             	db		cbh, 00h		; PWMSource register (PWMSRC)
+    88  2B36  C8 00             	db		c8h, 00h		; PWMVoltageReference_0 register (PWMVREF0)
+    89  2B38  C9 00             	db		c9h, 00h		; PWMVoltageReference_1 register (PWMVREF1)
+    90  2B3A  62 00             	db		62h, 00h		; PWM_Control register (PWM_CR)
+    91  2B3C  B7 00             	db		b7h, 00h		; RowDigitalInterconnectInputSelect:0 register (RDI0DSM)
+    92  2B3E  BF 00             	db		bfh, 00h		; RowDigitalInterconnectInputSelect:1 register (RDI1DSM)
+    93  2B40  B0 00             	db		b0h, 00h		; Row_0_InputMux register (RDI0RI)
+    94  2B42  B1 00             	db		b1h, 00h		; Row_0_InputSync register (RDI0SYN)
+    95  2B44  B2 00             	db		b2h, 00h		; Row_0_LogicInputAMux register (RDI0IS)
+    96  2B46  B3 33             	db		b3h, 33h		; Row_0_LogicSelect_0 register (RDI0LT0)
+    97  2B48  B4 33             	db		b4h, 33h		; Row_0_LogicSelect_1 register (RDI0LT1)
+    98  2B4A  B5 01             	db		b5h, 01h		; Row_0_OutputDrive_0 register (RDI0SRO0)
+    99  2B4C  B6 00             	db		b6h, 00h		; Row_0_OutputDrive_1 register (RDI0SRO1)
+   100  2B4E  B8 55             	db		b8h, 55h		; Row_1_InputMux register (RDI1RI)
+   101  2B50  B9 00             	db		b9h, 00h		; Row_1_InputSync register (RDI1SYN)
+   102  2B52  BA 10             	db		bah, 10h		; Row_1_LogicInputAMux register (RDI1IS)
+   103  2B54  BB 33             	db		bbh, 33h		; Row_1_LogicSelect_0 register (RDI1LT0)
+   104  2B56  BC 33             	db		bch, 33h		; Row_1_LogicSelect_1 register (RDI1LT1)
+   105  2B58  BD 02             	db		bdh, 02h		; Row_1_OutputDrive_0 register (RDI1SRO0)
+   106  2B5A  BE 10             	db		beh, 10h		; Row_1_OutputDrive_1 register (RDI1SRO1)
+   107  2B5C  CD 00             	db		cdh, 00h		; TSCMPHigh register (TSCMPH)
+   108  2B5E  CE 00             	db		ceh, 00h		; TSCMPLow register (TSCMPL)
+   109  2B60  CC 00             	db		cch, 00h		; TSource:0 register (TSCR0)
+   110  2B62  CF 00             	db		cfh, 00h		; TSource:1 register (TSCR1)
+   111  2B64  FF                	db		ffh
+   112  2B65                    LoadConfigTBL_led_display_Bank1:
    113                          ;  Instance name PWM8_BL, User Module PWM8
    114                          ;       Instance name PWM8_BL, Block Name PWM8(DBC10)
-   115  2BAC  33 00             	db		33h, 00h		;PWM8_BL_(DBC10CR1)
-   116  2BAE  30 21             	db		30h, 21h		;PWM8_BL_FUNC_REG(DBC10FN)
-   117  2BB0  31 11             	db		31h, 11h		;PWM8_BL_INPUT_REG(DBC10IN)
-   118  2BB2  32 07             	db		32h, 07h		;PWM8_BL_OUTPUT_REG(DBC10OU)
+   115  2B65  33 00             	db		33h, 00h		;PWM8_BL_(DBC10CR1)
+   116  2B67  30 21             	db		30h, 21h		;PWM8_BL_FUNC_REG(DBC10FN)
+   117  2B69  31 11             	db		31h, 11h		;PWM8_BL_INPUT_REG(DBC10IN)
+   118  2B6B  32 07             	db		32h, 07h		;PWM8_BL_OUTPUT_REG(DBC10OU)
    119                          ;  Instance name SAR10, User Module SAR10
    120                          ;  Instance name Timer16, User Module Timer16
    121                          ;       Instance name Timer16, Block Name TIMER16_LSB(DBC00)
-   122  2BB4  23 00             	db		23h, 00h		;Timer16_(DBC00CR1)
-   123  2BB6  20 00             	db		20h, 00h		;Timer16_FUNC_LSB_REG(DBC00FN)
-   124  2BB8  21 01             	db		21h, 01h		;Timer16_INPUT_LSB_REG(DBC00IN)
-   125  2BBA  22 40             	db		22h, 40h		;Timer16_OUTPUT_LSB_REG(DBC00OU)
+   122  2B6D  23 00             	db		23h, 00h		;Timer16_(DBC00CR1)
+   123  2B6F  20 00             	db		20h, 00h		;Timer16_FUNC_LSB_REG(DBC00FN)
+   124  2B71  21 01             	db		21h, 01h		;Timer16_INPUT_LSB_REG(DBC00IN)
+   125  2B73  22 40             	db		22h, 40h		;Timer16_OUTPUT_LSB_REG(DBC00OU)
    126                          ;       Instance name Timer16, Block Name TIMER16_MSB(DBC01)
-   127  2BBC  27 00             	db		27h, 00h		;Timer16_(DBC01CR1)
-   128  2BBE  24 20             	db		24h, 20h		;Timer16_FUNC_MSB_REG(DBC01FN)
-   129  2BC0  25 31             	db		25h, 31h		;Timer16_INPUT_MSB_REG(DBC01IN)
-   130  2BC2  26 40             	db		26h, 40h		;Timer16_OUTPUT_MSB_REG(DBC01OU)
+   127  2B75  27 00             	db		27h, 00h		;Timer16_(DBC01CR1)
+   128  2B77  24 20             	db		24h, 20h		;Timer16_FUNC_MSB_REG(DBC01FN)
+   129  2B79  25 31             	db		25h, 31h		;Timer16_INPUT_MSB_REG(DBC01IN)
+   130  2B7B  26 40             	db		26h, 40h		;Timer16_OUTPUT_MSB_REG(DBC01OU)
    131                          ;  Instance name UART_Board, User Module UART
    132                          ;       Instance name UART_Board, Block Name RX(DCC13)
-   133  2BC4  3F 00             	db		3fh, 00h		;UART_Board_(DCC13CR1)
-   134  2BC6  3C 05             	db		3ch, 05h		;UART_Board_RX_FUNC_REG   (DCC13FN)
-   135  2BC8  3D C1             	db		3dh, c1h		;UART_Board_RX_INPUT_REG  (DCC13IN)
-   136  2BCA  3E 40             	db		3eh, 40h		;UART_Board_RX_OUTPUT_REG (DCC13OU)
+   133  2B7D  3F 00             	db		3fh, 00h		;UART_Board_(DCC13CR1)
+   134  2B7F  3C 05             	db		3ch, 05h		;UART_Board_RX_FUNC_REG   (DCC13FN)
+   135  2B81  3D C1             	db		3dh, c1h		;UART_Board_RX_INPUT_REG  (DCC13IN)
+   136  2B83  3E 40             	db		3eh, 40h		;UART_Board_RX_OUTPUT_REG (DCC13OU)
    137                          ;       Instance name UART_Board, Block Name TX(DCC12)
-   138  2BCC  3B 00             	db		3bh, 00h		;UART_Board_(DCC12CR1)
-   139  2BCE  38 1D             	db		38h, 1dh		;UART_Board_TX_FUNC_REG   (DCC12FN)
-   140  2BD0  39 01             	db		39h, 01h		;UART_Board_TX_INPUT_REG  (DCC12IN)
-   141  2BD2  3A 44             	db		3ah, 44h		;UART_Board_TX_OUTPUT_REG (DCC12OU)
+   138  2B85  3B 00             	db		3bh, 00h		;UART_Board_(DCC12CR1)
+   139  2B87  38 1D             	db		38h, 1dh		;UART_Board_TX_FUNC_REG   (DCC12FN)
+   140  2B89  39 01             	db		39h, 01h		;UART_Board_TX_INPUT_REG  (DCC12IN)
+   141  2B8B  3A 44             	db		3ah, 44h		;UART_Board_TX_OUTPUT_REG (DCC12OU)
    142                          ;  Instance name UART_Sensor, User Module UART
    143                          ;       Instance name UART_Sensor, Block Name RX(DCC03)
-   144  2BD4  2F 00             	db		2fh, 00h		;UART_Sensor_(DCC03CR1)
-   145  2BD6  2C 05             	db		2ch, 05h		;UART_Sensor_RX_FUNC_REG   (DCC03FN)
-   146  2BD8  2D C1             	db		2dh, c1h		;UART_Sensor_RX_INPUT_REG  (DCC03IN)
-   147  2BDA  2E 40             	db		2eh, 40h		;UART_Sensor_RX_OUTPUT_REG (DCC03OU)
+   144  2B8D  2F 00             	db		2fh, 00h		;UART_Sensor_(DCC03CR1)
+   145  2B8F  2C 05             	db		2ch, 05h		;UART_Sensor_RX_FUNC_REG   (DCC03FN)
+   146  2B91  2D C1             	db		2dh, c1h		;UART_Sensor_RX_INPUT_REG  (DCC03IN)
+   147  2B93  2E 40             	db		2eh, 40h		;UART_Sensor_RX_OUTPUT_REG (DCC03OU)
    148                          ;       Instance name UART_Sensor, Block Name TX(DCC02)
-   149  2BDC  2B 00             	db		2bh, 00h		;UART_Sensor_(DCC02CR1)
-   150  2BDE  28 1D             	db		28h, 1dh		;UART_Sensor_TX_FUNC_REG   (DCC02FN)
-   151  2BE0  29 01             	db		29h, 01h		;UART_Sensor_TX_INPUT_REG  (DCC02IN)
-   152  2BE2  2A 44             	db		2ah, 44h		;UART_Sensor_TX_OUTPUT_REG (DCC02OU)
+   149  2B95  2B 00             	db		2bh, 00h		;UART_Sensor_(DCC02CR1)
+   150  2B97  28 1D             	db		28h, 1dh		;UART_Sensor_TX_FUNC_REG   (DCC02FN)
+   151  2B99  29 01             	db		29h, 01h		;UART_Sensor_TX_INPUT_REG  (DCC02IN)
+   152  2B9B  2A 44             	db		2ah, 44h		;UART_Sensor_TX_OUTPUT_REG (DCC02OU)
    153                          ;  Global Register values Bank 1
-   154  2BE4  A8 60             	db		a8h, 60h		; ADCControl0 register (ADC_CR0)
-   155  2BE6  A9 0A             	db		a9h, 0ah		; ADCControl1 register (ADC_CR1)
-   156  2BE8  AA 00             	db		aah, 00h		; ADCControl2 register (ADC_CR2)
-   157  2BEA  AB 00             	db		abh, 00h		; ADCControl3 register (ADC_CR3TRIM)
-   158  2BEC  AC 00             	db		ach, 00h		; ADCControl4 register (ADC_CR4)
-   159  2BEE  61 00             	db		61h, 00h		; AnalogClockSelect1 register (CLK_CR1)
-   160  2BF0  69 00             	db		69h, 00h		; AnalogClockSelect2 register (CLK_CR2)
-   161  2BF2  60 00             	db		60h, 00h		; AnalogColumnClockSelect register (CLK_CR0)
-   162  2BF4  62 00             	db		62h, 00h		; AnalogIOControl_0 register (ABF_CR0)
-   163  2BF6  67 33             	db		67h, 33h		; AnalogLUTControl0 register (ALT_CR0)
-   164  2BF8  68 00             	db		68h, 00h		; AnalogLUTControl1 register (ALT_CR1)
-   165  2BFA  5F 00             	db		5fh, 00h		; CMPClock:0 register (CMPCLK0)
-   166  2BFC  5E 00             	db		5eh, 00h		; CMPClock:1 register (CMPCLK1)
-   167  2BFE  5B 02             	db		5bh, 02h		; CMPColumnMux register (CMPCOLMUX)
-   168  2C00  5D 00             	db		5dh, 00h		; CMPFilterControl register (CMPFLTCR)
-   169  2C02  5C 00             	db		5ch, 00h		; CMPPWMControl register (CMPPWMCR)
-   170  2C04  59 00             	db		59h, 00h		; CSCMOGlobalOutEnable register (CSCMPGOEN)
-   171  2C06  58 00             	db		58h, 00h		; CSCMPControl:0 register (CSCMPCR0)
-   172  2C08  5A 33             	db		5ah, 33h		; CSLUTControl register (CSLUTCR0)
-   173  2C0A  64 00             	db		64h, 00h		; ComparatorGlobalOutEn register (CMP_GO_EN)
-   174  2C0C  65 00             	db		65h, 00h		; ComparatorGlobalOutEn1 register (CMP_GO_EN1)
-   175  2C0E  FD 00             	db		fdh, 00h		; DAC_Control register (DAC_CR0)
-   176  2C10  DC 00             	db		dch, 00h		; DAC_Control_1 register (DAC_CR1)
-   177  2C12  D1 00             	db		d1h, 00h		; GlobalDigitalInterconnect_Drive_Even_Input register (GDI_E_IN)
-   178  2C14  A1 00             	db		a1h, 00h		; GlobalDigitalInterconnect_Drive_Even_Input_Control register (GDI_E_IN_CR)
-   179  2C16  D3 00             	db		d3h, 00h		; GlobalDigitalInterconnect_Drive_Even_Output register (GDI_E_OU)
-   180  2C18  A3 00             	db		a3h, 00h		; GlobalDigitalInterconnect_Drive_Even_Output_Control register (GDI_E_OU_CR)
-   181  2C1A  D0 00             	db		d0h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Input register (GDI_O_IN)
-   182  2C1C  A0 00             	db		a0h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Input_Control register (GDI_O_IN_CR)
-   183  2C1E  D2 00             	db		d2h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
-   184  2C20  A2 00             	db		a2h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Output_Control register (GDI_O_OU_CR)
-   185  2C22  AD 00             	db		adh, 00h		; I2CAddress register (I2C_ADDR)
-   186  2C24  E1 7F             	db		e1h, 7fh		; OscillatorControl_1 register (OSC_CR1)
-   187  2C26  E2 00             	db		e2h, 00h		; OscillatorControl_2 register (OSC_CR2)
-   188  2C28  DF 26             	db		dfh, 26h		; OscillatorControl_3 register (OSC_CR3)
-   189  2C2A  DE 01             	db		deh, 01h		; OscillatorControl_4 register (OSC_CR4)
-   190  2C2C  DD 00             	db		ddh, 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
-   191  2C2E  D8 00             	db		d8h, 00h		; Port_0_MUXBusCtrl register (MUX_CR0)
-   192  2C30  D9 00             	db		d9h, 00h		; Port_1_MUXBusCtrl register (MUX_CR1)
-   193  2C32  DA 00             	db		dah, 00h		; Port_2_MUXBusCtrl register (MUX_CR2)
-   194  2C34  DB 00             	db		dbh, 00h		; Port_3_MUXBusCtrl register (MUX_CR3)
-   195  2C36  EC 00             	db		ech, 00h		; Port_4_MUXBusCtrl register (MUX_CR4)
-   196  2C38  A7 00             	db		a7h, 00h		; RTClockControl register (RTCCR)
-   197  2C3A  A4 00             	db		a4h, 00h		; RTCurrentHour register (RTCH)
-   198  2C3C  A5 00             	db		a5h, 00h		; RTCurrentMinute register (RTCM)
-   199  2C3E  A6 00             	db		a6h, 00h		; RTCurrentSecond register (RTCS)
-   200  2C40  53 00             	db		53h, 00h		; VDAC5Control0:0 register (VDAC50CR0)
-   201  2C42  57 00             	db		57h, 00h		; VDAC5Control0:1 register (VDAC51CR0)
-   202  2C44  E7 00             	db		e7h, 00h		; VDACTrim register (VDAC_TRIM)
-   203  2C46  FF                	db		ffh
+   154  2B9D  A8 60             	db		a8h, 60h		; ADCControl0 register (ADC_CR0)
+   155  2B9F  A9 0A             	db		a9h, 0ah		; ADCControl1 register (ADC_CR1)
+   156  2BA1  AA 00             	db		aah, 00h		; ADCControl2 register (ADC_CR2)
+   157  2BA3  AB 00             	db		abh, 00h		; ADCControl3 register (ADC_CR3TRIM)
+   158  2BA5  AC 00             	db		ach, 00h		; ADCControl4 register (ADC_CR4)
+   159  2BA7  61 00             	db		61h, 00h		; AnalogClockSelect1 register (CLK_CR1)
+   160  2BA9  69 00             	db		69h, 00h		; AnalogClockSelect2 register (CLK_CR2)
+   161  2BAB  60 00             	db		60h, 00h		; AnalogColumnClockSelect register (CLK_CR0)
+   162  2BAD  62 00             	db		62h, 00h		; AnalogIOControl_0 register (ABF_CR0)
+   163  2BAF  67 33             	db		67h, 33h		; AnalogLUTControl0 register (ALT_CR0)
+   164  2BB1  68 00             	db		68h, 00h		; AnalogLUTControl1 register (ALT_CR1)
+   165  2BB3  5F 00             	db		5fh, 00h		; CMPClock:0 register (CMPCLK0)
+   166  2BB5  5E 00             	db		5eh, 00h		; CMPClock:1 register (CMPCLK1)
+   167  2BB7  5B 02             	db		5bh, 02h		; CMPColumnMux register (CMPCOLMUX)
+   168  2BB9  5D 00             	db		5dh, 00h		; CMPFilterControl register (CMPFLTCR)
+   169  2BBB  5C 00             	db		5ch, 00h		; CMPPWMControl register (CMPPWMCR)
+   170  2BBD  59 00             	db		59h, 00h		; CSCMOGlobalOutEnable register (CSCMPGOEN)
+   171  2BBF  58 00             	db		58h, 00h		; CSCMPControl:0 register (CSCMPCR0)
+   172  2BC1  5A 33             	db		5ah, 33h		; CSLUTControl register (CSLUTCR0)
+   173  2BC3  64 00             	db		64h, 00h		; ComparatorGlobalOutEn register (CMP_GO_EN)
+   174  2BC5  65 00             	db		65h, 00h		; ComparatorGlobalOutEn1 register (CMP_GO_EN1)
+   175  2BC7  FD 00             	db		fdh, 00h		; DAC_Control register (DAC_CR0)
+   176  2BC9  DC 00             	db		dch, 00h		; DAC_Control_1 register (DAC_CR1)
+   177  2BCB  D1 00             	db		d1h, 00h		; GlobalDigitalInterconnect_Drive_Even_Input register (GDI_E_IN)
+   178  2BCD  A1 00             	db		a1h, 00h		; GlobalDigitalInterconnect_Drive_Even_Input_Control register (GDI_E_IN_CR)
+   179  2BCF  D3 00             	db		d3h, 00h		; GlobalDigitalInterconnect_Drive_Even_Output register (GDI_E_OU)
+   180  2BD1  A3 00             	db		a3h, 00h		; GlobalDigitalInterconnect_Drive_Even_Output_Control register (GDI_E_OU_CR)
+   181  2BD3  D0 00             	db		d0h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Input register (GDI_O_IN)
+   182  2BD5  A0 00             	db		a0h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Input_Control register (GDI_O_IN_CR)
+   183  2BD7  D2 00             	db		d2h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
+   184  2BD9  A2 00             	db		a2h, 00h		; GlobalDigitalInterconnect_Drive_Odd_Output_Control register (GDI_O_OU_CR)
+   185  2BDB  AD 00             	db		adh, 00h		; I2CAddress register (I2C_ADDR)
+   186  2BDD  E1 7F             	db		e1h, 7fh		; OscillatorControl_1 register (OSC_CR1)
+   187  2BDF  E2 00             	db		e2h, 00h		; OscillatorControl_2 register (OSC_CR2)
+   188  2BE1  DF 26             	db		dfh, 26h		; OscillatorControl_3 register (OSC_CR3)
+   189  2BE3  DE 01             	db		deh, 01h		; OscillatorControl_4 register (OSC_CR4)
+   190  2BE5  DD 00             	db		ddh, 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
+   191  2BE7  D8 00             	db		d8h, 00h		; Port_0_MUXBusCtrl register (MUX_CR0)
+   192  2BE9  D9 00             	db		d9h, 00h		; Port_1_MUXBusCtrl register (MUX_CR1)
+   193  2BEB  DA 00             	db		dah, 00h		; Port_2_MUXBusCtrl register (MUX_CR2)
+   194  2BED  DB 00             	db		dbh, 00h		; Port_3_MUXBusCtrl register (MUX_CR3)
+   195  2BEF  EC 00             	db		ech, 00h		; Port_4_MUXBusCtrl register (MUX_CR4)
+   196  2BF1  A7 00             	db		a7h, 00h		; RTClockControl register (RTCCR)
+   197  2BF3  A4 00             	db		a4h, 00h		; RTCurrentHour register (RTCH)
+   198  2BF5  A5 00             	db		a5h, 00h		; RTCurrentMinute register (RTCM)
+   199  2BF7  A6 00             	db		a6h, 00h		; RTCurrentSecond register (RTCS)
+   200  2BF9  53 00             	db		53h, 00h		; VDAC5Control0:0 register (VDAC50CR0)
+   201  2BFB  57 00             	db		57h, 00h		; VDAC5Control0:1 register (VDAC51CR0)
+   202  2BFD  E7 00             	db		e7h, 00h		; VDACTrim register (VDAC_TRIM)
+   203  2BFF  FF                	db		ffh
    204                          AREA psoc_config(rom, rel)
-   205  3E1C                    LoadConfigTBL_led_display_Ordered:
+   205  2A29                    LoadConfigTBL_led_display_Ordered:
    206                          ;  Ordered Global Register values
-   207  3E1C  70 EF             	M8C_SetBank0
-   208  3E1E  62 00 EE          	mov	reg[00h], eeh		; Port_0_Data register (PRT0DR)
-   209  3E21  71 10             	M8C_SetBank1
-   210  3E23  62 00 FE          	mov	reg[00h], feh		; Port_0_DriveMode_0 register (PRT0DM0)
-   211  3E26  62 01 01          	mov	reg[01h], 01h		; Port_0_DriveMode_1 register (PRT0DM1)
-   212  3E29  70 EF             	M8C_SetBank0
-   213  3E2B  62 03 00          	mov	reg[03h], 00h		; Port_0_DriveMode_2 register (PRT0DM2)
-   214  3E2E  62 02 11          	mov	reg[02h], 11h		; Port_0_GlobalSelect register (PRT0GS)
-   215  3E31  71 10             	M8C_SetBank1
-   216  3E33  62 02 00          	mov	reg[02h], 00h		; Port_0_IntCtrl_0 register (PRT0IC0)
-   217  3E36  62 03 00          	mov	reg[03h], 00h		; Port_0_IntCtrl_1 register (PRT0IC1)
-   218  3E39  70 EF             	M8C_SetBank0
-   219  3E3B  62 01 00          	mov	reg[01h], 00h		; Port_0_IntEn register (PRT0IE)
-   220  3E3E  62 04 A0          	mov	reg[04h], a0h		; Port_1_Data register (PRT1DR)
-   221  3E41  71 10             	M8C_SetBank1
-   222  3E43  62 04 A0          	mov	reg[04h], a0h		; Port_1_DriveMode_0 register (PRT1DM0)
-   223  3E46  62 05 FF          	mov	reg[05h], ffh		; Port_1_DriveMode_1 register (PRT1DM1)
-   224  3E49  70 EF             	M8C_SetBank0
-   225  3E4B  62 07 FF          	mov	reg[07h], ffh		; Port_1_DriveMode_2 register (PRT1DM2)
-   226  3E4E  62 06 00          	mov	reg[06h], 00h		; Port_1_GlobalSelect register (PRT1GS)
-   227  3E51  71 10             	M8C_SetBank1
-   228  3E53  62 06 00          	mov	reg[06h], 00h		; Port_1_IntCtrl_0 register (PRT1IC0)
-   229  3E56  62 07 00          	mov	reg[07h], 00h		; Port_1_IntCtrl_1 register (PRT1IC1)
-   230  3E59  70 EF             	M8C_SetBank0
-   231  3E5B  62 05 00          	mov	reg[05h], 00h		; Port_1_IntEn register (PRT1IE)
-   232  3E5E  62 08 00          	mov	reg[08h], 00h		; Port_2_Data register (PRT2DR)
-   233  3E61  71 10             	M8C_SetBank1
-   234  3E63  62 08 09          	mov	reg[08h], 09h		; Port_2_DriveMode_0 register (PRT2DM0)
-   235  3E66  62 09 F6          	mov	reg[09h], f6h		; Port_2_DriveMode_1 register (PRT2DM1)
-   236  3E69  70 EF             	M8C_SetBank0
-   237  3E6B  62 0B E6          	mov	reg[0bh], e6h		; Port_2_DriveMode_2 register (PRT2DM2)
-   238  3E6E  62 0A 19          	mov	reg[0ah], 19h		; Port_2_GlobalSelect register (PRT2GS)
-   239  3E71  71 10             	M8C_SetBank1
-   240  3E73  62 0A 00          	mov	reg[0ah], 00h		; Port_2_IntCtrl_0 register (PRT2IC0)
-   241  3E76  62 0B 00          	mov	reg[0bh], 00h		; Port_2_IntCtrl_1 register (PRT2IC1)
-   242  3E79  70 EF             	M8C_SetBank0
-   243  3E7B  62 09 00          	mov	reg[09h], 00h		; Port_2_IntEn register (PRT2IE)
-   244  3E7E  62 0C 00          	mov	reg[0ch], 00h		; Port_3_Data register (PRT3DR)
-   245  3E81  71 10             	M8C_SetBank1
-   246  3E83  62 0C 00          	mov	reg[0ch], 00h		; Port_3_DriveMode_0 register (PRT3DM0)
-   247  3E86  62 0D 00          	mov	reg[0dh], 00h		; Port_3_DriveMode_1 register (PRT3DM1)
-   248  3E89  70 EF             	M8C_SetBank0
-   249  3E8B  62 0F 00          	mov	reg[0fh], 00h		; Port_3_DriveMode_2 register (PRT3DM2)
-   250  3E8E  62 0E 00          	mov	reg[0eh], 00h		; Port_3_GlobalSelect register (PRT3GS)
-   251  3E91  71 10             	M8C_SetBank1
-   252  3E93  62 0E 00          	mov	reg[0eh], 00h		; Port_3_IntCtrl_0 register (PRT3IC0)
-   253  3E96  62 0F 00          	mov	reg[0fh], 00h		; Port_3_IntCtrl_1 register (PRT3IC1)
-   254  3E99  70 EF             	M8C_SetBank0
-   255  3E9B  62 0D 00          	mov	reg[0dh], 00h		; Port_3_IntEn register (PRT3IE)
-   256  3E9E  62 10 00          	mov	reg[10h], 00h		; Port_4_Data register (PRT4DR)
-   257  3EA1  71 10             	M8C_SetBank1
-   258  3EA3  62 10 00          	mov	reg[10h], 00h		; Port_4_DriveMode_0 register (PRT4DM0)
-   259  3EA6  62 11 00          	mov	reg[11h], 00h		; Port_4_DriveMode_1 register (PRT4DM1)
-   260  3EA9  70 EF             	M8C_SetBank0
-   261  3EAB  62 13 00          	mov	reg[13h], 00h		; Port_4_DriveMode_2 register (PRT4DM2)
-   262  3EAE  62 12 00          	mov	reg[12h], 00h		; Port_4_GlobalSelect register (PRT4GS)
-   263  3EB1  71 10             	M8C_SetBank1
-   264  3EB3  62 12 00          	mov	reg[12h], 00h		; Port_4_IntCtrl_0 register (PRT4IC0)
-   265  3EB6  62 13 00          	mov	reg[13h], 00h		; Port_4_IntCtrl_1 register (PRT4IC1)
-   266  3EB9  70 EF             	M8C_SetBank0
-   267  3EBB  62 11 00          	mov	reg[11h], 00h		; Port_4_IntEn register (PRT4IE)
-   268  3EBE  70 EF             	M8C_SetBank0
-   269  3EC0  7F                	ret
+   207  2A29  70 EF             	M8C_SetBank0
+   208  2A2B  62 00 EE          	mov	reg[00h], eeh		; Port_0_Data register (PRT0DR)
+   209  2A2E  71 10             	M8C_SetBank1
+   210  2A30  62 00 FE          	mov	reg[00h], feh		; Port_0_DriveMode_0 register (PRT0DM0)
+   211  2A33  62 01 01          	mov	reg[01h], 01h		; Port_0_DriveMode_1 register (PRT0DM1)
+   212  2A36  70 EF             	M8C_SetBank0
+   213  2A38  62 03 00          	mov	reg[03h], 00h		; Port_0_DriveMode_2 register (PRT0DM2)
+   214  2A3B  62 02 11          	mov	reg[02h], 11h		; Port_0_GlobalSelect register (PRT0GS)
+   215  2A3E  71 10             	M8C_SetBank1
+   216  2A40  62 02 00          	mov	reg[02h], 00h		; Port_0_IntCtrl_0 register (PRT0IC0)
+   217  2A43  62 03 00          	mov	reg[03h], 00h		; Port_0_IntCtrl_1 register (PRT0IC1)
+   218  2A46  70 EF             	M8C_SetBank0
+   219  2A48  62 01 00          	mov	reg[01h], 00h		; Port_0_IntEn register (PRT0IE)
+   220  2A4B  62 04 A0          	mov	reg[04h], a0h		; Port_1_Data register (PRT1DR)
+   221  2A4E  71 10             	M8C_SetBank1
+   222  2A50  62 04 A0          	mov	reg[04h], a0h		; Port_1_DriveMode_0 register (PRT1DM0)
+   223  2A53  62 05 FF          	mov	reg[05h], ffh		; Port_1_DriveMode_1 register (PRT1DM1)
+   224  2A56  70 EF             	M8C_SetBank0
+   225  2A58  62 07 EF          	mov	reg[07h], efh		; Port_1_DriveMode_2 register (PRT1DM2)
+   226  2A5B  62 06 00          	mov	reg[06h], 00h		; Port_1_GlobalSelect register (PRT1GS)
+   227  2A5E  71 10             	M8C_SetBank1
+   228  2A60  62 06 00          	mov	reg[06h], 00h		; Port_1_IntCtrl_0 register (PRT1IC0)
+   229  2A63  62 07 00          	mov	reg[07h], 00h		; Port_1_IntCtrl_1 register (PRT1IC1)
+   230  2A66  70 EF             	M8C_SetBank0
+   231  2A68  62 05 00          	mov	reg[05h], 00h		; Port_1_IntEn register (PRT1IE)
+   232  2A6B  62 08 00          	mov	reg[08h], 00h		; Port_2_Data register (PRT2DR)
+   233  2A6E  71 10             	M8C_SetBank1
+   234  2A70  62 08 29          	mov	reg[08h], 29h		; Port_2_DriveMode_0 register (PRT2DM0)
+   235  2A73  62 09 D6          	mov	reg[09h], d6h		; Port_2_DriveMode_1 register (PRT2DM1)
+   236  2A76  70 EF             	M8C_SetBank0
+   237  2A78  62 0B C6          	mov	reg[0bh], c6h		; Port_2_DriveMode_2 register (PRT2DM2)
+   238  2A7B  62 0A 19          	mov	reg[0ah], 19h		; Port_2_GlobalSelect register (PRT2GS)
+   239  2A7E  71 10             	M8C_SetBank1
+   240  2A80  62 0A 00          	mov	reg[0ah], 00h		; Port_2_IntCtrl_0 register (PRT2IC0)
+   241  2A83  62 0B 00          	mov	reg[0bh], 00h		; Port_2_IntCtrl_1 register (PRT2IC1)
+   242  2A86  70 EF             	M8C_SetBank0
+   243  2A88  62 09 00          	mov	reg[09h], 00h		; Port_2_IntEn register (PRT2IE)
+   244  2A8B  62 0C 00          	mov	reg[0ch], 00h		; Port_3_Data register (PRT3DR)
+   245  2A8E  71 10             	M8C_SetBank1
+   246  2A90  62 0C 00          	mov	reg[0ch], 00h		; Port_3_DriveMode_0 register (PRT3DM0)
+   247  2A93  62 0D 00          	mov	reg[0dh], 00h		; Port_3_DriveMode_1 register (PRT3DM1)
+   248  2A96  70 EF             	M8C_SetBank0
+   249  2A98  62 0F 00          	mov	reg[0fh], 00h		; Port_3_DriveMode_2 register (PRT3DM2)
+   250  2A9B  62 0E 00          	mov	reg[0eh], 00h		; Port_3_GlobalSelect register (PRT3GS)
+   251  2A9E  71 10             	M8C_SetBank1
+   252  2AA0  62 0E 00          	mov	reg[0eh], 00h		; Port_3_IntCtrl_0 register (PRT3IC0)
+   253  2AA3  62 0F 00          	mov	reg[0fh], 00h		; Port_3_IntCtrl_1 register (PRT3IC1)
+   254  2AA6  70 EF             	M8C_SetBank0
+   255  2AA8  62 0D 00          	mov	reg[0dh], 00h		; Port_3_IntEn register (PRT3IE)
+   256  2AAB  62 10 00          	mov	reg[10h], 00h		; Port_4_Data register (PRT4DR)
+   257  2AAE  71 10             	M8C_SetBank1
+   258  2AB0  62 10 00          	mov	reg[10h], 00h		; Port_4_DriveMode_0 register (PRT4DM0)
+   259  2AB3  62 11 00          	mov	reg[11h], 00h		; Port_4_DriveMode_1 register (PRT4DM1)
+   260  2AB6  70 EF             	M8C_SetBank0
+   261  2AB8  62 13 00          	mov	reg[13h], 00h		; Port_4_DriveMode_2 register (PRT4DM2)
+   262  2ABB  62 12 00          	mov	reg[12h], 00h		; Port_4_GlobalSelect register (PRT4GS)
+   263  2ABE  71 10             	M8C_SetBank1
+   264  2AC0  62 12 00          	mov	reg[12h], 00h		; Port_4_IntCtrl_0 register (PRT4IC0)
+   265  2AC3  62 13 00          	mov	reg[13h], 00h		; Port_4_IntCtrl_1 register (PRT4IC1)
+   266  2AC6  70 EF             	M8C_SetBank0
+   267  2AC8  62 11 00          	mov	reg[11h], 00h		; Port_4_IntEn register (PRT4IE)
+   268  2ACB  70 EF             	M8C_SetBank0
+   269  2ACD  7F                	ret
 
 
 HI-TECH Software Macro Assembler (PSoC MCU) V9.61
-Symbol Table                                                                                               Fri Jun 12 09:25:10 2015
+Symbol Table                                                                                               Thu Jul 09 11:34:28 2015
 
-  LoadConfigTBL_led_display_Bank0 2B15    LoadConfigTBL_led_display_Bank1 2BAC  LoadConfigTBL_led_display_Ordered 3E1C  
+  LoadConfigTBL_led_display_Bank0 2ACE    LoadConfigTBL_led_display_Bank1 2B65  LoadConfigTBL_led_display_Ordered 2A29  
                     FLAG_XIO_MASK 0010  

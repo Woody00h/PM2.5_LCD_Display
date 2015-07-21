@@ -1344,115 +1344,187 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\PSoCGPIOINT.h: 124: BYTE CS_MUXBusCtrl_ADDR;
 
 "127
-[v _SDA_Data_ADDR `Auc 1 e@4 ]
-[; ;lib\PSoCGPIOINT.h: 127: BYTE SDA_Data_ADDR;
+[v _HumiChipReady_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 127: BYTE HumiChipReady_Data_ADDR;
 
 "129
-[v _SDA_DriveMode_0_ADDR `Auc 1 e@260 ]
-[; ;lib\PSoCGPIOINT.h: 129: BYTE SDA_DriveMode_0_ADDR;
+[v _HumiChipReady_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 129: BYTE HumiChipReady_DriveMode_0_ADDR;
 
 "131
-[v _SDA_DriveMode_1_ADDR `Auc 1 e@261 ]
-[; ;lib\PSoCGPIOINT.h: 131: BYTE SDA_DriveMode_1_ADDR;
+[v _HumiChipReady_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 131: BYTE HumiChipReady_DriveMode_1_ADDR;
 
 "133
-[v _SDA_DriveMode_2_ADDR `Auc 1 e@7 ]
-[; ;lib\PSoCGPIOINT.h: 133: BYTE SDA_DriveMode_2_ADDR;
+[v _HumiChipReady_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 133: BYTE HumiChipReady_DriveMode_2_ADDR;
 
 "135
-[v _SDA_GlobalSelect_ADDR `Auc 1 e@6 ]
-[; ;lib\PSoCGPIOINT.h: 135: BYTE SDA_GlobalSelect_ADDR;
+[v _HumiChipReady_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 135: BYTE HumiChipReady_GlobalSelect_ADDR;
 
 "137
-[v _SDA_IntCtrl_0_ADDR `Auc 1 e@262 ]
-[; ;lib\PSoCGPIOINT.h: 137: BYTE SDA_IntCtrl_0_ADDR;
+[v _HumiChipReady_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 137: BYTE HumiChipReady_IntCtrl_0_ADDR;
 
 "139
-[v _SDA_IntCtrl_1_ADDR `Auc 1 e@263 ]
-[; ;lib\PSoCGPIOINT.h: 139: BYTE SDA_IntCtrl_1_ADDR;
+[v _HumiChipReady_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 139: BYTE HumiChipReady_IntCtrl_1_ADDR;
 
 "141
-[v _SDA_IntEn_ADDR `Auc 1 e@5 ]
-[; ;lib\PSoCGPIOINT.h: 141: BYTE SDA_IntEn_ADDR;
+[v _HumiChipReady_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 141: BYTE HumiChipReady_IntEn_ADDR;
 
 "144
-[v _SDA_MUXBusCtrl_ADDR `Auc 1 e@473 ]
-[; ;lib\PSoCGPIOINT.h: 144: BYTE SDA_MUXBusCtrl_ADDR;
+[v _HumiChipReady_MUXBusCtrl_ADDR `Auc 1 e@473 ]
+[; ;lib\PSoCGPIOINT.h: 144: BYTE HumiChipReady_MUXBusCtrl_ADDR;
 
 "147
-[v _SCL_Data_ADDR `Auc 1 e@4 ]
-[; ;lib\PSoCGPIOINT.h: 147: BYTE SCL_Data_ADDR;
+[v _SDA_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 147: BYTE SDA_Data_ADDR;
 
 "149
-[v _SCL_DriveMode_0_ADDR `Auc 1 e@260 ]
-[; ;lib\PSoCGPIOINT.h: 149: BYTE SCL_DriveMode_0_ADDR;
+[v _SDA_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 149: BYTE SDA_DriveMode_0_ADDR;
 
 "151
-[v _SCL_DriveMode_1_ADDR `Auc 1 e@261 ]
-[; ;lib\PSoCGPIOINT.h: 151: BYTE SCL_DriveMode_1_ADDR;
+[v _SDA_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 151: BYTE SDA_DriveMode_1_ADDR;
 
 "153
-[v _SCL_DriveMode_2_ADDR `Auc 1 e@7 ]
-[; ;lib\PSoCGPIOINT.h: 153: BYTE SCL_DriveMode_2_ADDR;
+[v _SDA_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 153: BYTE SDA_DriveMode_2_ADDR;
 
 "155
-[v _SCL_GlobalSelect_ADDR `Auc 1 e@6 ]
-[; ;lib\PSoCGPIOINT.h: 155: BYTE SCL_GlobalSelect_ADDR;
+[v _SDA_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 155: BYTE SDA_GlobalSelect_ADDR;
 
 "157
-[v _SCL_IntCtrl_0_ADDR `Auc 1 e@262 ]
-[; ;lib\PSoCGPIOINT.h: 157: BYTE SCL_IntCtrl_0_ADDR;
+[v _SDA_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 157: BYTE SDA_IntCtrl_0_ADDR;
 
 "159
-[v _SCL_IntCtrl_1_ADDR `Auc 1 e@263 ]
-[; ;lib\PSoCGPIOINT.h: 159: BYTE SCL_IntCtrl_1_ADDR;
+[v _SDA_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 159: BYTE SDA_IntCtrl_1_ADDR;
 
 "161
-[v _SCL_IntEn_ADDR `Auc 1 e@5 ]
-[; ;lib\PSoCGPIOINT.h: 161: BYTE SCL_IntEn_ADDR;
+[v _SDA_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 161: BYTE SDA_IntEn_ADDR;
 
 "164
+[v _SDA_MUXBusCtrl_ADDR `Auc 1 e@473 ]
+[; ;lib\PSoCGPIOINT.h: 164: BYTE SDA_MUXBusCtrl_ADDR;
+
+"167
+[v _SCL_Data_ADDR `Auc 1 e@4 ]
+[; ;lib\PSoCGPIOINT.h: 167: BYTE SCL_Data_ADDR;
+
+"169
+[v _SCL_DriveMode_0_ADDR `Auc 1 e@260 ]
+[; ;lib\PSoCGPIOINT.h: 169: BYTE SCL_DriveMode_0_ADDR;
+
+"171
+[v _SCL_DriveMode_1_ADDR `Auc 1 e@261 ]
+[; ;lib\PSoCGPIOINT.h: 171: BYTE SCL_DriveMode_1_ADDR;
+
+"173
+[v _SCL_DriveMode_2_ADDR `Auc 1 e@7 ]
+[; ;lib\PSoCGPIOINT.h: 173: BYTE SCL_DriveMode_2_ADDR;
+
+"175
+[v _SCL_GlobalSelect_ADDR `Auc 1 e@6 ]
+[; ;lib\PSoCGPIOINT.h: 175: BYTE SCL_GlobalSelect_ADDR;
+
+"177
+[v _SCL_IntCtrl_0_ADDR `Auc 1 e@262 ]
+[; ;lib\PSoCGPIOINT.h: 177: BYTE SCL_IntCtrl_0_ADDR;
+
+"179
+[v _SCL_IntCtrl_1_ADDR `Auc 1 e@263 ]
+[; ;lib\PSoCGPIOINT.h: 179: BYTE SCL_IntCtrl_1_ADDR;
+
+"181
+[v _SCL_IntEn_ADDR `Auc 1 e@5 ]
+[; ;lib\PSoCGPIOINT.h: 181: BYTE SCL_IntEn_ADDR;
+
+"184
 [v _SCL_MUXBusCtrl_ADDR `Auc 1 e@473 ]
-[; ;lib\PSoCGPIOINT.h: 164: BYTE SCL_MUXBusCtrl_ADDR;
+[; ;lib\PSoCGPIOINT.h: 184: BYTE SCL_MUXBusCtrl_ADDR;
+
+"187
+[v _RTS_Data_ADDR `Auc 1 e@8 ]
+[; ;lib\PSoCGPIOINT.h: 187: BYTE RTS_Data_ADDR;
+
+"189
+[v _RTS_DriveMode_0_ADDR `Auc 1 e@264 ]
+[; ;lib\PSoCGPIOINT.h: 189: BYTE RTS_DriveMode_0_ADDR;
+
+"191
+[v _RTS_DriveMode_1_ADDR `Auc 1 e@265 ]
+[; ;lib\PSoCGPIOINT.h: 191: BYTE RTS_DriveMode_1_ADDR;
+
+"193
+[v _RTS_DriveMode_2_ADDR `Auc 1 e@11 ]
+[; ;lib\PSoCGPIOINT.h: 193: BYTE RTS_DriveMode_2_ADDR;
+
+"195
+[v _RTS_GlobalSelect_ADDR `Auc 1 e@10 ]
+[; ;lib\PSoCGPIOINT.h: 195: BYTE RTS_GlobalSelect_ADDR;
+
+"197
+[v _RTS_IntCtrl_0_ADDR `Auc 1 e@266 ]
+[; ;lib\PSoCGPIOINT.h: 197: BYTE RTS_IntCtrl_0_ADDR;
+
+"199
+[v _RTS_IntCtrl_1_ADDR `Auc 1 e@267 ]
+[; ;lib\PSoCGPIOINT.h: 199: BYTE RTS_IntCtrl_1_ADDR;
+
+"201
+[v _RTS_IntEn_ADDR `Auc 1 e@9 ]
+[; ;lib\PSoCGPIOINT.h: 201: BYTE RTS_IntEn_ADDR;
+
+"204
+[v _RTS_MUXBusCtrl_ADDR `Auc 1 e@474 ]
+[; ;lib\PSoCGPIOINT.h: 204: BYTE RTS_MUXBusCtrl_ADDR;
 
 "37 ./lib\PWM8_BL.h
-[v F356 `(v 1 tf ]
+[v F374 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 37: extern void PWM8_BL_EnableInt(void);
 
 "38
-[v F359 `(v 1 tf ]
+[v F377 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 38: extern void PWM8_BL_DisableInt(void);
 
 "39
-[v F362 `(v 1 tf ]
+[v F380 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 39: extern void PWM8_BL_Start(void);
 
 "40
-[v F365 `(v 1 tf ]
+[v F383 `(v 1 tf ]
 [; ;lib\PWM8_BL.h: 40: extern void PWM8_BL_Stop(void);
 
 "41
-[v F368 `(uc 1 tf ]
+[v F386 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 41: extern BYTE PWM8_BL_bReadCounter(void);
 
 "42
-[v F371 `(v 1 tf1`uc ]
+[v F389 `(v 1 tf1`uc ]
 [; ;lib\PWM8_BL.h: 42: extern void PWM8_BL_WritePeriod(BYTE bPeriod);
 
 "43
-[v F374 `(uc 1 tf ]
+[v F392 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 43: extern BYTE PWM8_BL_bReadPulseWidth(void);
 
 "44
-[v F377 `(v 1 tf1`uc ]
+[v F395 `(v 1 tf1`uc ]
 [; ;lib\PWM8_BL.h: 44: extern void PWM8_BL_WritePulseWidth(BYTE bPulseWidth);
 
 "49
-[v F380 `(uc 1 tf ]
+[v F398 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 49: extern BYTE bPWM8_BL_ReadCounter(void);
 
 "50
-[v F383 `(uc 1 tf ]
+[v F401 `(uc 1 tf ]
 [; ;lib\PWM8_BL.h: 50: extern BYTE bPWM8_BL_ReadPulseWidth(void);
 
 "75
@@ -1488,55 +1560,55 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\PWM8_BL.h: 89: BYTE PWM8_BL_INT_REG;
 
 "35 ./lib\SAR10.h
-[v F394 `(v 1 tf ]
+[v F412 `(v 1 tf ]
 [; ;lib\SAR10.h: 35: extern void SAR10_EnableInt(void);
 
 "36
-[v F397 `(v 1 tf ]
+[v F415 `(v 1 tf ]
 [; ;lib\SAR10.h: 36: extern void SAR10_DisableInt(void);
 
 "37
-[v F400 `(v 1 tf ]
+[v F418 `(v 1 tf ]
 [; ;lib\SAR10.h: 37: extern void SAR10_Start(void);
 
 "38
-[v F403 `(v 1 tf ]
+[v F421 `(v 1 tf ]
 [; ;lib\SAR10.h: 38: extern void SAR10_Stop(void);
 
 "39
-[v F406 `(v 1 tf ]
+[v F424 `(v 1 tf ]
 [; ;lib\SAR10.h: 39: extern void SAR10_Trigger(void);
 
 "40
-[v F409 `(uc 1 tf ]
+[v F427 `(uc 1 tf ]
 [; ;lib\SAR10.h: 40: extern BYTE SAR10_fIsDataAvailable(void);
 
 "41
-[v F412 `(i 1 tf ]
+[v F430 `(i 1 tf ]
 [; ;lib\SAR10.h: 41: extern INT SAR10_iGetData(void);
 
 "42
-[v F415 `(uc 1 tf ]
+[v F433 `(uc 1 tf ]
 [; ;lib\SAR10.h: 42: extern BYTE SAR10_bGetData(void);
 
 "43
-[v F418 `(v 1 tf1`uc ]
+[v F436 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 43: extern void SAR10_SetADCChannel(BYTE bChannel);
 
 "44
-[v F421 `(v 1 tf1`uc ]
+[v F439 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 44: extern void SAR10_SetTriggerSrc(BYTE bSrc);
 
 "45
-[v F424 `(v 1 tf1`uc ]
+[v F442 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 45: extern void SAR10_EnableAutoTrigger(BYTE bMode);
 
 "46
-[v F427 `(v 1 tf1`uc ]
+[v F445 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 46: extern void SAR10_SetClk(BYTE bClkMode);
 
 "47
-[v F430 `(v 1 tf1`uc ]
+[v F448 `(v 1 tf1`uc ]
 [; ;lib\SAR10.h: 47: extern void SAR10_SetRunMode(BYTE bRunMode);
 
 "118
@@ -1560,59 +1632,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\SAR10.h: 126: BYTE SAR10_SAR_DL_REG;
 
 "41 ./lib\Timer16.h
-[v F438 `(v 1 tf ]
+[v F456 `(v 1 tf ]
 [; ;lib\Timer16.h: 41: extern void Timer16_EnableInt(void);
 
 "42
-[v F441 `(v 1 tf ]
+[v F459 `(v 1 tf ]
 [; ;lib\Timer16.h: 42: extern void Timer16_DisableInt(void);
 
 "43
-[v F444 `(v 1 tf ]
+[v F462 `(v 1 tf ]
 [; ;lib\Timer16.h: 43: extern void Timer16_Start(void);
 
 "44
-[v F447 `(v 1 tf ]
+[v F465 `(v 1 tf ]
 [; ;lib\Timer16.h: 44: extern void Timer16_Stop(void);
 
 "45
-[v F450 `(ui 1 tf ]
+[v F468 `(ui 1 tf ]
 [; ;lib\Timer16.h: 45: extern WORD Timer16_wReadTimer(void);
 
 "46
-[v F453 `(ui 1 tf ]
+[v F471 `(ui 1 tf ]
 [; ;lib\Timer16.h: 46: extern WORD Timer16_wReadTimerSaveCV(void);
 
 "47
-[v F456 `(v 1 tf1`ui ]
+[v F474 `(v 1 tf1`ui ]
 [; ;lib\Timer16.h: 47: extern void Timer16_WritePeriod(WORD wPeriod);
 
 "48
-[v F459 `(ui 1 tf ]
+[v F477 `(ui 1 tf ]
 [; ;lib\Timer16.h: 48: extern WORD Timer16_wReadCompareValue(void);
 
 "49
-[v F462 `(v 1 tf1`ui ]
+[v F480 `(v 1 tf1`ui ]
 [; ;lib\Timer16.h: 49: extern void Timer16_WriteCompareValue(WORD wCompareValue);
 
 "54
-[v F465 `(ui 1 tf ]
+[v F483 `(ui 1 tf ]
 [; ;lib\Timer16.h: 54: extern WORD wTimer16_ReadCompareValue(void);
 
 "55
-[v F468 `(ui 1 tf ]
+[v F486 `(ui 1 tf ]
 [; ;lib\Timer16.h: 55: extern WORD wTimer16_ReadTimerSaveCV(void);
 
 "56
-[v F471 `(ui 1 tf ]
+[v F489 `(ui 1 tf ]
 [; ;lib\Timer16.h: 56: extern WORD wTimer16_ReadCounter(void);
 
 "57
-[v F474 `(ui 1 tf ]
+[v F492 `(ui 1 tf ]
 [; ;lib\Timer16.h: 57: extern WORD wTimer16_ReadTimer(void);
 
 "58
-[v F477 `(ui 1 tf ]
+[v F495 `(ui 1 tf ]
 [; ;lib\Timer16.h: 58: extern WORD wTimer16_CaptureCounter(void);
 
 "83
@@ -1676,91 +1748,91 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\Timer16.h: 111: BYTE Timer16_INT_REG;
 
 "70 ./lib\UART_Board.h
-[v F495 `(v 1 tf1`uc ]
+[v F513 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 70: extern void UART_Board_SetTxIntMode(BYTE bTxIntMode);
 
 "71
-[v F498 `(v 1 tf ]
+[v F516 `(v 1 tf ]
 [; ;lib\UART_Board.h: 71: extern void UART_Board_EnableInt(void);
 
 "72
-[v F501 `(v 1 tf ]
+[v F519 `(v 1 tf ]
 [; ;lib\UART_Board.h: 72: extern void UART_Board_DisableInt(void);
 
 "73
-[v F504 `(v 1 tf1`uc ]
+[v F522 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 73: extern void UART_Board_Start(BYTE bParitySetting);
 
 "74
-[v F507 `(v 1 tf ]
+[v F525 `(v 1 tf ]
 [; ;lib\UART_Board.h: 74: extern void UART_Board_Stop(void);
 
 "75
-[v F510 `(v 1 tf1`uc ]
+[v F528 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 75: extern void UART_Board_SendData(BYTE bTxData);
 
 "76
-[v F513 `(uc 1 tf ]
+[v F531 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 76: extern BYTE UART_Board_bReadTxStatus(void);
 
 "77
-[v F516 `(uc 1 tf ]
+[v F534 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 77: extern BYTE UART_Board_bReadRxData(void);
 
 "78
-[v F519 `(uc 1 tf ]
+[v F537 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 78: extern BYTE UART_Board_bReadRxStatus(void);
 
 "81
-[v F522 `(v 1 tf1`*Cuc ]
+[v F540 `(v 1 tf1`*Cuc ]
 [; ;lib\UART_Board.h: 81: extern void UART_Board_CPutString(const BYTE * szRomString);
 
 "82
-[v F525 `(v 1 tf1`*uc ]
+[v F543 `(v 1 tf1`*uc ]
 [; ;lib\UART_Board.h: 82: extern void UART_Board_PutString(BYTE * szRamString);
 
 "83
-[v F528 `(v 1 tf1`c ]
+[v F546 `(v 1 tf1`c ]
 [; ;lib\UART_Board.h: 83: extern void UART_Board_PutChar(CHAR cData);
 
 "84
-[v F532 `(v 1 tf2`*uc`uc ]
+[v F550 `(v 1 tf2`*uc`uc ]
 [; ;lib\UART_Board.h: 84: extern void UART_Board_Write(BYTE * szRamString, BYTE bCount);
 
 "85
-[v F536 `(v 1 tf2`*Cuc`i ]
+[v F554 `(v 1 tf2`*Cuc`i ]
 [; ;lib\UART_Board.h: 85: extern void UART_Board_CWrite(const BYTE * szRomString, INT iCount);
 
 "86
-[v F539 `(v 1 tf1`uc ]
+[v F557 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 86: extern void UART_Board_PutSHexByte(BYTE bValue);
 
 "87
-[v F542 `(v 1 tf1`i ]
+[v F560 `(v 1 tf1`i ]
 [; ;lib\UART_Board.h: 87: extern void UART_Board_PutSHexInt(INT iValue);
 
 "88
-[v F545 `(v 1 tf ]
+[v F563 `(v 1 tf ]
 [; ;lib\UART_Board.h: 88: extern void UART_Board_PutCRLF(void);
 
 "89
-[v F548 `(v 1 tf1`uc ]
+[v F566 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 89: extern void UART_Board_TxIntMode(BYTE bMask);
 
 "92
-[v F551 `(c 1 tf ]
+[v F569 `(c 1 tf ]
 [; ;lib\UART_Board.h: 92: extern CHAR UART_Board_cGetChar(void);
 
 "93
-[v F554 `(c 1 tf ]
+[v F572 `(c 1 tf ]
 [; ;lib\UART_Board.h: 93: extern CHAR UART_Board_cReadChar(void);
 
 "94
-[v F557 `(i 1 tf ]
+[v F575 `(i 1 tf ]
 [; ;lib\UART_Board.h: 94: extern INT UART_Board_iReadChar(void);
 
 "95
-[v F560 `(v 1 tf1`uc ]
+[v F578 `(v 1 tf1`uc ]
 [; ;lib\UART_Board.h: 95: extern void UART_Board_IntCntl(BYTE bMask);
 
 "158
@@ -1820,103 +1892,103 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\UART_Board.h: 185: BYTE UART_Board_RX_INT_REG;
 
 "201
-[v F577 `(uc 1 tf ]
+[v F595 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 201: extern BYTE bUART_Board_ReadTxStatus(void);
 
 "202
-[v F580 `(uc 1 tf ]
+[v F598 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 202: extern BYTE bUART_Board_ReadRxData(void);
 
 "203
-[v F583 `(uc 1 tf ]
+[v F601 `(uc 1 tf ]
 [; ;lib\UART_Board.h: 203: extern BYTE bUART_Board_ReadRxStatus(void);
 
 "70 ./lib\UART_Sensor.h
-[v F586 `(v 1 tf1`uc ]
+[v F604 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 70: extern void UART_Sensor_SetTxIntMode(BYTE bTxIntMode);
 
 "71
-[v F589 `(v 1 tf ]
+[v F607 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 71: extern void UART_Sensor_EnableInt(void);
 
 "72
-[v F592 `(v 1 tf ]
+[v F610 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 72: extern void UART_Sensor_DisableInt(void);
 
 "73
-[v F595 `(v 1 tf1`uc ]
+[v F613 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 73: extern void UART_Sensor_Start(BYTE bParitySetting);
 
 "74
-[v F598 `(v 1 tf ]
+[v F616 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 74: extern void UART_Sensor_Stop(void);
 
 "75
-[v F601 `(v 1 tf1`uc ]
+[v F619 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 75: extern void UART_Sensor_SendData(BYTE bTxData);
 
 "76
-[v F604 `(uc 1 tf ]
+[v F622 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 76: extern BYTE UART_Sensor_bReadTxStatus(void);
 
 "77
-[v F607 `(uc 1 tf ]
+[v F625 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 77: extern BYTE UART_Sensor_bReadRxData(void);
 
 "78
-[v F610 `(uc 1 tf ]
+[v F628 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 78: extern BYTE UART_Sensor_bReadRxStatus(void);
 
 "81
-[v F613 `(v 1 tf1`*Cuc ]
+[v F631 `(v 1 tf1`*Cuc ]
 [; ;lib\UART_Sensor.h: 81: extern void UART_Sensor_CPutString(const BYTE * szRomString);
 
 "82
-[v F616 `(v 1 tf1`*uc ]
+[v F634 `(v 1 tf1`*uc ]
 [; ;lib\UART_Sensor.h: 82: extern void UART_Sensor_PutString(BYTE * szRamString);
 
 "83
-[v F619 `(v 1 tf1`c ]
+[v F637 `(v 1 tf1`c ]
 [; ;lib\UART_Sensor.h: 83: extern void UART_Sensor_PutChar(CHAR cData);
 
 "84
-[v F623 `(v 1 tf2`*uc`uc ]
+[v F641 `(v 1 tf2`*uc`uc ]
 [; ;lib\UART_Sensor.h: 84: extern void UART_Sensor_Write(BYTE * szRamString, BYTE bCount);
 
 "85
-[v F627 `(v 1 tf2`*Cuc`i ]
+[v F645 `(v 1 tf2`*Cuc`i ]
 [; ;lib\UART_Sensor.h: 85: extern void UART_Sensor_CWrite(const BYTE * szRomString, INT iCount);
 
 "86
-[v F630 `(v 1 tf1`uc ]
+[v F648 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 86: extern void UART_Sensor_PutSHexByte(BYTE bValue);
 
 "87
-[v F633 `(v 1 tf1`i ]
+[v F651 `(v 1 tf1`i ]
 [; ;lib\UART_Sensor.h: 87: extern void UART_Sensor_PutSHexInt(INT iValue);
 
 "88
-[v F636 `(v 1 tf ]
+[v F654 `(v 1 tf ]
 [; ;lib\UART_Sensor.h: 88: extern void UART_Sensor_PutCRLF(void);
 
 "89
-[v F639 `(v 1 tf1`uc ]
+[v F657 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 89: extern void UART_Sensor_TxIntMode(BYTE bMask);
 
 "92
-[v F642 `(c 1 tf ]
+[v F660 `(c 1 tf ]
 [; ;lib\UART_Sensor.h: 92: extern CHAR UART_Sensor_cGetChar(void);
 
 "93
-[v F645 `(c 1 tf ]
+[v F663 `(c 1 tf ]
 [; ;lib\UART_Sensor.h: 93: extern CHAR UART_Sensor_cReadChar(void);
 
 "94
-[v F648 `(i 1 tf ]
+[v F666 `(i 1 tf ]
 [; ;lib\UART_Sensor.h: 94: extern INT UART_Sensor_iReadChar(void);
 
 "95
-[v F651 `(v 1 tf1`uc ]
+[v F669 `(v 1 tf1`uc ]
 [; ;lib\UART_Sensor.h: 95: extern void UART_Sensor_IntCntl(BYTE bMask);
 
 "158
@@ -1976,15 +2048,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lib\UART_Sensor.h: 185: BYTE UART_Sensor_RX_INT_REG;
 
 "201
-[v F668 `(uc 1 tf ]
+[v F686 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 201: extern BYTE bUART_Sensor_ReadTxStatus(void);
 
 "202
-[v F671 `(uc 1 tf ]
+[v F689 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 202: extern BYTE bUART_Sensor_ReadRxData(void);
 
 "203
-[v F674 `(uc 1 tf ]
+[v F692 `(uc 1 tf ]
 [; ;lib\UART_Sensor.h: 203: extern BYTE bUART_Sensor_ReadRxStatus(void);
 
 "25 ./software_IIC.H
@@ -2011,17 +2083,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 
 [; ;software_IIC.H: 35: unsigned char ISendByte(unsigned char sla,unsigned char c);
 
-[; ;software_IIC.H: 36: unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+[; ;software_IIC.H: 36: unsigned char ISendBytes(unsigned char sla,unsigned char *s,unsigned char no);
 
-[; ;software_IIC.H: 37: unsigned char IRcvByte(unsigned char sla,unsigned char *c);
+[; ;software_IIC.H: 37: unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
 
-[; ;software_IIC.H: 38: unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
+[; ;software_IIC.H: 38: unsigned char IRcvByte(unsigned char sla,unsigned char *c);
 
-[; ;software_IIC.H: 39: unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no);
+[; ;software_IIC.H: 39: unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no);
 
-[; ;software_IIC.H: 40: void ChangeToRead(void);
+[; ;software_IIC.H: 40: unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no);
 
-[; ;software_IIC.H: 41: void ChangeToOD(void);
+[; ;software_IIC.H: 41: void ChangeToRead(void);
+
+[; ;software_IIC.H: 42: void ChangeToOD(void);
 
 [; ;HT1621B.h: 19: void SendBit_1621(unsigned char data,unsigned char cnt);
 
@@ -2649,12 +2723,130 @@ Version 3.2 HI-TECH Software Intermediate Code
 
 [e :UE 22 ]
 }
+"191
+[v _ISendBytes `(uc 1 ef3`uc`*uc`uc ]
+{
+[; ;software_iic.c: 190: unsigned char ISendBytes(unsigned char sla,unsigned char *s,unsigned char no)
+
+[; ;software_iic.c: 191: {
+
+[e :U _ISendBytes ]
+[v _sla `uc 1 r1 ]
+[v _s `*uc 1 r2 ]
+[v _no `uc 1 r3 ]
+[f ]
+"192
+[v _i `uc 1 a ]
+"193
+[v _Tmp `uc 1 a ]
+[; ;software_iic.c: 192: unsigned char i;
+
+[; ;software_iic.c: 193: unsigned char Tmp;
+
+[; ;software_iic.c: 194: Start_I2c();
+
+"194
+[e ( _Start_I2c ..  ]
+[; ;software_iic.c: 195: SendByte(sla);
+
+"195
+[e ( _SendByte (1
+ _sla ]
+[; ;software_iic.c: 196: if(ack==0)
+
+"196
+[e $ ! == -> _ack `i -> 0 `i 26  ]
+[; ;software_iic.c: 197: {
+
+"197
+{
+[; ;software_iic.c: 198: Stop_I2c();
+
+"198
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 199: return(0);
+
 "199
+[e ) -> -> 0 `i `uc ]
+[e $UE 25  ]
+"200
+}
+[e :U 26 ]
+[; ;software_iic.c: 200: }
+
+[; ;software_iic.c: 202: for(i=0;i<no;i++)
+
+"202
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 30  ]
+"203
+[e :U 27 ]
+[; ;software_iic.c: 203: {
+
+{
+[; ;software_iic.c: 204: SendByte(*s);
+
+"204
+[e ( _SendByte (1
+ *U _s ]
+[; ;software_iic.c: 205: if(ack==0)
+
+"205
+[e $ ! == -> _ack `i -> 0 `i 31  ]
+[; ;software_iic.c: 206: {
+
+"206
+{
+[; ;software_iic.c: 207: Stop_I2c();
+
+"207
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 208: return(0);
+
+"208
+[e ) -> -> 0 `i `uc ]
+[e $UE 25  ]
+"209
+}
+[e :U 31 ]
+[; ;software_iic.c: 209: }
+
+[; ;software_iic.c: 210: s++;
+
+"210
+[e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
+"211
+}
+"202
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 30 ]
+[e $ < -> _i `i -> _no `i 27  ]
+[e :U 28 ]
+"211
+}
+[; ;software_iic.c: 211: }
+
+[; ;software_iic.c: 212: Stop_I2c();
+
+"212
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 213: return(1);
+
+"213
+[e ) -> -> 1 `i `uc ]
+[e $UE 25  ]
+"214
+[; ;software_iic.c: 214: }
+
+[e :UE 25 ]
+}
+"225
 [v _ISendStr `(uc 1 ef4`uc`ui`*uc`uc ]
 {
-[; ;software_iic.c: 198: unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no)
+[; ;software_iic.c: 224: unsigned char ISendStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no)
 
-[; ;software_iic.c: 199: {
+[; ;software_iic.c: 225: {
 
 [e :U _ISendStr ]
 [v _sla `uc 1 r1 ]
@@ -2662,214 +2854,214 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _s `*uc 1 r3 ]
 [v _no `uc 1 r4 ]
 [f ]
-"200
-[v _i `uc 1 a ]
-"201
-[v _Tmp `uc 1 a ]
-[; ;software_iic.c: 200: unsigned char i;
-
-[; ;software_iic.c: 201: unsigned char Tmp;
-
-[; ;software_iic.c: 202: Start_I2c();
-
-"202
-[e ( _Start_I2c ..  ]
-[; ;software_iic.c: 203: SendByte(sla);
-
-"203
-[e ( _SendByte (1
- _sla ]
-[; ;software_iic.c: 204: if(ack==0)
-
-"204
-[e $ ! == -> _ack `i -> 0 `i 26  ]
-[; ;software_iic.c: 205: {
-
-"205
-{
-[; ;software_iic.c: 206: Stop_I2c();
-
-"206
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 207: return(0);
-
-"207
-[e ) -> -> 0 `i `uc ]
-[e $UE 25  ]
-"208
-}
-[e :U 26 ]
-[; ;software_iic.c: 208: }
-
-[; ;software_iic.c: 210: Tmp = suba & 0xff;
-
-"210
-[e = _Tmp -> & _suba -> -> 255 `i `ui `uc ]
-[; ;software_iic.c: 211: SendByte(Tmp);
-
-"211
-[e ( _SendByte (1
- _Tmp ]
-[; ;software_iic.c: 212: if(ack==0)
-
-"212
-[e $ ! == -> _ack `i -> 0 `i 27  ]
-[; ;software_iic.c: 213: {
-
-"213
-{
-[; ;software_iic.c: 214: Stop_I2c();
-
-"214
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 215: return(0);
-
-"215
-[e ) -> -> 0 `i `uc ]
-[e $UE 25  ]
-"216
-}
-[e :U 27 ]
-[; ;software_iic.c: 216: }
-
-[; ;software_iic.c: 219: for(i=0;i<no;i++)
-
-"219
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 31  ]
-"220
-[e :U 28 ]
-[; ;software_iic.c: 220: {
-
-{
-[; ;software_iic.c: 221: SendByte(*s);
-
-"221
-[e ( _SendByte (1
- *U _s ]
-[; ;software_iic.c: 222: if(ack==0)
-
-"222
-[e $ ! == -> _ack `i -> 0 `i 32  ]
-[; ;software_iic.c: 223: {
-
-"223
-{
-[; ;software_iic.c: 224: Stop_I2c();
-
-"224
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 225: return(0);
-
-"225
-[e ) -> -> 0 `i `uc ]
-[e $UE 25  ]
 "226
-}
-[e :U 32 ]
-[; ;software_iic.c: 226: }
-
-[; ;software_iic.c: 227: s++;
-
+[v _i `uc 1 a ]
 "227
-[e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
-"228
-}
-"219
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 31 ]
-[e $ < -> _i `i -> _no `i 28  ]
-[e :U 29 ]
-"228
-}
-[; ;software_iic.c: 228: }
+[v _Tmp `uc 1 a ]
+[; ;software_iic.c: 226: unsigned char i;
 
-[; ;software_iic.c: 229: Stop_I2c();
+[; ;software_iic.c: 227: unsigned char Tmp;
+
+[; ;software_iic.c: 228: Start_I2c();
+
+"228
+[e ( _Start_I2c ..  ]
+[; ;software_iic.c: 229: SendByte(sla);
 
 "229
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 230: return(1);
+[e ( _SendByte (1
+ _sla ]
+[; ;software_iic.c: 230: if(ack==0)
 
 "230
-[e ) -> -> 1 `i `uc ]
-[e $UE 25  ]
-"231
-[; ;software_iic.c: 231: }
+[e $ ! == -> _ack `i -> 0 `i 33  ]
+[; ;software_iic.c: 231: {
 
-[e :UE 25 ]
+"231
+{
+[; ;software_iic.c: 232: Stop_I2c();
+
+"232
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 233: return(0);
+
+"233
+[e ) -> -> 0 `i `uc ]
+[e $UE 32  ]
+"234
 }
+[e :U 33 ]
+[; ;software_iic.c: 234: }
+
+[; ;software_iic.c: 236: Tmp = suba & 0xff;
+
+"236
+[e = _Tmp -> & _suba -> -> 255 `i `ui `uc ]
+[; ;software_iic.c: 237: SendByte(Tmp);
+
+"237
+[e ( _SendByte (1
+ _Tmp ]
+[; ;software_iic.c: 238: if(ack==0)
+
+"238
+[e $ ! == -> _ack `i -> 0 `i 34  ]
+[; ;software_iic.c: 239: {
+
+"239
+{
+[; ;software_iic.c: 240: Stop_I2c();
+
+"240
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 241: return(0);
+
 "241
+[e ) -> -> 0 `i `uc ]
+[e $UE 32  ]
+"242
+}
+[e :U 34 ]
+[; ;software_iic.c: 242: }
+
+[; ;software_iic.c: 245: for(i=0;i<no;i++)
+
+"245
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 38  ]
+"246
+[e :U 35 ]
+[; ;software_iic.c: 246: {
+
+{
+[; ;software_iic.c: 247: SendByte(*s);
+
+"247
+[e ( _SendByte (1
+ *U _s ]
+[; ;software_iic.c: 248: if(ack==0)
+
+"248
+[e $ ! == -> _ack `i -> 0 `i 39  ]
+[; ;software_iic.c: 249: {
+
+"249
+{
+[; ;software_iic.c: 250: Stop_I2c();
+
+"250
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 251: return(0);
+
+"251
+[e ) -> -> 0 `i `uc ]
+[e $UE 32  ]
+"252
+}
+[e :U 39 ]
+[; ;software_iic.c: 252: }
+
+[; ;software_iic.c: 253: s++;
+
+"253
+[e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
+"254
+}
+"245
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 38 ]
+[e $ < -> _i `i -> _no `i 35  ]
+[e :U 36 ]
+"254
+}
+[; ;software_iic.c: 254: }
+
+[; ;software_iic.c: 255: Stop_I2c();
+
+"255
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 256: return(1);
+
+"256
+[e ) -> -> 1 `i `uc ]
+[e $UE 32  ]
+"257
+[; ;software_iic.c: 257: }
+
+[e :UE 32 ]
+}
+"267
 [v _IRcvByte `(uc 1 ef2`uc`*uc ]
 {
-[; ;software_iic.c: 240: unsigned char IRcvByte(unsigned char sla,unsigned char *c)
+[; ;software_iic.c: 266: unsigned char IRcvByte(unsigned char sla,unsigned char *c)
 
-[; ;software_iic.c: 241: {
+[; ;software_iic.c: 267: {
 
 [e :U _IRcvByte ]
 [v _sla `uc 1 r1 ]
 [v _c `*uc 1 r2 ]
 [f ]
-[; ;software_iic.c: 242: Start_I2c();
+[; ;software_iic.c: 268: Start_I2c();
 
-"242
+"268
 [e ( _Start_I2c ..  ]
-[; ;software_iic.c: 243: SendByte(sla+1);
+[; ;software_iic.c: 269: SendByte(sla+1);
 
-"243
+"269
 [e ( _SendByte (1
  -> + -> _sla `i -> 1 `i `uc ]
-[; ;software_iic.c: 244: if(ack==0)
+[; ;software_iic.c: 270: if(ack==0)
 
-"244
-[e $ ! == -> _ack `i -> 0 `i 34  ]
-[; ;software_iic.c: 245: {
+"270
+[e $ ! == -> _ack `i -> 0 `i 41  ]
+[; ;software_iic.c: 271: {
 
-"245
+"271
 {
-[; ;software_iic.c: 246: Stop_I2c();
+[; ;software_iic.c: 272: Stop_I2c();
 
-"246
+"272
 [e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 247: return(0);
+[; ;software_iic.c: 273: return(0);
 
-"247
+"273
 [e ) -> -> 0 `i `uc ]
-[e $UE 33  ]
-"248
+[e $UE 40  ]
+"274
 }
-[e :U 34 ]
-[; ;software_iic.c: 248: }
+[e :U 41 ]
+[; ;software_iic.c: 274: }
 
-[; ;software_iic.c: 249: *c=RcvByte();
+[; ;software_iic.c: 275: *c=RcvByte();
 
-"249
+"275
 [e = *U _c ( _RcvByte ..  ]
-[; ;software_iic.c: 250: Ack_I2c(1);
+[; ;software_iic.c: 276: Ack_I2c(1);
 
-"250
+"276
 [e ( _Ack_I2c (1
  -> -> 1 `i `uc ]
-[; ;software_iic.c: 251: Stop_I2c();
+[; ;software_iic.c: 277: Stop_I2c();
 
-"251
+"277
 [e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 252: return(1);
+[; ;software_iic.c: 278: return(1);
 
-"252
+"278
 [e ) -> -> 1 `i `uc ]
-[e $UE 33  ]
-"253
-[; ;software_iic.c: 253: }
+[e $UE 40  ]
+"279
+[; ;software_iic.c: 279: }
 
-[e :UE 33 ]
+[e :UE 40 ]
 }
-"263
+"289
 [v _IRcvStr `(uc 1 ef4`uc`ui`*uc`uc ]
 {
-[; ;software_iic.c: 262: unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no)
+[; ;software_iic.c: 288: unsigned char IRcvStr(unsigned char sla,unsigned int suba,unsigned char *s,unsigned char no)
 
-[; ;software_iic.c: 263: {
+[; ;software_iic.c: 289: {
 
 [e :U _IRcvStr ]
 [v _sla `uc 1 r1 ]
@@ -2877,267 +3069,267 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _s `*uc 1 r3 ]
 [v _no `uc 1 r4 ]
 [f ]
-"264
-[v _i `uc 1 a ]
-"265
-[v _Tmp `uc 1 a ]
-[; ;software_iic.c: 264: unsigned char i;
-
-[; ;software_iic.c: 265: unsigned char Tmp;
-
-[; ;software_iic.c: 266: Start_I2c();
-
-"266
-[e ( _Start_I2c ..  ]
-[; ;software_iic.c: 267: SendByte(sla);
-
-"267
-[e ( _SendByte (1
- _sla ]
-[; ;software_iic.c: 268: if(ack==0)
-
-"268
-[e $ ! == -> _ack `i -> 0 `i 36  ]
-[; ;software_iic.c: 269: {
-
-"269
-{
-[; ;software_iic.c: 270: Stop_I2c();
-
-"270
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 271: return(0);
-
-"271
-[e ) -> -> 0 `i `uc ]
-[e $UE 35  ]
-"272
-}
-[e :U 36 ]
-[; ;software_iic.c: 272: }
-
-[; ;software_iic.c: 273: Tmp = suba & 0xff;
-
-"273
-[e = _Tmp -> & _suba -> -> 255 `i `ui `uc ]
-[; ;software_iic.c: 274: SendByte(Tmp);
-
-"274
-[e ( _SendByte (1
- _Tmp ]
-[; ;software_iic.c: 275: if(ack==0)
-
-"275
-[e $ ! == -> _ack `i -> 0 `i 37  ]
-[; ;software_iic.c: 276: {
-
-"276
-{
-[; ;software_iic.c: 277: Stop_I2c();
-
-"277
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 278: return(0);
-
-"278
-[e ) -> -> 0 `i `uc ]
-[e $UE 35  ]
-"279
-}
-[e :U 37 ]
-[; ;software_iic.c: 279: }
-
-[; ;software_iic.c: 281: Start_I2c();
-
-"281
-[e ( _Start_I2c ..  ]
-[; ;software_iic.c: 282: SendByte(sla+1);
-
-"282
-[e ( _SendByte (1
- -> + -> _sla `i -> 1 `i `uc ]
-[; ;software_iic.c: 283: if(ack==0)
-
-"283
-[e $ ! == -> _ack `i -> 0 `i 38  ]
-[; ;software_iic.c: 284: {
-
-"284
-{
-[; ;software_iic.c: 285: Stop_I2c();
-
-"285
-[e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 286: return(0);
-
-"286
-[e ) -> -> 0 `i `uc ]
-[e $UE 35  ]
-"287
-}
-[e :U 38 ]
-[; ;software_iic.c: 287: }
-
-[; ;software_iic.c: 288: for(i=0;i<no-1;i++)
-
-"288
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 42  ]
-"289
-[e :U 39 ]
-[; ;software_iic.c: 289: {
-
-{
-[; ;software_iic.c: 290: *s=RcvByte();
-
 "290
-[e = *U _s ( _RcvByte ..  ]
-[; ;software_iic.c: 291: Ack_I2c(0);
-
+[v _i `uc 1 a ]
 "291
-[e ( _Ack_I2c (1
- -> -> 0 `i `uc ]
-[; ;software_iic.c: 292: s++;
+[v _Tmp `uc 1 a ]
+[; ;software_iic.c: 290: unsigned char i;
+
+[; ;software_iic.c: 291: unsigned char Tmp;
+
+[; ;software_iic.c: 292: Start_I2c();
 
 "292
-[e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
-"293
-}
-"288
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 42 ]
-[e $ < -> _i `i - -> _no `i -> 1 `i 39  ]
-[e :U 40 ]
-"293
-}
-[; ;software_iic.c: 293: }
+[e ( _Start_I2c ..  ]
+[; ;software_iic.c: 293: SendByte(sla);
 
-[; ;software_iic.c: 294: *s=RcvByte();
+"293
+[e ( _SendByte (1
+ _sla ]
+[; ;software_iic.c: 294: if(ack==0)
 
 "294
-[e = *U _s ( _RcvByte ..  ]
-[; ;software_iic.c: 295: Ack_I2c(1);
+[e $ ! == -> _ack `i -> 0 `i 43  ]
+[; ;software_iic.c: 295: {
 
 "295
-[e ( _Ack_I2c (1
- -> -> 1 `i `uc ]
+{
 [; ;software_iic.c: 296: Stop_I2c();
 
 "296
 [e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 297: return(1);
+[; ;software_iic.c: 297: return(0);
 
 "297
-[e ) -> -> 1 `i `uc ]
-[e $UE 35  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 42  ]
 "298
+}
+[e :U 43 ]
 [; ;software_iic.c: 298: }
 
-[e :UE 35 ]
-}
+[; ;software_iic.c: 299: Tmp = suba & 0xff;
+
+"299
+[e = _Tmp -> & _suba -> -> 255 `i `ui `uc ]
+[; ;software_iic.c: 300: SendByte(Tmp);
+
+"300
+[e ( _SendByte (1
+ _Tmp ]
+[; ;software_iic.c: 301: if(ack==0)
+
 "301
+[e $ ! == -> _ack `i -> 0 `i 44  ]
+[; ;software_iic.c: 302: {
+
+"302
+{
+[; ;software_iic.c: 303: Stop_I2c();
+
+"303
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 304: return(0);
+
+"304
+[e ) -> -> 0 `i `uc ]
+[e $UE 42  ]
+"305
+}
+[e :U 44 ]
+[; ;software_iic.c: 305: }
+
+[; ;software_iic.c: 307: Start_I2c();
+
+"307
+[e ( _Start_I2c ..  ]
+[; ;software_iic.c: 308: SendByte(sla+1);
+
+"308
+[e ( _SendByte (1
+ -> + -> _sla `i -> 1 `i `uc ]
+[; ;software_iic.c: 309: if(ack==0)
+
+"309
+[e $ ! == -> _ack `i -> 0 `i 45  ]
+[; ;software_iic.c: 310: {
+
+"310
+{
+[; ;software_iic.c: 311: Stop_I2c();
+
+"311
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 312: return(0);
+
+"312
+[e ) -> -> 0 `i `uc ]
+[e $UE 42  ]
+"313
+}
+[e :U 45 ]
+[; ;software_iic.c: 313: }
+
+[; ;software_iic.c: 314: for(i=0;i<no-1;i++)
+
+"314
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 49  ]
+"315
+[e :U 46 ]
+[; ;software_iic.c: 315: {
+
+{
+[; ;software_iic.c: 316: *s=RcvByte();
+
+"316
+[e = *U _s ( _RcvByte ..  ]
+[; ;software_iic.c: 317: Ack_I2c(0);
+
+"317
+[e ( _Ack_I2c (1
+ -> -> 0 `i `uc ]
+[; ;software_iic.c: 318: s++;
+
+"318
+[e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
+"319
+}
+"314
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 49 ]
+[e $ < -> _i `i - -> _no `i -> 1 `i 46  ]
+[e :U 47 ]
+"319
+}
+[; ;software_iic.c: 319: }
+
+[; ;software_iic.c: 320: *s=RcvByte();
+
+"320
+[e = *U _s ( _RcvByte ..  ]
+[; ;software_iic.c: 321: Ack_I2c(1);
+
+"321
+[e ( _Ack_I2c (1
+ -> -> 1 `i `uc ]
+[; ;software_iic.c: 322: Stop_I2c();
+
+"322
+[e ( _Stop_I2c ..  ]
+[; ;software_iic.c: 323: return(1);
+
+"323
+[e ) -> -> 1 `i `uc ]
+[e $UE 42  ]
+"324
+[; ;software_iic.c: 324: }
+
+[e :UE 42 ]
+}
+"327
 [v _IRcvBytes `(uc 1 ef3`uc`*uc`uc ]
 {
-[; ;software_iic.c: 300: unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no)
+[; ;software_iic.c: 326: unsigned char IRcvBytes(unsigned char sla,unsigned char *s,unsigned char no)
 
-[; ;software_iic.c: 301: {
+[; ;software_iic.c: 327: {
 
 [e :U _IRcvBytes ]
 [v _sla `uc 1 r1 ]
 [v _s `*uc 1 r2 ]
 [v _no `uc 1 r3 ]
 [f ]
-"302
+"328
 [v _i `uc 1 a ]
-[; ;software_iic.c: 302: unsigned char i;
+[; ;software_iic.c: 328: unsigned char i;
 
-[; ;software_iic.c: 304: Start_I2c();
+[; ;software_iic.c: 330: Start_I2c();
 
-"304
+"330
 [e ( _Start_I2c ..  ]
-[; ;software_iic.c: 305: SendByte(sla+1);
+[; ;software_iic.c: 331: SendByte(sla+1);
 
-"305
+"331
 [e ( _SendByte (1
  -> + -> _sla `i -> 1 `i `uc ]
-[; ;software_iic.c: 306: if(ack==0)
+[; ;software_iic.c: 332: if(ack==0)
 
-"306
-[e $ ! == -> _ack `i -> 0 `i 44  ]
-[; ;software_iic.c: 307: {
+"332
+[e $ ! == -> _ack `i -> 0 `i 51  ]
+[; ;software_iic.c: 333: {
 
-"307
+"333
 {
-[; ;software_iic.c: 308: Stop_I2c();
+[; ;software_iic.c: 334: Stop_I2c();
 
-"308
+"334
 [e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 309: return(0);
+[; ;software_iic.c: 335: return(0);
 
-"309
+"335
 [e ) -> -> 0 `i `uc ]
-[e $UE 43  ]
-"310
+[e $UE 50  ]
+"336
 }
-[e :U 44 ]
-[; ;software_iic.c: 310: }
+[e :U 51 ]
+[; ;software_iic.c: 336: }
 
-[; ;software_iic.c: 311: for(i=0;i<no-1;i++)
+[; ;software_iic.c: 337: for(i=0;i<no-1;i++)
 
-"311
+"337
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 48  ]
-"312
-[e :U 45 ]
-[; ;software_iic.c: 312: {
+[e $U 55  ]
+"338
+[e :U 52 ]
+[; ;software_iic.c: 338: {
 
 {
-[; ;software_iic.c: 313: *s=RcvByte();
+[; ;software_iic.c: 339: *s=RcvByte();
 
-"313
+"339
 [e = *U _s ( _RcvByte ..  ]
-[; ;software_iic.c: 314: Ack_I2c(0);
+[; ;software_iic.c: 340: Ack_I2c(0);
 
-"314
+"340
 [e ( _Ack_I2c (1
  -> -> 0 `i `uc ]
-[; ;software_iic.c: 315: s++;
+[; ;software_iic.c: 341: s++;
 
-"315
+"341
 [e ++ _s * -> -> 1 `i `x -> -> # *U _s `i `x ]
-"316
+"342
 }
-"311
+"337
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 48 ]
-[e $ < -> _i `i - -> _no `i -> 1 `i 45  ]
-[e :U 46 ]
-"316
+[e :U 55 ]
+[e $ < -> _i `i - -> _no `i -> 1 `i 52  ]
+[e :U 53 ]
+"342
 }
-[; ;software_iic.c: 316: }
+[; ;software_iic.c: 342: }
 
-[; ;software_iic.c: 317: *s=RcvByte();
+[; ;software_iic.c: 343: *s=RcvByte();
 
-"317
+"343
 [e = *U _s ( _RcvByte ..  ]
-[; ;software_iic.c: 318: Ack_I2c(1);
+[; ;software_iic.c: 344: Ack_I2c(1);
 
-"318
+"344
 [e ( _Ack_I2c (1
  -> -> 1 `i `uc ]
-[; ;software_iic.c: 319: Stop_I2c();
+[; ;software_iic.c: 345: Stop_I2c();
 
-"319
+"345
 [e ( _Stop_I2c ..  ]
-[; ;software_iic.c: 320: return(1);
+[; ;software_iic.c: 346: return(1);
 
-"320
+"346
 [e ) -> -> 1 `i `uc ]
-[e $UE 43  ]
-"321
-[; ;software_iic.c: 321: }
+[e $UE 50  ]
+"347
+[; ;software_iic.c: 347: }
 
-[e :UE 43 ]
+[e :UE 50 ]
 }

@@ -1,3 +1,5 @@
+#include <m8c.h>        // part specific constants and macros
+#include "PSoCAPI.h"    // PSoC API definitions for all User Modules
 #include "HT1621B.h"
 #include "ParticleSensor.h"
 #include "include.h"
@@ -5,14 +7,18 @@
 #define  MY_LCD
 #include "LCD.h"
 #include <stdlib.h>
+#include "BoardCommunication.h"
 
 extern unsigned char Timer;
+#define ONE_SECOND_TIMER_RELOAD		24
 
 void DisplayPMxx(unsigned int pm)
 {
 	char k = 0;
 	unsigned int index;
 	unsigned int temp;
+	
+//	M8C_DisableGInt;
 	
 	temp = pm;
 	if(temp > 999)
@@ -50,12 +56,17 @@ void DisplayPMxx(unsigned int pm)
 	{
 		DisplayBuf[k] = DigitSeg[DisplayNum[k]];
 	}
+	
+//	M8C_EnableGInt;
 }
 
 void ShowLife(unsigned char life)
 {
 	unsigned char temp = life;
 	unsigned char index;
+	
+//	M8C_DisableGInt;
+	
 	if (temp > 99)
 	{
 		temp = 99;
@@ -73,11 +84,16 @@ void ShowLife(unsigned char life)
 	
 	index = temp%10;
 	DisplayBuf[4] = DigitSeg[index];
+	
+//	M8C_EnableGInt;
 }
 void ShowHumiTemp(signed char value)
 {
 	signed char temp = value;
 	unsigned char index;
+	
+//	M8C_DisableGInt;
+	
 	if (temp > 99)
 	{
 		temp = 99;
@@ -108,12 +124,15 @@ void ShowHumiTemp(signed char value)
 		index = temp%10;
 		DisplayBuf[8] = DigitSegSwap[index];
 	}
+	
+//	M8C_EnableGInt;
 }
 
 void LCDOuputAll(void)
 {
 	char k = 0;
 	
+//	M8C_DisableGInt;
 	for (k=0;k<LCD_BUF_LENGTH;k++)
 	{
 		DisplayBuf[k] = 0;
@@ -255,6 +274,11 @@ void LCDOuputAll(void)
 			}
 		}
 	}
+	else 
+	{
+		PlasmaFlag = 0;
+	}
+	
 	if (PlasmaFlag == 1)
 	{
 		DisplayBuf[6] |= BIT6;
@@ -346,7 +370,12 @@ void LCDOuputAll(void)
 	DisplayBuf[6] |= BIT2 + BIT3;
 	DisplayBuf[7] |= BIT6 + BIT7;
 	DisplayBuf[11] |= BIT2 + BIT6;
+	
+	RTS_H;
+	M8C_DisableGInt;
 	WriteAll_1621(0,DisplayBuf,12);
+	M8C_EnableGInt;
+	RTS_L;
 }
 
 void LCD_Init()
@@ -361,4 +390,5 @@ void LCD_Init()
 	PM_Flag		= PM2_5;
 	HeapLife	= 85;
 	CarbonLife	= 73;
+	FanUpdateTimeReload = ONE_SECOND_TIMER_RELOAD;
 }

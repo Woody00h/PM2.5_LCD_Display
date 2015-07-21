@@ -11,8 +11,14 @@
 #include "LCD.h"
 #include "HumiChipII.h";
 #include "include.h"
+#include "BoardCommunication.h"
 
-#define ONE_SECOND_TIMER_RELOAD 8
+#define USE_SI7020 //if use HumiChipII then comment this macro
+
+#define ONE_SECOND_TIMER_RELOAD 	24
+#define TWO_SECOND_TIMER_RELOAD		48
+#define HALF_SECOND_TIMER_RELOAD	12
+#define BACKLIGHT_DIM_STEP			3
 
 unsigned int LightADCValue;										
 unsigned int DstBackLight;
@@ -23,11 +29,13 @@ unsigned char FanUpdateTimer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char one_sec_timer		= ONE_SECOND_TIMER_RELOAD;
 unsigned char rh_sample_timer	= ONE_SECOND_TIMER_RELOAD;
 unsigned char PlasmaTimer		= PLASMA_TIMER_RELOAD;
-unsigned char LcdUpdateTimer	= 4;
+unsigned char LcdUpdateTimer	= HALF_SECOND_TIMER_RELOAD;
 unsigned char IICTimeOutTimer;
+unsigned char DataUploadTimer	= TWO_SECOND_TIMER_RELOAD;
 unsigned char RHSampleStep = 0;
 							//   255   192   129   66    3
 const unsigned char RankLevel[8] = {20,  120,  220,  320};
+unsigned char LightLevel;
 void Timer16ISR(void)
 {
 	if (one_sec_timer)		one_sec_timer--;
@@ -37,18 +45,19 @@ void Timer16ISR(void)
 	if (LcdUpdateTimer)		LcdUpdateTimer--;
 	if (IICTimeOutTimer)	IICTimeOutTimer--;
 	if (RecTimeoutTimer)	RecTimeoutTimer--;
+	if (DataUploadTimer)	DataUploadTimer--;
 	
-	if (DstBackLight >= (CurrentBackLight + 9))
+	if (DstBackLight >= (CurrentBackLight + BACKLIGHT_DIM_STEP))
 	{
-		CurrentBackLight += 9;
+		CurrentBackLight += BACKLIGHT_DIM_STEP;
 		LightDuty = CurrentBackLight;
 		PWM8_BL_WritePulseWidth(LightDuty);
 	}
 	else
 	{
-		if ((DstBackLight + 9) <= CurrentBackLight)
+		if ((DstBackLight + BACKLIGHT_DIM_STEP) <= CurrentBackLight)
 		{
-			CurrentBackLight -= 9;
+			CurrentBackLight -= BACKLIGHT_DIM_STEP;
 			LightDuty = CurrentBackLight;
 			PWM8_BL_WritePulseWidth(LightDuty);
 		}
@@ -63,6 +72,7 @@ unsigned char LightRank(unsigned int light)
 {
 	unsigned char duty,i;
 	duty = 255;
+	LightLevel = 0;
 	for(i=0;i<4;i++)
 	{
 		if (light < RankLevel[i])
@@ -72,6 +82,7 @@ unsigned char LightRank(unsigned int light)
 		else 
 		{
 			duty -= 63;
+			LightLevel ++;
 		}
 	}
 	return duty;
@@ -99,18 +110,18 @@ void main(void)
 	
 	UART_Board_Start(UART_PARITY_NONE);
 //	UART_Board_EnableInt();
-//	UART_Board_IntCntl(UART_ENABLE_RX_INT | UART_DISABLE_TX_INT);
+	UART_Board_IntCntl(UART_Board_ENABLE_RX_INT | UART_Board_DISABLE_TX_INT);
 	
 	UART_Sensor_Start(UART_PARITY_NONE);
 //	UART_Sensor_EnableInt();
 	UART_Sensor_IntCntl(UART_Sensor_ENABLE_RX_INT | UART_Sensor_DISABLE_TX_INT);
 	
-	Timer16_WritePeriod(9600);
-	Timer16_WriteCompareValue(9000);
+	Timer16_WritePeriod(3200);
+	Timer16_WriteCompareValue(3200);
 	Timer16_EnableInt();
 	Timer16_Start();
 
-	UART_Board_CPutString("Woody is a genius!");
+//	UART_Board_CPutString("Woody is a genius!");
 	
 	PMSFrameFlag = 0;
 	HeadFlag = 0;	
@@ -122,8 +133,11 @@ void main(void)
 	SAR10_DisableInt(); // Enable SAR10 interrupt
 	SAR10_Start(); // Start conversion
 
+#ifdef USE_SI7020
 	Si7020Init();
+#else
 	HumiChipInit();
+#endif
 	
 	LCD_Init();
 	
@@ -188,7 +202,7 @@ void main(void)
 		if(!rh_sample_timer)
 		{
 			rh_sample_timer = ONE_SECOND_TIMER_RELOAD;
-#if 0
+#ifdef USE_SI7020
 			if (!RHSampleStep)
 			{
 				ret = Si7020SendCommand(MRH_NHMM); // send the command(Measure RH, No Hold Master Mode)
@@ -248,10 +262,38 @@ void main(void)
 				
 		if (!LcdUpdateTimer)
 		{
-			LcdUpdateTimer = 4;
+			LcdUpdateTimer = HALF_SECOND_TIMER_RELOAD;
 			LCDOuputAll();
 		}
 		
+		if (!DataUploadTimer)
+		{
+			DataUploadTimer = TWO_SECOND_TIMER_RELOAD;
+			B2BSendData();
+		}
+		
+		if (B2BFrameFlag)
+		{
+			B2BFrameFlag = 0;
+			if (B2BFrameCheck())
+			{
+//				UART_Board_CPutString("B2B OK");
+//				UART_Board_PutCRLF();
+				HeapLife	= myRxUnion.myRxFrame.HepaLife;
+				CarbonLife	= myRxUnion.myRxFrame.CarbonLife;
+				SpeedLvl	= myRxUnion.myRxFrame.Speed;
+				Odor		= myRxUnion.myRxFrame.Odor;
+				Plasma		= myRxUnion.myRxFrame.Plasma;
+				LockStatus	= myRxUnion.myRxFrame.Lock;
+				mode		= myRxUnion.myRxFrame.Mode;
+				Timer		= myRxUnion.myRxFrame.Timer;
+			}
+			else
+			{
+//				UART_Board_CPutString("B2B fail");
+//				UART_Board_PutCRLF();
+			}
+		}
 		RES_WDT = 0;
 	}
 }

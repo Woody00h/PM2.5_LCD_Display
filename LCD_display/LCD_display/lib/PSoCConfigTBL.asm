@@ -222,7 +222,7 @@ LoadConfigTBL_led_display_Ordered:
 	mov	reg[04h], a0h		; Port_1_DriveMode_0 register (PRT1DM0)
 	mov	reg[05h], ffh		; Port_1_DriveMode_1 register (PRT1DM1)
 	M8C_SetBank0
-	mov	reg[07h], ffh		; Port_1_DriveMode_2 register (PRT1DM2)
+	mov	reg[07h], efh		; Port_1_DriveMode_2 register (PRT1DM2)
 	mov	reg[06h], 00h		; Port_1_GlobalSelect register (PRT1GS)
 	M8C_SetBank1
 	mov	reg[06h], 00h		; Port_1_IntCtrl_0 register (PRT1IC0)
@@ -231,10 +231,10 @@ LoadConfigTBL_led_display_Ordered:
 	mov	reg[05h], 00h		; Port_1_IntEn register (PRT1IE)
 	mov	reg[08h], 00h		; Port_2_Data register (PRT2DR)
 	M8C_SetBank1
-	mov	reg[08h], 09h		; Port_2_DriveMode_0 register (PRT2DM0)
-	mov	reg[09h], f6h		; Port_2_DriveMode_1 register (PRT2DM1)
+	mov	reg[08h], 29h		; Port_2_DriveMode_0 register (PRT2DM0)
+	mov	reg[09h], d6h		; Port_2_DriveMode_1 register (PRT2DM1)
 	M8C_SetBank0
-	mov	reg[0bh], e6h		; Port_2_DriveMode_2 register (PRT2DM2)
+	mov	reg[0bh], c6h		; Port_2_DriveMode_2 register (PRT2DM2)
 	mov	reg[0ah], 19h		; Port_2_GlobalSelect register (PRT2GS)
 	M8C_SetBank1
 	mov	reg[0ah], 00h		; Port_2_IntCtrl_0 register (PRT2IC0)
